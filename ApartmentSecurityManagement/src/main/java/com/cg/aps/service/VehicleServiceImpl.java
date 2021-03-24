@@ -19,9 +19,9 @@ public class VehicleServiceImpl implements VehicleService {
 	VehicleDao dao;
 	
 	@Override
-	public long add(VehicleEntity bean) {
+	public VehicleEntity add(VehicleEntity bean) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.save(bean);
 	}
 
 	@Override

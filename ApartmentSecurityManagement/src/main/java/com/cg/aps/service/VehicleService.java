@@ -6,7 +6,7 @@ import com.cg.aps.entities.VehicleEntity;
 
 public interface VehicleService {
 	
-	public long add(VehicleEntity bean);
+	public VehicleEntity add(VehicleEntity bean);
 	
 	public void update(VehicleEntity bean);
 	
