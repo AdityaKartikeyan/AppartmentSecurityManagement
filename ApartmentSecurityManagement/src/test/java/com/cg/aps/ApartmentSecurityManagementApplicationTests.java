@@ -2,6 +2,10 @@ package com.cg.aps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +27,9 @@ class ApartmentSecurityManagementApplicationTests {
 	public void testAddGuardTraining()
 	{
 		
-		GuardShiftEntity obj = new GuardShiftEntity(0, null, null, null, null, 0, null, null, null);
-		obj.setName("aditya");
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+				Date.valueOf(LocalDate.now()));
+		
 		
 		
 		Mockito.when(dao.save(obj)).thenReturn(obj);
