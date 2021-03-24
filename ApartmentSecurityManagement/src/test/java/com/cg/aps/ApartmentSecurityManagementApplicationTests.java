@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,13 +28,13 @@ class ApartmentSecurityManagementApplicationTests {
 	public void testAddGuardTraining()
 	{
 		
-//		VehicleEntity obj = new VehicleEntity(1222, "Anshul","Joshi" ,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),1,"HARSH","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
-//	    
-//	     
-//		
-//		
-//		Mockito.when(dao.save(obj)).thenReturn(obj);
-//		assertEquals(obj,service.add(obj));
+		VehicleEntity obj = new VehicleEntity(1222, "Anshul","Joshi" ,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"AJ","101","11:30","12:30",Date.valueOf(LocalDate.now()),"103","Honda City");
+	    
+	     
+		
+		
+		Mockito.when(dao.save(obj)).thenReturn(obj);
+		assertEquals(obj,service.add(obj));
 			
 		
 	}
