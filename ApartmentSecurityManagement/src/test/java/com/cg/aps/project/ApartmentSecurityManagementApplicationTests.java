@@ -16,7 +16,7 @@ import com.cg.aps.entities.GuardTrainingEntity;
 import com.cg.aps.repository.GuardTrainingDao;
 import com.cg.aps.service.GuardTrainingService;
 
-
+//testing
 
 @SpringBootTest
 class ApartmentSecurityManagementApplicationTests {
