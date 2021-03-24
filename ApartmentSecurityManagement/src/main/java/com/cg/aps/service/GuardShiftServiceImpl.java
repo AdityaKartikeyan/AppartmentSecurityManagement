@@ -19,9 +19,9 @@ public class GuardShiftServiceImpl implements GuardShiftService
 	GuardShiftDao dao;
 
 	@Override
-	public long add(GuardShiftEntity bean) {
+	public GuardShiftEntity add(GuardShiftEntity bean) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.save(bean);
 	}
 
 	@Override

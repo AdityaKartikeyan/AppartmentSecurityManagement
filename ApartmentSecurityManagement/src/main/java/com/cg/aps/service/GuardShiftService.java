@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GuardShiftService 
 {
-public long add(GuardShiftEntity bean);
+public GuardShiftEntity add(GuardShiftEntity bean);
 	
 	public void update(GuardShiftEntity bean);
 	
