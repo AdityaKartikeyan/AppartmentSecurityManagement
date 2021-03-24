@@ -15,7 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.cg.aps.entities.GuardShiftEntity;
 import com.cg.aps.repository.GuardShiftDao;
 import com.cg.aps.service.GuardShiftService;
-
+// Testing
 @SpringBootTest
 class ApartmentSecurityManagementApplicationTests {
 	@MockBean
