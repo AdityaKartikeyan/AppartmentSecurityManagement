@@ -2,6 +2,10 @@ package com.cg.aps.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +22,14 @@ public class ApartmentSecurityManagementApplicationTests {
 	@Autowired
 	DeliveryService service;
 
-//	@Test
-	/*public void testAddDelivery() {
+	@Test
+	public void testAddGuardTraining() {
 
-		DeliveryEntity obj = new DeliveryEntity("name",null,null,null);
+		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "Vishal", "12:30", Date.valueOf(LocalDate.now()),
+				"completed");
 		Mockito.when(dao.save(obj)).thenReturn(obj);
-		long result = service.add(obj);
-		assertEquals(obj.getId(),obj.getId());
-	
-	}*/
+		assertEquals(obj, service.add(obj));
+
+	}
 }

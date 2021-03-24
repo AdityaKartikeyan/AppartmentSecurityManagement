@@ -4,13 +4,11 @@
 package com.cg.aps.service;
 
 import java.util.List;
-import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import com.cg.aps.entities.DeliveryEntity;
 import com.cg.aps.repository.DeliveryDao;
@@ -19,15 +17,16 @@ import com.cg.aps.repository.DeliveryDao;
  * @author Vishal Rana
  *
  */
+@Service("DeliveryService")
+@Transactional
 public class DeliveryServiceImpl implements DeliveryService {
 
 	@Autowired
 	DeliveryDao dao;
 
 	@Override
-	public long add(DeliveryEntity bean) {
-		dao.save(bean);
-		return bean.getId();
+	public DeliveryEntity add(DeliveryEntity bean) {
+		return dao.save(bean);
 	}
 
 	@Override

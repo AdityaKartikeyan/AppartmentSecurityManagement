@@ -9,7 +9,7 @@ import com.cg.aps.entities.DeliveryEntity;
 
 public interface DeliveryService {
 
-		public long add(DeliveryEntity bean);
+		public DeliveryEntity add(DeliveryEntity bean);
 		
 		public void update(DeliveryEntity bean);
 		
