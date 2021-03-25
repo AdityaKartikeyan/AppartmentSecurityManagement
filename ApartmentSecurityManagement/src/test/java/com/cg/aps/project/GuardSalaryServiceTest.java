@@ -5,8 +5,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +40,7 @@ class GuardSalaryServiceTest {
 	public void testAddGuardSalary()
 	{
 		
-		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", LocalDateTime.now() , LocalDateTime.now(),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
 		
 		
 		
@@ -54,7 +54,7 @@ class GuardSalaryServiceTest {
 	public void testUpdateGuardTraining()
 	{
 		
-		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", LocalDateTime.now() , LocalDateTime.now(),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
 	
 	   
 	    Mockito.when(dao.save(obj)).thenReturn(obj);
@@ -71,7 +71,7 @@ class GuardSalaryServiceTest {
 	@Test
 	public void testDeleteGuardSalary()
 	{
-		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", LocalDateTime.now() , LocalDateTime.now(),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
 	    service.delete(obj);
 	    verify(dao,times(1)).delete(obj);
 	}
@@ -81,8 +81,8 @@ class GuardSalaryServiceTest {
 	public void testFindByName()
 	{
 		String name="aravind";
-		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
-		GuardSalaryEntity obj1 = new GuardSalaryEntity(1, "anshul", "ambarish", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind",2000,"102","received",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", LocalDateTime.now() , LocalDateTime.now(),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj1 = new GuardSalaryEntity(1, "anshul", "ambarish", LocalDateTime.now() , LocalDateTime.now(),"Aravind",2000,"102","received",Date.valueOf(LocalDate.now()));
 		
 	List<GuardSalaryEntity> list  = new ArrayList();
 	list.add(obj);
@@ -98,7 +98,7 @@ class GuardSalaryServiceTest {
 	public void testFindByPk()
 	{
 		
-		Optional<GuardSalaryEntity> obj =Optional.of(new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now())));
+		Optional<GuardSalaryEntity> obj =Optional.of(new GuardSalaryEntity(1, "aravind", "aditya", LocalDateTime.now() , LocalDateTime.now(),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now())));
  
 		Mockito.when(dao.findById((int) obj.get().getUserId())).thenReturn(obj);
 		Optional<GuardSalaryEntity> obj1 = service.findByPk(obj.get().getUserId());
@@ -109,8 +109,8 @@ class GuardSalaryServiceTest {
 	@Test
 	public void testSearch()
 	{
-		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
-		GuardSalaryEntity obj1 = new GuardSalaryEntity(1, "anshul", "ambarish", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind",2000,"102","received",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", LocalDateTime.now() , LocalDateTime.now(),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj1 = new GuardSalaryEntity(1, "anshul", "ambarish", LocalDateTime.now() , LocalDateTime.now(),"Aravind",2000,"102","received",Date.valueOf(LocalDate.now()));
 		
 		List<GuardSalaryEntity> list1  = new ArrayList();
 		list1.add(obj);

@@ -1,6 +1,6 @@
 package com.cg.aps.entities;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -16,16 +16,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name="GuardSalary")
 
+
 public class GuardSalaryEntity extends BaseEntity {
 
 	private String name;
+	@Id
 	private long userId;
 	private String amount;
 	private String status;
 	private Date date;
 	
-	public GuardSalaryEntity(long id, String createdBy, String modifiedBy, Timestamp createdDateTime,
-			Timestamp modifiedDateTime, String name, long userId, String amount, String status, Date date) {
+	public GuardSalaryEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime, String name, long userId, String amount, String status, Date date) {
 		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
 		this.name = name;
 		this.userId = userId;
@@ -65,6 +67,8 @@ public class GuardSalaryEntity extends BaseEntity {
 	}
 	
 	
-	
+	public GuardSalaryEntity() {
+		// TODO Auto-generated constructor stub
+	}
 		
 }
