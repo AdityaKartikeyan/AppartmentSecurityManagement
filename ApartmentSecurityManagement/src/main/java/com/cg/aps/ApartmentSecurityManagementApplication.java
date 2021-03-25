@@ -4,6 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+/**
+ * @author Aravind
+ *
+ */
 @SpringBootApplication
 @EnableJpaAuditing
 public class ApartmentSecurityManagementApplication {
@@ -13,3 +17,4 @@ public class ApartmentSecurityManagementApplication {
 	}
 
 }
+

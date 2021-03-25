@@ -24,7 +24,8 @@ public class GuardSalaryServiceImpl implements GuardSalaryService {
 	}
 
 	@Override
-	public void update(GuardSalaryEntity bean) {
+	public GuardSalaryEntity update(GuardSalaryEntity bean) {
+		return dao.save(bean);
 		// TODO Auto-generated method stub
 		
 	}

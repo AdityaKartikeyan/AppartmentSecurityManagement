@@ -11,7 +11,7 @@ public interface GuardSalaryService {
 
 	public GuardSalaryEntity add(GuardSalaryEntity bean);
 
-	public void update(GuardSalaryEntity bean);
+	public GuardSalaryEntity update(GuardSalaryEntity bean);
 
 	public void delete(GuardSalaryEntity bean);
 

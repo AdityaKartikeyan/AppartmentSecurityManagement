@@ -19,14 +19,14 @@ import com.cg.aps.service.GuardSalaryService;
 
 
 @SpringBootTest
-class ApartmentSecurityManagementApplicationTests {
+class GuardSalaryServiceTest {
 	@MockBean
 	GuardSalaryDao dao;
 	@Autowired
 	GuardSalaryService service;
 	
 	@Test
-	public void testAddGuardTraining()
+	public void testAddGuardSalary()
 	{
 		
 		GuardSalaryEntity obj = new GuardSalaryEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", "101",2000,"credited",Date.valueOf(LocalDate.now()));
@@ -39,5 +39,20 @@ class ApartmentSecurityManagementApplicationTests {
 		
 	}
 
+	@Test 
+	public void testUpdateGuardTraining()
+	{
+		
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", "101",2000,"credited",Date.valueOf(LocalDate.now()));
 	
+	   
+	    Mockito.when(dao.save(obj)).thenReturn(obj);
+
+	    assertEquals(obj,service.add(obj));
+	    
+	    obj.setName("harsh");
+	    obj.setStatus("working");
+	     
+	      assertEquals(obj,service.update(obj));
 	}
+}
