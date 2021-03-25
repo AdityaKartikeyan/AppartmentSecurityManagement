@@ -73,63 +73,58 @@ class VehicleTests {
 		service.delete(obj);
 		verify(dao, times(1)).delete(obj);
 	}
-	
-	//testing find by name
-	
-	@Test 
-	public void testFindByName()	
-	{
-		String name="Anshul";
+
+	// testing find by name
+
+	@Test
+	public void testFindByName() {
+		String name = "Anshul";
 		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
 				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
 				"103", "Honda City");
 		VehicleEntity obj1 = new VehicleEntity(1222, "Joshi", "Anshul", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "Anshul", "103", "10:30", "1:30", Date.valueOf(LocalDate.now()),
-				"104", "Honda Jazz");
-		
-	List<VehicleEntity> list  = new ArrayList();
-	list.add(obj);
-	list.add(obj1);
-	
+				new Timestamp(System.currentTimeMillis()), "Anshul", "103", "10:30", "1:30",
+				Date.valueOf(LocalDate.now()), "104", "Honda Jazz");
+
+		List<VehicleEntity> list = new ArrayList();
+		list.add(obj);
+		list.add(obj1);
+
 		Mockito.when(dao.findByName(name)).thenReturn(list);
-		assertEquals(2,service.findByName(name).size());
-		
+		assertEquals(2, service.findByName(name).size());
+
 	}
-	
-	//testing for find by ID
+
+	// testing for find by ID
 	@Test
-	public void testFindByPk()
-	{
-		
-		Optional<VehicleEntity> obj =Optional.of(new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
-				"103", "Honda Fit"));
- 
+	public void testFindByPk() {
+
+		Optional<VehicleEntity> obj = Optional.of(new VehicleEntity(1222, "Anshul", "Joshi",
+				new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "AJ", "101",
+				"11:30", "12:30", Date.valueOf(LocalDate.now()), "103", "Honda Fit"));
+
 		Mockito.when(dao.findById(obj.get().getVehicleNo())).thenReturn(obj);
 		Optional<VehicleEntity> obj1 = service.findByPk(obj.get().getVehicleNo());
-		assertEquals(obj.get().getVehicleNo(),obj1.get().getVehicleNo());
-		
+		assertEquals(obj.get().getVehicleNo(), obj1.get().getVehicleNo());
+
 	}
-	
-	//SEARCHING
-	
+
+	// SEARCHING
+
 	@Test
-	public void testSearch()
-	{
+	public void testSearch() {
 		VehicleEntity obj = new VehicleEntity(777, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
 				new Timestamp(System.currentTimeMillis()), "AJ", "104", "1:30", "4:30", Date.valueOf(LocalDate.now()),
 				"108", "Honda Fit");
 		VehicleEntity obj1 = new VehicleEntity(799, "Aditya", "Aravind", new Timestamp(System.currentTimeMillis()),
 				new Timestamp(System.currentTimeMillis()), "AJ", "109", "2:30", "7:30", Date.valueOf(LocalDate.now()),
 				"110", "Honda Jazz");
-		List<VehicleEntity> list1  = new ArrayList();
+		List<VehicleEntity> list1 = new ArrayList();
 		list1.add(obj);
 		list1.add(obj1);
-		
-		
+
 		Mockito.when(dao.findAll()).thenReturn(list1);
-		assertEquals(2,service.search(obj1).size());
+		assertEquals(2, service.search().size());
 	}
-	
-	
+
 }

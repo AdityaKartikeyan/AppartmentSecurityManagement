@@ -16,4 +16,4 @@ public class ApartmentSecurityManagementApplication {
 		SpringApplication.run(ApartmentSecurityManagementApplication.class, args);
 	}
 
-}	
+}
