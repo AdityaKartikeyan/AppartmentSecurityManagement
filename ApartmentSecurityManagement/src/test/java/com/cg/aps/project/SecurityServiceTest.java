@@ -10,6 +10,7 @@ import static org.mockito.Mockito.verify;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +46,7 @@ public class SecurityServiceTest {
 	public void addSecurity()
 	{
       
-		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 1, "intruder", "door", LocalDate.now());
+		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now());
 		
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj,service.add(obj));
@@ -56,7 +57,7 @@ public class SecurityServiceTest {
 	@Test
 	public void updateSecurity()
 	{
-		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 1, "intruder", "door", LocalDate.now());
+		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now());
 	    Mockito.when(dao.save(obj)).thenReturn(obj);
 
 	    assertEquals(obj,service.add(obj));
@@ -70,7 +71,7 @@ public class SecurityServiceTest {
 	@Test 
 	public void deleteSecurity()
 	{
-		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 1, "intruder", "door", LocalDate.now());
+		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now());
 	    service.delete(obj);
 	    verify(dao,times(1)).delete(obj);
 	}
@@ -80,7 +81,7 @@ public class SecurityServiceTest {
 	public void testFindByPk()
 	{
 		
-	Optional<SecurityEntity> obj =	Optional.of(new SecurityEntity(11, "aditya", "harsh",new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 1, "intruder", "door", LocalDate.now()));
+	Optional<SecurityEntity> obj =	Optional.of(new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now()));
 		Mockito.when(dao.findById(obj.get().getAlertId())).thenReturn(obj);
 		Optional<SecurityEntity> obj1 = service.findByPk(obj.get().getAlertId());
 		assertEquals(obj.get().getAlertId(),obj1.get().getAlertId());
@@ -92,8 +93,8 @@ public class SecurityServiceTest {
 		@Test
 		public void testSearch()
 		{
-			SecurityEntity obj = new SecurityEntity(12, "aditya", "harsh",new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 2, "intruder", "door", LocalDate.now());
-			SecurityEntity obj1 = new SecurityEntity(11, "aditya", "harsh",new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 1, "intruder", "door", LocalDate.now());
+			SecurityEntity obj = new SecurityEntity(12, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 2, "intruder", "door", LocalDate.now());
+			SecurityEntity obj1 = new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now());
 			List<SecurityEntity> list1  = new ArrayList();
 			list1.add(obj);
 			list1.add(obj1);

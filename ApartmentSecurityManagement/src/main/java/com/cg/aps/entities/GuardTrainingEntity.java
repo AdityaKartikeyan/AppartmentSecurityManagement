@@ -1,6 +1,7 @@
 package com.cg.aps.entities;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,8 +15,8 @@ public class GuardTrainingEntity extends BaseEntity{
 
 	
 
-	public GuardTrainingEntity(long id, String createdBy, String modifiedBy, Timestamp createdDateTime,
-			Timestamp modifiedDateTime, long userId, String name, String mobileNo, String status, String timing,
+	public GuardTrainingEntity(long id, String createdBy, String modifiedBy, LocalDateTime  createdDateTime,
+			LocalDateTime  modifiedDateTime, long userId, String name, String mobileNo, String status, String timing,
 			Date date) {
 		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
 		this.userId = userId;
@@ -26,7 +27,7 @@ public class GuardTrainingEntity extends BaseEntity{
 		this.date = date;
 	}
 
-	//@Id
+	@Id
 	@GeneratedValue
 	private long userId;
 	private String name;
@@ -36,7 +37,12 @@ public class GuardTrainingEntity extends BaseEntity{
 	
 	private Date date;
 	
-
+/**
+ * 
+ */
+public GuardTrainingEntity() {
+	// TODO Auto-generated constructor stub
+}
 	
 	public long getUserId() {
 		return userId;

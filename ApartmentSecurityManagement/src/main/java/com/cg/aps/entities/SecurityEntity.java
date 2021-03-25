@@ -3,10 +3,11 @@
  */
 package com.cg.aps.entities;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 @Table(name="Security")
 public class SecurityEntity extends BaseEntity {
 
+	@Id
 	private Integer alertId;
 	private String alertMessage;
 	private String alertType;
@@ -80,8 +82,8 @@ public class SecurityEntity extends BaseEntity {
 	 * @param alertType
 	 * @param alertDate
 	 */
-	public SecurityEntity(long id, String createdBy, String modifiedBy, Timestamp createdDateTime,
-			Timestamp modifiedDateTime, Integer alertId, String alertMessage, String alertType, LocalDate alertDate) {
+	public SecurityEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime, Integer alertId, String alertMessage, String alertType, LocalDate alertDate) {
 		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
 		this.alertId = alertId;
 		this.alertMessage = alertMessage;
