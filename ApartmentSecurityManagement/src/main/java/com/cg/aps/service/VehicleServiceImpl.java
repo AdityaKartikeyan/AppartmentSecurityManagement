@@ -40,9 +40,9 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 
 	@Override
-	public VehicleEntity findByName(String name) {
+	public List<VehicleEntity> findByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findByName(name);
 	}
 
 	@Override

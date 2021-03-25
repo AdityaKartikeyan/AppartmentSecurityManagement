@@ -16,7 +16,7 @@ public interface VehicleService {
 
 	public void delete(VehicleEntity bean);
 
-	public VehicleEntity findByName(String name);
+	public List<VehicleEntity> findByName(String name);
 
 	public VehicleEntity findByPk(long id);
 

@@ -3,14 +3,19 @@ package com.cg.aps;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 import com.cg.aps.entities.VehicleEntity;
 import com.cg.aps.repository.VehicleDao;
 import com.cg.aps.service.VehicleService;
@@ -56,16 +61,37 @@ class VehicleTests {
 		assertEquals(obj, service.update(obj));
 
 	}
-	
-	//testing delete vehicle entity
-	
+
+	// testing delete vehicle entity
+
 	@Test
-	public void testvehicle()
-	{
+	public void testvehicle() {
 		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
 				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
 				"103", "Honda City");
-	    service.delete(obj);
-	    verify(dao,times(1)).delete(obj);
+		service.delete(obj);
+		verify(dao, times(1)).delete(obj);
+	}
+	
+	//testing find by name
+	
+	@Test 
+	public void testFindByName()
+	{
+		String name="Anshul";
+		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
+				"103", "Honda City");
+		VehicleEntity obj1 = new VehicleEntity(1222, "Joshi", "Anshul", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "Anshul", "103", "10:30", "1:30", Date.valueOf(LocalDate.now()),
+				"104", "Honda Jazz");
+		
+	List<VehicleEntity> list  = new ArrayList();
+	list.add(obj);
+	list.add(obj1);
+	
+		Mockito.when(dao.findByName(name)).thenReturn(list);
+		assertEquals(2,service.findByName(name).size());
+		
 	}
 }
