@@ -11,7 +11,7 @@ public interface DeliveryService {
 
 		public DeliveryEntity add(DeliveryEntity bean);
 		
-		public void update(DeliveryEntity bean);
+		public DeliveryEntity update(DeliveryEntity bean);
 		
 		public void delete(DeliveryEntity bean);
 		

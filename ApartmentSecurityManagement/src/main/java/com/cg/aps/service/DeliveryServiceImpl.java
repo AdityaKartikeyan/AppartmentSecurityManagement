@@ -30,8 +30,9 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public void update(DeliveryEntity bean) {
-		}
+	public DeliveryEntity update(DeliveryEntity bean) {
+		return null;	
+	}
 
 	@Override
 	public void delete(DeliveryEntity bean) {

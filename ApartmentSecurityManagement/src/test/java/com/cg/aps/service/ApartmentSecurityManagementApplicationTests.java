@@ -23,7 +23,7 @@ public class ApartmentSecurityManagementApplicationTests {
 	DeliveryService service;
 
 	@Test
-	public void testAddGuardTraining() {
+	public void testAddDeliveryEntity() {
 
 		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", new Timestamp(System.currentTimeMillis()),
 				new Timestamp(System.currentTimeMillis()), "Vishal", "12:30", Date.valueOf(LocalDate.now()),
@@ -31,5 +31,18 @@ public class ApartmentSecurityManagementApplicationTests {
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
 
+	}
+
+	@Test
+	public void testUpdateDeliveryEntity() {
+
+		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "Vishal", "12:30", Date.valueOf(LocalDate.now()),
+				"completed");
+		Mockito.when(dao.save(obj)).thenReturn(obj);
+		assertEquals(obj, service.add(obj));
+		obj.setOwnerName("harsh");
+		obj.setStatus("working");
+		assertEquals(obj, service.update(obj));
 	}
 }
