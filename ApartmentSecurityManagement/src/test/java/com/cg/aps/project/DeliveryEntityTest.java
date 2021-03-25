@@ -90,4 +90,18 @@ public class DeliveryEntityTest {
 		Optional<DeliveryEntity> obj1 = service.findByPk(obj.get().getDeliveryId());
 		assertEquals(obj.get().getDeliveryId(), obj1.get().getDeliveryId());
 	}
+	
+	@Test // Testing Search method to find all
+	public void testSearch() {
+		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
+		DeliveryEntity obj1 = new DeliveryEntity(1223, "Newname", "Tigvijay", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), 2, "Nameowner", "10:30", Date.valueOf(LocalDate.now()));
+		List<DeliveryEntity> list1 = new ArrayList();
+		list1.add(obj);
+		list1.add(obj1);
+
+		Mockito.when(dao.findAll()).thenReturn(list1);
+		assertEquals(2, service.search().size());
+	}
 }

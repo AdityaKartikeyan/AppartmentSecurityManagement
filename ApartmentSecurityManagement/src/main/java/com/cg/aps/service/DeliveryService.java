@@ -22,7 +22,7 @@ public interface DeliveryService {
 		
 		public List<DeliveryEntity> search(DeliveryEntity bean, long pageNo, int pageSize);
 		
-		public List<DeliveryEntity> search(DeliveryEntity bean);
+		public List<DeliveryEntity> search();
 		
 		
 	}

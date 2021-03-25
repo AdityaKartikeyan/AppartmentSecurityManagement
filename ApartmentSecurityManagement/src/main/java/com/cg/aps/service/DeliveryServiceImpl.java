@@ -56,7 +56,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public List<DeliveryEntity> search(DeliveryEntity bean) {
+	public List<DeliveryEntity> search() {
 		return null;
 	}
 }
