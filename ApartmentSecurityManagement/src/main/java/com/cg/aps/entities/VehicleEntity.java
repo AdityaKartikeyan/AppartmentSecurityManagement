@@ -8,59 +8,77 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Vehicle")
+@Table(name = "Vehicle")
 public class VehicleEntity extends BaseEntity {
-	
+
 	private String name;
 	private String parkingNo;
 	private String arrivalTime;
 	private String departureTime;
 	private Date date;
+	/**
+	 * @author Anshul Joshi
+	 */
 	@Id
 	private String vehicleNo;
 	private String vehicleType;
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getParkingNo() {
 		return parkingNo;
 	}
+
 	public void setParkingNo(String parkingNo) {
 		this.parkingNo = parkingNo;
 	}
+
 	public String getArrivalTime() {
 		return arrivalTime;
 	}
+
 	public void setArrivalTime(String arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
+
 	public String getDepartureTime() {
 		return departureTime;
 	}
+
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	public String getVehicleNo() {
 		return vehicleNo;
 	}
+
 	public void setVehicleNo(String vehicleNo) {
 		this.vehicleNo = vehicleNo;
 	}
+
 	public String getVehicleType() {
 		return vehicleType;
 	}
+
 	public void setVehicleType(String vehicleType) {
 		this.vehicleType = vehicleType;
 	}
+
 	public VehicleEntity(long id, String createdBy, String modifiedBy, java.sql.Timestamp createdDateTime,
 			java.sql.Timestamp modifiedDateTime, String name, String parkingNo, String arrivalTime,
 			String departureTime, Date date, String vehicleNo, String vehicleType) {
@@ -73,13 +91,12 @@ public class VehicleEntity extends BaseEntity {
 		this.vehicleNo = vehicleNo;
 		this.vehicleType = vehicleType;
 	}
+
 	@Override
 	public String toString() {
 		return "VehicleEntity [name=" + name + ", parkingNo=" + parkingNo + ", arrivalTime=" + arrivalTime
 				+ ", departureTime=" + departureTime + ", date=" + date + ", vehicleNo=" + vehicleNo + ", vehicleType="
 				+ vehicleType + "]";
 	}
-		
-	
-	
+
 }

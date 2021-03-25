@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.aps.entities.VehicleEntity;
 
+/**
+ * @author Anshul Joshi
+ *
+ */
 @Repository
 public interface VehicleDao extends JpaRepository<VehicleEntity, Integer> {
 

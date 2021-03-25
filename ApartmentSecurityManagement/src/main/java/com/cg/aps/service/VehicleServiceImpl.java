@@ -10,14 +10,17 @@ import org.springframework.stereotype.Service;
 import com.cg.aps.entities.VehicleEntity;
 import com.cg.aps.repository.VehicleDao;
 
-
+/**
+ * @author Anshul Joshi
+ *
+ */
 @Service("VehicleService")
 @Transactional
 public class VehicleServiceImpl implements VehicleService {
 
 	@Autowired
 	VehicleDao dao;
-	
+
 	@Override
 	public VehicleEntity add(VehicleEntity bean) {
 		// TODO Auto-generated method stub
@@ -25,15 +28,15 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 
 	@Override
-	public void update(VehicleEntity bean) {
+	public VehicleEntity update(VehicleEntity bean) {
 		// TODO Auto-generated method stub
-		
+		return dao.save(bean);
 	}
 
 	@Override
 	public void delete(VehicleEntity bean) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

@@ -20,23 +20,26 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
-	
-	//@Id
+
+	// @Id
 	@GeneratedValue
 	protected long id;
-	
+
+	/**
+	 * @author Anshul Joshi
+	 */
 	@CreatedBy
 	@Column(name = "created_by")
 	protected String createdBy;
-	
+
 	@LastModifiedBy
 	@Column(name = "modified_by")
 	protected String modifiedBy;
-	
+
 	@CreationTimestamp
 	@Column(name = "created_date")
 	protected Timestamp createdDateTime;
-	
+
 	@UpdateTimestamp
 	@Column(name = "modified_date")
 	protected Timestamp modifiedDateTime;
@@ -90,9 +93,5 @@ public class BaseEntity {
 		this.createdDateTime = createdDateTime;
 		this.modifiedDateTime = modifiedDateTime;
 	}
-	
-	
-	
 
-	
 }
