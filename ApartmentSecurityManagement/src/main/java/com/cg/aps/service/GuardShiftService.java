@@ -16,7 +16,7 @@ public GuardShiftEntity add(GuardShiftEntity bean);
 	
 	public void delete(GuardShiftEntity bean);
 	
-	public GuardShiftEntity findByName(String name);
+	public List<GuardShiftEntity> findByName(String name);
 	
 	public GuardShiftEntity findByPk(long id);
 	

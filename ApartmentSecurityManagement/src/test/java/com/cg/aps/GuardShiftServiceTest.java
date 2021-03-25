@@ -7,6 +7,8 @@ import static org.mockito.Mockito.verify;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -69,4 +71,22 @@ class GuardShiftServiceTest {
 	    verify(dao,times(1)).delete(obj);
 	}
 
+	
+	@Test
+	public void testFindByName()
+	{
+		String name="Anshul";
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+				Date.valueOf(LocalDate.now()));
+		GuardShiftEntity obj1 = new GuardShiftEntity(10, "anshul", "aravind", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 100, "aditya", "12:30", 
+				Date.valueOf(LocalDate.now()));
+		
+	List<GuardShiftEntity> list  = new ArrayList();
+	list.add(obj);
+	list.add(obj1);
+	
+		Mockito.when(dao.findByName(name)).thenReturn(list);
+		assertEquals(2,service.findByName(name).size());
+		
+	}
 }

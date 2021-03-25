@@ -41,9 +41,9 @@ public class GuardShiftServiceImpl implements GuardShiftService
 	}
 
 	@Override
-	public GuardShiftEntity findByName(String name) {
+	public List<GuardShiftEntity> findByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findByName(name);
 	}
 
 	@Override
