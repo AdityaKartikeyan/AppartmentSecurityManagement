@@ -31,7 +31,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	@Override
 	public DeliveryEntity update(DeliveryEntity bean) {
-		return null;	
+		return dao.save(bean);	
 	}
 
 	@Override
