@@ -47,7 +47,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	@Override
 	public Optional<DeliveryEntity> findByPk(long id) {
-		return dao.findById((int) id);
+		return dao.findById(null);
 	}
 
 	@Override
