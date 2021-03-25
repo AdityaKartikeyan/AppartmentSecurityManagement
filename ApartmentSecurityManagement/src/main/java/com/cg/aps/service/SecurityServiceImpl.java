@@ -31,15 +31,14 @@ public class SecurityServiceImpl implements SecurityService {
 
 	@Override
 	public SecurityEntity update(SecurityEntity bean) {
-		return null;
 		// TODO Auto-generated method stub
-		
+		return dao.save(bean);
 	}
 
 	@Override
 	public void delete(SecurityEntity bean) {
 		// TODO Auto-generated method stub
-		
+		 dao.delete(bean);
 	}
 
 	@Override
