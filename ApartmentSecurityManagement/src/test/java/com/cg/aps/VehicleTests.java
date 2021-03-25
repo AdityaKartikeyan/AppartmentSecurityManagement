@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -76,7 +77,7 @@ class VehicleTests {
 	//testing find by name
 	
 	@Test 
-	public void testFindByName()
+	public void testFindByName()	
 	{
 		String name="Anshul";
 		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
@@ -92,6 +93,21 @@ class VehicleTests {
 	
 		Mockito.when(dao.findByName(name)).thenReturn(list);
 		assertEquals(2,service.findByName(name).size());
+		
+	}
+	
+	//testing for find by ID
+	@Test
+	public void testFindByPk()
+	{
+		
+		Optional<VehicleEntity> obj =Optional.of(new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
+				"103", "Honda Fit"));
+ 
+		Mockito.when(dao.findById(obj.get().getVehicleNo())).thenReturn(obj);
+		Optional<VehicleEntity> obj1 = service.findByPk(obj.get().getVehicleNo());
+		assertEquals(obj.get().getVehicleNo(),obj1.get().getVehicleNo());
 		
 	}
 }

@@ -1,6 +1,7 @@
 package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.cg.aps.entities.VehicleEntity;
 
@@ -18,7 +19,7 @@ public interface VehicleService {
 
 	public List<VehicleEntity> findByName(String name);
 
-	public VehicleEntity findByPk(long id);
+	public Optional<VehicleEntity> findByPk(String id);
 
 	public List<VehicleEntity> search(VehicleEntity bean, long pageNo, int pageSize);
 
