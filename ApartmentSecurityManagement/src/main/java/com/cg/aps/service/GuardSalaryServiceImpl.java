@@ -42,9 +42,9 @@ public class GuardSalaryServiceImpl implements GuardSalaryService {
 	}
 
 	@Override
-	public GuardSalaryEntity findByName(String name) {
+	public List<GuardSalaryEntity> findByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findByName(name);
 	}
 
 	@Override

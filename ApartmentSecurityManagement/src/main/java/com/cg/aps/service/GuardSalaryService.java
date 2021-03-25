@@ -19,7 +19,7 @@ public interface GuardSalaryService {
 
 	public void delete(GuardSalaryEntity bean);
 
-	public GuardSalaryEntity findByName(String name);
+	public List<GuardSalaryEntity> findByName(String name);
 
 	public GuardSalaryEntity findByPk(long id);
 
