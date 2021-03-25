@@ -61,10 +61,11 @@ public class GuardTrainingServiceImpl implements GuardTrainingService {
 		return null;
 	}
 
+	
 	@Override
-	public List<GuardTrainingEntity> search(GuardTrainingEntity bean) {
+	public List<GuardTrainingEntity> search() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 }

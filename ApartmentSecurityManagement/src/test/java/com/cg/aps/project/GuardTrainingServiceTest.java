@@ -121,7 +121,20 @@ class GuardTrainingServiceTest {
 		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
 		
 	}
-	
+	//testing search
+	@Test
+	public void testSearch()
+	{
+		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),1,"aditya","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),1,"aditya","981899","good","10.30",Date.valueOf(LocalDate.now()));
+		List<GuardTrainingEntity> list1  = new ArrayList();
+		list1.add(obj);
+		list1.add(obj1);
+		
+		
+		Mockito.when(dao.findAll()).thenReturn(list1);
+		assertEquals(2,service.search().size());
+	}
 	
 	
 	

@@ -19,7 +19,7 @@ public interface GuardTrainingService {
 	
 	public List<GuardTrainingEntity> search(GuardTrainingEntity bean, long pageNo, int pageSize);
 	
-	public List<GuardTrainingEntity> search(GuardTrainingEntity bean);
+	public List<GuardTrainingEntity> search();
 	
 	
 }
