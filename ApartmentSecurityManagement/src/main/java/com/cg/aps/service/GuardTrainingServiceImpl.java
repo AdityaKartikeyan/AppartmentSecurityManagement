@@ -38,7 +38,7 @@ public class GuardTrainingServiceImpl implements GuardTrainingService {
 	@Override
 	public void delete(GuardTrainingEntity bean) {
 		// TODO Auto-generated method stub
-		
+		dao.delete(bean);
 	}
 
 	@Override
