@@ -31,78 +31,80 @@ public class FlatServiceTest {
 	@Test
 	public void testAddFlat() {
 
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
 	}
-	
-	@Test 
-	public void testUpdateFlat()
-	{
-		
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
-	
-	   
-	    Mockito.when(dao.save(obj)).thenReturn(obj);
 
-	    assertEquals(obj,service.add(obj));
-	    
-	    obj.setFloorNo("10");
-	    obj.setFlatNo("1041b");
-	     
-	      assertEquals(obj,service.update(obj));
-	
-}
 	@Test
-	public void testDeleteFlat()
-	{
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");	    
+	public void testUpdateFlat() {
+
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
+
+		Mockito.when(dao.save(obj)).thenReturn(obj);
+
+		assertEquals(obj, service.add(obj));
+
+		obj.setFloorNo("10");
+		obj.setFlatNo("1041b");
+
+		assertEquals(obj, service.update(obj));
+
+	}
+
+	@Test
+	public void testDeleteFlat() {
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
 		service.delete(obj);
-	    verify(dao,times(1)).delete(obj);
+		verify(dao, times(1)).delete(obj);
 	}
-	
-	@Test
-	public void testFindByName()
-	{
-		String name="Sahitya";
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");	    
-		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner2", "1045", "12", "2BHK");	    	 List<FlatRentEntity> list  = new ArrayList();
-	
-		List<FlatEntity> list1  = new ArrayList();
-		 list1.add(obj);
-		 list1.add(obj1);
-	
-		Mockito.when(dao.findByOwnerName(name)).thenReturn(list1);
-		assertEquals(2,service.findByName(name).size());
-		
-	}
-	
-	@Test
-	public void testFindByPk()
-	{
-		
-		Optional<FlatEntity> obj =Optional.of(new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK"));	    
 
- 
-		Mockito.when(dao.findById( obj.get().getFlatNo())).thenReturn(obj);
-		Optional<FlatEntity> obj1 = service.findByPk(obj.get().getFlatNo());
-		assertEquals(obj.get().getFlatNo(),obj1.get().getFlatNo());
-		
-	}
-	
 	@Test
-	public void testSearch()
-	{
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");	    
-		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner2", "1045", "12", "2BHK");
-		List<FlatEntity> list1  = new ArrayList();
+	public void testFindByName() {
+		String name = "Sahitya";
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
+		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "owner2", "1045", "12", "2BHK");
+		List<FlatRentEntity> list = new ArrayList();
+
+		List<FlatEntity> list1 = new ArrayList();
 		list1.add(obj);
 		list1.add(obj1);
-		
-		
+
+		Mockito.when(dao.findByOwnerName(name)).thenReturn(list1);
+		assertEquals(2, service.findByName(name).size());
+
+	}
+
+	@Test
+	public void testFindByPk() {
+
+		Optional<FlatEntity> obj = Optional
+				.of(new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
+						new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK"));
+
+		Mockito.when(dao.findById(obj.get().getFlatNo())).thenReturn(obj);
+		Optional<FlatEntity> obj1 = service.findByPk(obj.get().getFlatNo());
+		assertEquals(obj.get().getFlatNo(), obj1.get().getFlatNo());
+
+	}
+
+	@Test
+	public void testSearch() {
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
+		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "owner2", "1045", "12", "2BHK");
+		List<FlatEntity> list1 = new ArrayList();
+		list1.add(obj);
+		list1.add(obj1);
+
 		Mockito.when(dao.findAll()).thenReturn(list1);
-		assertEquals(2,service.search(obj1).size());
+		assertEquals(2, service.search(obj1).size());
 	}
 }
-

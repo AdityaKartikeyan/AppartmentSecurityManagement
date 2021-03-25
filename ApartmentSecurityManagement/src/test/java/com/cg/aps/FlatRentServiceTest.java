@@ -106,6 +106,6 @@ public class FlatRentServiceTest {
 		
 		
 		Mockito.when(dao.findAll()).thenReturn(list1);
-		assertEquals(2,service.search(obj1).size());
+		assertEquals(2,service.search().size());
 	}
 }

@@ -21,7 +21,7 @@ public interface FlatServiceInt {
 	
 	public List<FlatEntity> search(FlatEntity bean, long pageNo, int pageSize);
 	
-	public List<FlatEntity> search(FlatEntity bean);
+	public List<FlatEntity> search();
 	
 	
 }

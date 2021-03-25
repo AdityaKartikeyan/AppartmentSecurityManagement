@@ -57,10 +57,11 @@ public class FlatServiceImpl implements FlatServiceInt {
 	}
 
 	@Override
-	public List<FlatEntity> search(FlatEntity bean) {
+	public List<FlatEntity> search() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
+
 	
 
 }

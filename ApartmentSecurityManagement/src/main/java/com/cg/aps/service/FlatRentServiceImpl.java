@@ -57,7 +57,7 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 	}
 
 	@Override
-	public List<FlatRentEntity> search(FlatRentEntity bean) {
+	public List<FlatRentEntity> search() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
