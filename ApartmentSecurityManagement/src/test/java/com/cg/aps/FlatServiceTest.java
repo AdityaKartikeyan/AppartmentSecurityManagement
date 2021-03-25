@@ -1,6 +1,8 @@
 package com.cg.aps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.sql.Timestamp;
 
@@ -49,4 +51,10 @@ public class FlatServiceTest {
 	      assertEquals(obj,service.update(obj));
 	
 }
+	@Test
+	public void testDeleteGuardTraining()
+	{
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");	    service.delete(obj);
+	    verify(dao,times(1)).delete(obj);
+	}
 }

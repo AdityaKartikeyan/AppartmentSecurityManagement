@@ -34,7 +34,7 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 	@Override
 	public void delete(FlatRentEntity bean) {
 		// TODO Auto-generated method stub
-		
+		dao.delete(bean);
 	}
 
 	@Override
