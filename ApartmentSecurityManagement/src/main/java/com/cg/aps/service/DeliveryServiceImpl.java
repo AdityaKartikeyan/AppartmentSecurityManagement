@@ -36,7 +36,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	@Override
 	public void delete(DeliveryEntity bean) {
-		}
+		
+	}
 
 	@Override
 	public DeliveryEntity findByName(String name) {
@@ -57,5 +58,4 @@ public class DeliveryServiceImpl implements DeliveryService {
 	public List<DeliveryEntity> search(DeliveryEntity bean) {
 		return null;
 	}
-
 }
