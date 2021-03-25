@@ -36,7 +36,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	@Override
 	public void delete(DeliveryEntity bean) {
-		
+		dao.delete(bean);
 	}
 
 	@Override
