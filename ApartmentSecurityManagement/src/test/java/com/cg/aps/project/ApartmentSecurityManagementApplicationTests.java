@@ -1,6 +1,8 @@
 package com.cg.aps.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -40,6 +42,13 @@ class ApartmentSecurityManagementApplicationTests {
 			
 		
 	}
-	
+	//testing delete guard training entity
+	@Test
+	public void testDeleteGuardTraining()
+	{
+		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),1,"HARSH","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
+	    service.delete(obj);
+	    verify(dao,times(1)).delete(obj);
+	}
 	
 }
