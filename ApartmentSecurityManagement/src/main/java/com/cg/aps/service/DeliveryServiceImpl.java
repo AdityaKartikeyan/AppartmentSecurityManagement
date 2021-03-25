@@ -40,7 +40,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public DeliveryEntity findByName(String name) {
+	public List<DeliveryEntity> findByName(String name) {
 		return null;
 	}
 

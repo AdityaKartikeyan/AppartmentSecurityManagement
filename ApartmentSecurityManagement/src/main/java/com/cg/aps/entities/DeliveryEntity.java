@@ -104,5 +104,4 @@ public class DeliveryEntity extends BaseEntity {
 		return "DeliveryEntity [ownerName=" + ownerName + ", time=" + time + ", date=" + date + ", status=" + status
 				+ "]";
 	}
-
 }

@@ -15,7 +15,7 @@ public interface DeliveryService {
 		
 		public void delete(DeliveryEntity bean);
 		
-		public DeliveryEntity findByName(String name);
+		public List<DeliveryEntity> findByName(String name);
 		
 		public DeliveryEntity findByPk(long id);
 		
