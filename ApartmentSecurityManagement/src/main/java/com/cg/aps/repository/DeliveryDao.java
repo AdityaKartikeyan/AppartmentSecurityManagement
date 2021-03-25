@@ -17,6 +17,7 @@ import com.cg.aps.entities.DeliveryEntity;
 @Repository
 public interface DeliveryDao extends JpaRepository<DeliveryEntity, Integer> {
 
-	 List<DeliveryEntity> findByName(String name);
+	List<DeliveryEntity> findByOwnerName(String name);
+	//List<DeliveryEntity> findById(long deliveryId);
 
 }

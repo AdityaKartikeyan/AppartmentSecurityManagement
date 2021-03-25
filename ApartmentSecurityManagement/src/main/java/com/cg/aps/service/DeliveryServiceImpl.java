@@ -32,7 +32,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	@Override
 	public DeliveryEntity update(DeliveryEntity bean) {
-		return dao.save(bean);	
+		return dao.save(bean);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public List<DeliveryEntity> findByName(String name) {
-		return dao.findByName(name);
+	public List<DeliveryEntity> findByOwnerName(String name) {
+		return dao.findByOwnerName(name);
 	}
 
 	@Override
