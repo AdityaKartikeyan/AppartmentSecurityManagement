@@ -36,7 +36,7 @@ public class VehicleServiceImpl implements VehicleService {
 	@Override
 	public void delete(VehicleEntity bean) {
 		// TODO Auto-generated method stub
-
+		dao.delete(bean);
 	}
 
 	@Override

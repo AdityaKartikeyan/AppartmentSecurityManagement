@@ -1,6 +1,8 @@
 package com.cg.aps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -34,10 +36,10 @@ class VehicleTests {
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
 
-	} // testing update the vehicle entity
+	} // testing update vehicle entity
 
 	@Test
-	public void testUpdateGuardTraining() {
+	public void testVehicle() {
 
 		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
 				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
@@ -53,5 +55,17 @@ class VehicleTests {
 
 		assertEquals(obj, service.update(obj));
 
+	}
+	
+	//testing delete vehicle entity
+	
+	@Test
+	public void testvehicle()
+	{
+		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
+				"103", "Honda City");
+	    service.delete(obj);
+	    verify(dao,times(1)).delete(obj);
 	}
 }
