@@ -6,6 +6,10 @@ import com.cg.aps.entities.GuardSalaryEntity;
 
 
 
+/**
+ * @author Aravind
+ *
+ */
 public interface GuardSalaryService {
 	
 

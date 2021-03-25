@@ -1,6 +1,8 @@
 package com.cg.aps.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -18,6 +20,10 @@ import com.cg.aps.service.GuardSalaryService;
 
 
 
+/**
+ * @author Aravind
+ *
+ */
 @SpringBootTest
 class GuardSalaryServiceTest {
 	@MockBean
@@ -29,7 +35,7 @@ class GuardSalaryServiceTest {
 	public void testAddGuardSalary()
 	{
 		
-		GuardSalaryEntity obj = new GuardSalaryEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", "101",2000,"credited",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", "101",2000,"credited",Date.valueOf(LocalDate.now()));
 		
 		
 		
@@ -43,7 +49,7 @@ class GuardSalaryServiceTest {
 	public void testUpdateGuardTraining()
 	{
 		
-		GuardSalaryEntity obj = new GuardSalaryEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", "101",2000,"credited",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", "101",2000,"credited",Date.valueOf(LocalDate.now()));
 	
 	   
 	    Mockito.when(dao.save(obj)).thenReturn(obj);
@@ -54,5 +60,12 @@ class GuardSalaryServiceTest {
 	    obj.setStatus("working");
 	     
 	      assertEquals(obj,service.update(obj));
+	}
+	@Test
+	public void testDeleteGuardSalary()
+	{
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", "101",2000,"credited",Date.valueOf(LocalDate.now()));
+	    service.delete(obj);
+	    verify(dao,times(1)).delete(obj);
 	}
 }

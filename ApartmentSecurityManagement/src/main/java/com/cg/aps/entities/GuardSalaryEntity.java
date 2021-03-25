@@ -7,6 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+
+/**
+ * @author Aravind
+ *
+ */
 @Entity
 @Table(name="GuardSalary")
 

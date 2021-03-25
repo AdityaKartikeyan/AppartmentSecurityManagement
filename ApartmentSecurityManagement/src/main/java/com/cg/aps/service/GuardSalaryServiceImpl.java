@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 import com.cg.aps.entities.GuardSalaryEntity;
 import com.cg.aps.repository.GuardSalaryDao;
 
+
+/**
+ * @author Aravind
+ *
+ */
 @Service("GuardSalaryService")
 @Transactional
 public class GuardSalaryServiceImpl implements GuardSalaryService {
@@ -33,7 +38,7 @@ public class GuardSalaryServiceImpl implements GuardSalaryService {
 	@Override
 	public void delete(GuardSalaryEntity bean) {
 		// TODO Auto-generated method stub
-		
+		dao.delete(bean);
 	}
 
 	@Override
