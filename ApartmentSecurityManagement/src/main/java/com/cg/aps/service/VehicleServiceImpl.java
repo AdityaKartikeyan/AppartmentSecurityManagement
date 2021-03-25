@@ -61,7 +61,7 @@ public class VehicleServiceImpl implements VehicleService {
 	@Override
 	public List<VehicleEntity> search(VehicleEntity bean) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 }

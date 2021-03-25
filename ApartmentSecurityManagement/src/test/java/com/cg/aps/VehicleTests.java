@@ -110,4 +110,26 @@ class VehicleTests {
 		assertEquals(obj.get().getVehicleNo(),obj1.get().getVehicleNo());
 		
 	}
+	
+	//SEARCHING
+	
+	@Test
+	public void testSearch()
+	{
+		VehicleEntity obj = new VehicleEntity(777, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "AJ", "104", "1:30", "4:30", Date.valueOf(LocalDate.now()),
+				"108", "Honda Fit");
+		VehicleEntity obj1 = new VehicleEntity(799, "Aditya", "Aravind", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "AJ", "109", "2:30", "7:30", Date.valueOf(LocalDate.now()),
+				"110", "Honda Jazz");
+		List<VehicleEntity> list1  = new ArrayList();
+		list1.add(obj);
+		list1.add(obj1);
+		
+		
+		Mockito.when(dao.findAll()).thenReturn(list1);
+		assertEquals(2,service.search(obj1).size());
+	}
+	
+	
 }
