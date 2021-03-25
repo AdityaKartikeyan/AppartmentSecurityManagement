@@ -10,7 +10,7 @@ public interface FlatServiceInt {
 
 	public FlatEntity add(FlatEntity bean);
 	
-	public void update(FlatEntity bean);
+	public FlatEntity update(FlatEntity bean);
 	
 	public void delete(FlatEntity bean);
 	

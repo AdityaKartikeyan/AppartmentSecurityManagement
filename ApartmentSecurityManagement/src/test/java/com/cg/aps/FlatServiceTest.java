@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cg.aps.entities.FlatEntity;
+import com.cg.aps.entities.FlatRentEntity;
 import com.cg.aps.repository.FlatDaoInt;
 import com.cg.aps.service.FlatServiceInt;
 
@@ -31,4 +32,21 @@ public class FlatServiceTest {
 		assertEquals(obj, service.add(obj));
 	}
 	
+	@Test 
+	public void testUpdateGuardTraining()
+	{
+		
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
+	
+	   
+	    Mockito.when(dao.save(obj)).thenReturn(obj);
+
+	    assertEquals(obj,service.add(obj));
+	    
+	    obj.setFloorNo("10");
+	    obj.setFlatNo("1041b");
+	     
+	      assertEquals(obj,service.update(obj));
+	
+}
 }

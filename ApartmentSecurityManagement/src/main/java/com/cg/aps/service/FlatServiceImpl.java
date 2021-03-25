@@ -26,9 +26,9 @@ public class FlatServiceImpl implements FlatServiceInt {
 	}
 
 	@Override
-	public void update(FlatEntity bean) {
+	public FlatEntity update(FlatEntity bean) {
 		// TODO Auto-generated method stub
-		
+		return dao.save(bean);
 	}
 
 	@Override

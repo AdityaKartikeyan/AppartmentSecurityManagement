@@ -30,4 +30,20 @@ public class FlatRentServiceTest {
 		assertEquals(obj, service.add(obj));
 	}
 	
+	@Test 
+	public void testUpdateGuardTraining()
+	{
+		
+		FlatRentEntity obj = new FlatRentEntity(101, "Sahitya", "shrivastava", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "Owner", "1041b", "5200", "3BHK");
+	
+	   
+	    Mockito.when(dao.save(obj)).thenReturn(obj);
+
+	    assertEquals(obj,service.add(obj));
+	    
+	    obj.setAmount("5002");
+	    obj.setFlatNo("1041b");
+	     
+	      assertEquals(obj,service.update(obj));
+}
 }
