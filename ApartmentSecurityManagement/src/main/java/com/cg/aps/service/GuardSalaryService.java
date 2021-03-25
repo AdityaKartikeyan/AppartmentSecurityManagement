@@ -9,7 +9,7 @@ import com.cg.aps.entities.GuardSalaryEntity;
 public interface GuardSalaryService {
 	
 
-	public long add(GuardSalaryEntity bean);
+	public GuardSalaryEntity add(GuardSalaryEntity bean);
 
 	public void update(GuardSalaryEntity bean);
 
