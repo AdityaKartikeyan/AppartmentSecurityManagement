@@ -10,6 +10,9 @@ import static org.mockito.Mockito.verify;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -72,8 +75,18 @@ public class SecurityServiceTest {
 	    verify(dao,times(1)).delete(obj);
 	}
 	
+//test find  by name
+	@Test
+	public void testFindByPk()
+	{
+		
+	Optional<SecurityEntity> obj =	Optional.of(new SecurityEntity(11, "aditya", "harsh",new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 1, "intruder", "door", LocalDate.now()));
+		Mockito.when(dao.findById(obj.get().getAlertId())).thenReturn(obj);
+		Optional<SecurityEntity> obj1 = service.findByPk(obj.get().getAlertId());
+		assertEquals(obj.get().getAlertId(),obj1.get().getAlertId());
+		
+	}
 	
-
 	
 	
 	
