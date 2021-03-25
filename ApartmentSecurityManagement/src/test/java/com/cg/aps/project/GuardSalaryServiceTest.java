@@ -34,6 +34,8 @@ class GuardSalaryServiceTest {
 	@Autowired
 	GuardSalaryService service;
 	
+	
+	//test case for adding values 
 	@Test
 	public void testAddGuardSalary()
 	{
@@ -47,7 +49,7 @@ class GuardSalaryServiceTest {
 			
 		
 	}
-
+	//test case for updating the existing values
 	@Test 
 	public void testUpdateGuardTraining()
 	{
@@ -64,6 +66,8 @@ class GuardSalaryServiceTest {
 	     
 	      assertEquals(obj,service.update(obj));
 	}
+	
+	//test case for deleting values 
 	@Test
 	public void testDeleteGuardSalary()
 	{
@@ -71,6 +75,8 @@ class GuardSalaryServiceTest {
 	    service.delete(obj);
 	    verify(dao,times(1)).delete(obj);
 	}
+	
+	//test case for finding a value by it's name
 	@Test
 	public void testFindByName()
 	{
@@ -87,6 +93,7 @@ class GuardSalaryServiceTest {
 		
 	}
 	
+	//test case for finding a value by Id
 	@Test
 	public void testFindByPk()
 	{
@@ -98,7 +105,7 @@ class GuardSalaryServiceTest {
 		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
 		
 	}
-	
+	//test case for searching any value
 	@Test
 	public void testSearch()
 	{
@@ -111,6 +118,6 @@ class GuardSalaryServiceTest {
 		
 		
 		Mockito.when(dao.findAll()).thenReturn(list1);
-		assertEquals(2,service.search(obj1).size());
+		assertEquals(2,service.search().size());
 	}
 }

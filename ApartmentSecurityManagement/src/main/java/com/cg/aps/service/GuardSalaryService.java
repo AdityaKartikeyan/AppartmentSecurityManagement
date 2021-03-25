@@ -26,6 +26,6 @@ public interface GuardSalaryService {
 
 	public List<GuardSalaryEntity> search(GuardSalaryEntity bean, long pageNo, int pageSize);
 
-	public List<GuardSalaryEntity> search(GuardSalaryEntity bean);
+	public List<GuardSalaryEntity> search();
 
 }
