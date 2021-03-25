@@ -1,6 +1,8 @@
 package com.cg.aps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -56,6 +58,15 @@ class GuardShiftServiceTest {
 	    obj.setTime("10:30");
 	     
 	      assertEquals(obj,service.update(obj));
-	}}
+	}
+	@Test 
+	
+	public void testDeleteGuardTraining()
+	{
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+				Date.valueOf(LocalDate.now()));
+		service.delete(obj);
+	    verify(dao,times(1)).delete(obj);
+	}
 
-
+}

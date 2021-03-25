@@ -37,7 +37,7 @@ public class GuardShiftServiceImpl implements GuardShiftService
 	@Override
 	public void delete(GuardShiftEntity bean) {
 		// TODO Auto-generated method stub
-		
+		dao.delete(bean);
 	}
 
 	@Override
