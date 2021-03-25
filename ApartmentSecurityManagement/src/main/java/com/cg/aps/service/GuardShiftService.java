@@ -4,11 +4,15 @@ import com.cg.aps.entities.GuardShiftEntity;
 
 import java.util.List;
 
+/**
+ * @author HP
+ *
+ */
 public interface GuardShiftService 
 {
 public GuardShiftEntity add(GuardShiftEntity bean);
 	
-	public void update(GuardShiftEntity bean);
+	public GuardShiftEntity update(GuardShiftEntity bean);
 	
 	public void delete(GuardShiftEntity bean);
 	

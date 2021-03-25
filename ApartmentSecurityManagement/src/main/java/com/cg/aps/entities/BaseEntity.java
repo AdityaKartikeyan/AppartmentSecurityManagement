@@ -15,6 +15,10 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 //import java.security.Timestamp;
+/**
+ * @author HP
+ *
+ */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {

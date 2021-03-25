@@ -17,7 +17,7 @@ import com.cg.aps.repository.GuardShiftDao;
 import com.cg.aps.service.GuardShiftService;
 // Testing
 @SpringBootTest
-class ApartmentSecurityManagementApplicationTests {
+class GuardShiftServiceTest {
 	@MockBean
 	GuardShiftDao dao;
 	@Autowired
@@ -38,7 +38,24 @@ class ApartmentSecurityManagementApplicationTests {
 		
 	}
 
+	//testing update
 	
-	}
+	@Test 
+	public void testUpdateGuardTraining()
+	{
+		
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+				Date.valueOf(LocalDate.now()));
+	
+	   
+	    Mockito.when(dao.save(obj)).thenReturn(obj);
+
+	    assertEquals(obj,service.add(obj));
+	    
+	    obj.setName("harsh");
+	    obj.setTime("10:30");
+	     
+	      assertEquals(obj,service.update(obj));
+	}}
 
 

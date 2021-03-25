@@ -6,6 +6,10 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * @author HP
+ *
+ */
 @Entity
 @Table(name="GuardShift")
 

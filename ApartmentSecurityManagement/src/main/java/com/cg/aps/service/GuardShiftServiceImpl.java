@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import com.cg.aps.entities.GuardShiftEntity;
 import com.cg.aps.repository.GuardShiftDao;
 
+/**
+ * @author HP
+ *
+ */
 @Service("GuardShiftService")
 @Transactional
 
@@ -25,9 +29,9 @@ public class GuardShiftServiceImpl implements GuardShiftService
 	}
 
 	@Override
-	public void update(GuardShiftEntity bean) {
+	public GuardShiftEntity update(GuardShiftEntity bean) {
 		// TODO Auto-generated method stub
-		
+		return dao.save(bean);
 	}
 
 	@Override
