@@ -23,6 +23,6 @@ public GuardShiftEntity add(GuardShiftEntity bean);
 	
 	public List<GuardShiftEntity> search(GuardShiftEntity bean, long pageNo, int pageSize);
 	
-	public List<GuardShiftEntity> search(GuardShiftEntity bean);
+	public List<GuardShiftEntity> search();
 
 }

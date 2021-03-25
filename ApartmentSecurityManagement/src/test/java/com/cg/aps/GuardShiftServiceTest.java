@@ -103,4 +103,19 @@ class GuardShiftServiceTest {
 		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
 		
 	}
+	@Test
+	public void testSearch()
+	{
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+				Date.valueOf(LocalDate.now()));
+		GuardShiftEntity obj1 = new GuardShiftEntity(1, "pk", "ankit", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 100, "aman", "12:30", 
+				Date.valueOf(LocalDate.now()));
+		List<GuardShiftEntity> list1  = new ArrayList();
+		list1.add(obj);
+		list1.add(obj1);
+		
+		
+		Mockito.when(dao.findAll()).thenReturn(list1);
+		assertEquals(2,service.search().size());
+	}
 }

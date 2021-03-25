@@ -60,9 +60,9 @@ public class GuardShiftServiceImpl implements GuardShiftService
 	}
 
 	@Override
-	public List<GuardShiftEntity> search(GuardShiftEntity bean) {
+	public List<GuardShiftEntity> search() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 }
