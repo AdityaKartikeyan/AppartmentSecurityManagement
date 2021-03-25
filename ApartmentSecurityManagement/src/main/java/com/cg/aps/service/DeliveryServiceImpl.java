@@ -41,7 +41,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	@Override
 	public List<DeliveryEntity> findByName(String name) {
-		return null;
+		return dao.findByName(name);
 	}
 
 	@Override
