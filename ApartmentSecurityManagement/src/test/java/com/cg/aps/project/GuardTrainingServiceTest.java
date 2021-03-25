@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -60,7 +61,7 @@ class GuardTrainingServiceTest {
 	    obj.setName("harsh");
 	    obj.setStatus("working");
 	     
-	      assertEquals(obj,service.update(obj));
+	     assertEquals(obj,service.update(obj));
 	    
 	     
 		
@@ -75,8 +76,26 @@ class GuardTrainingServiceTest {
 	}
 
 	//testing find by name guard training entity
+	//test case positive
 	@Test
 	public void testFindByName()
+	{
+		String name="aditya";
+		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),1,"aditya","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),1,"aditya","981899","good","10.30",Date.valueOf(LocalDate.now()));
+		
+	 List<GuardTrainingEntity> list  = new ArrayList();
+	list.add(obj);
+	list.add(obj1);
+	
+		Mockito.when(dao.findByName(name)).thenReturn(list);
+		assertEquals(2,service.findByName(name).size());
+		
+	}
+	
+	//test case negative 
+	@Test
+	public void testFindByName1()
 	{
 		String name="aditya";
 		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),1,"aditya","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
@@ -87,8 +106,23 @@ class GuardTrainingServiceTest {
 	list.add(obj1);
 	
 		Mockito.when(dao.findByName(name)).thenReturn(list);
-		assertEquals(2,service.findByName(name).size());
+		assertEquals(3,service.findByName(name).size());
 		
 	}
+	//testing find by id 
+	@Test
+	public void testFindByPk()
+	{
+		
+		Optional<GuardTrainingEntity> obj =Optional.of(new GuardTrainingEntity(1222, "aditya","digvijay" ,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),100,"aditya","981899","accepted","10.30",Date.valueOf(LocalDate.now())));
+ 
+		Mockito.when(dao.findById((int) obj.get().getUserId())).thenReturn(obj);
+		Optional<GuardTrainingEntity> obj1 = service.findByPk(obj.get().getUserId());
+		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
+		
+	}
+	
+	
+	
 	
 }

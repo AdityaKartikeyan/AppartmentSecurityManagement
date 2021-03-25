@@ -1,6 +1,7 @@
 package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -48,9 +49,10 @@ public class GuardTrainingServiceImpl implements GuardTrainingService {
 	}
 
 	@Override
-	public GuardTrainingEntity findByPk(long id) {
+	public Optional<GuardTrainingEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.findById((int) id);
 	}
 
 	@Override
