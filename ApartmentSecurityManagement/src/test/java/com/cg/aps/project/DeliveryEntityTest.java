@@ -36,8 +36,7 @@ public class DeliveryEntityTest {
 	public void testAddDeliveryEntity() {
 
 		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "Vishal", "12:30", Date.valueOf(LocalDate.now()),
-				"completed");
+				new Timestamp(System.currentTimeMillis()), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
 
@@ -47,12 +46,10 @@ public class DeliveryEntityTest {
 	public void testUpdateDeliveryEntity() {
 
 		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "Vishal", "12:30", Date.valueOf(LocalDate.now()),
-				"completed");
+				new Timestamp(System.currentTimeMillis()), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
 		obj.setOwnerName("harsh");
-		obj.setStatus("working");
 		assertEquals(obj, service.update(obj));
 	}
 
@@ -60,8 +57,8 @@ public class DeliveryEntityTest {
 	public void testDeleteDeliveryEntity() {
 
 		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "Vishal", "12:30", Date.valueOf(LocalDate.now()),
-				"completed");
+				new Timestamp(System.currentTimeMillis()), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
+		Mockito.when(dao.save(obj)).thenReturn(obj);
 		service.delete(obj);
 		verify(dao, times(1)).delete(obj);
 	}
@@ -70,11 +67,10 @@ public class DeliveryEntityTest {
 	public void testFindByName() {
 		String name = "aditya";
 		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "Vishal", "12:30", Date.valueOf(LocalDate.now()),
-				"completed");
+				new Timestamp(System.currentTimeMillis()), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
+		Mockito.when(dao.save(obj)).thenReturn(obj);
 		DeliveryEntity obj1 = new DeliveryEntity(1223, "Newname", "Tigvijay", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "Nameowner", "10:30", Date.valueOf(LocalDate.now()),
-				"completed");
+				new Timestamp(System.currentTimeMillis()), 2, "Nameowner", "10:30", Date.valueOf(LocalDate.now()));
 
 		List<DeliveryEntity> list = new ArrayList<DeliveryEntity>();
 		list.add(obj);
@@ -87,11 +83,11 @@ public class DeliveryEntityTest {
 	@Test // Testing findByPk method to find By Id
 	public void testFindByPk() {
 		Optional<DeliveryEntity> obj = Optional.of(new DeliveryEntity(1222, "aditya", "digvijay",
-				new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "Vishal", "12:30",
-				Date.valueOf(LocalDate.now()), "completed"));
+				new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 1, "Vishal",
+				"12:30", Date.valueOf(LocalDate.now())));
 
-		Mockito.when(dao.findById((int) obj.get().getId())).thenReturn(obj);
-		Optional<DeliveryEntity> obj1 = service.findByPk(obj.get().getId());
-		assertEquals(obj.get().getId(), obj1.get().getId());
+		Mockito.when(dao.findById((int) obj.get().getDeliveryId())).thenReturn(obj);
+		Optional<DeliveryEntity> obj1 = service.findByPk(obj.get().getDeliveryId());
+		assertEquals(obj.get().getDeliveryId(), obj1.get().getDeliveryId());
 	}
 }

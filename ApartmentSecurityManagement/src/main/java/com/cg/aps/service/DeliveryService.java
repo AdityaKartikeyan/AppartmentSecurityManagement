@@ -18,7 +18,7 @@ public interface DeliveryService {
 		
 		public List<DeliveryEntity> findByName(String name);
 		
-		public Optional<DeliveryEntity> findByPk(long id);
+		public Optional<DeliveryEntity> findByPk(long deliveryid);
 		
 		public List<DeliveryEntity> search(DeliveryEntity bean, long pageNo, int pageSize);
 		
