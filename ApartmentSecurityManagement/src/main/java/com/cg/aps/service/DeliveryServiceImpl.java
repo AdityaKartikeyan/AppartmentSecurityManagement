@@ -57,6 +57,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	@Override
 	public List<DeliveryEntity> search() {
-		return null;
+		return dao.findAll();
 	}
 }
