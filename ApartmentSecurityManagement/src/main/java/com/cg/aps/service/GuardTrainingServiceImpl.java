@@ -29,10 +29,10 @@ public class GuardTrainingServiceImpl implements GuardTrainingService {
 	}
 
 	@Override
-	public void update(GuardTrainingEntity bean) {
+	public GuardTrainingEntity update(GuardTrainingEntity bean) {
 		// TODO Auto-generated method stub
 		
-		
+		return dao.save(bean);
 	}
 
 	@Override
@@ -42,9 +42,9 @@ public class GuardTrainingServiceImpl implements GuardTrainingService {
 	}
 
 	@Override
-	public GuardTrainingEntity findByName(String name) {
+	public List<GuardTrainingEntity> findByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+	   return  dao.findByName(name);
 	}
 
 	@Override

@@ -8,11 +8,11 @@ public interface GuardTrainingService {
 
     public GuardTrainingEntity add(GuardTrainingEntity bean);
 	
-	public void update(GuardTrainingEntity bean);
+	public GuardTrainingEntity update(GuardTrainingEntity bean);
 	
 	public void delete(GuardTrainingEntity bean);
 	
-	public GuardTrainingEntity findByName(String name);
+	public List<GuardTrainingEntity> findByName(String name);
 	
 	public GuardTrainingEntity findByPk(long id);
 	
