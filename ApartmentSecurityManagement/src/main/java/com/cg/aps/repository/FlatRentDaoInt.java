@@ -1,26 +1,14 @@
 package com.cg.aps.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.cg.aps.entities.FlatRentEntity;
 
+	@Repository
+	public interface FlatRentDaoInt extends JpaRepository<FlatRentEntity, Integer> {
 
+	}
+	
+	
 
-public interface FlatRentDaoInt {
-
-	public long add(FlatRentEntity bean);
-	
-	public void update(FlatRentEntity bean);
-	
-	public void delete(FlatRentEntity bean);
-	
-	public FlatRentEntity findByName(String name);
-	
-	public FlatRentEntity findByPk(long id);
-	
-	public List<FlatRentEntity> search(FlatRentEntity bean, long pageNo, int pageSize);
-	
-	public List<FlatRentEntity> search(FlatRentEntity bean);
-	
-	
-}
