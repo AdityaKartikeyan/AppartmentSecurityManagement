@@ -1,6 +1,7 @@
 package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,7 +18,7 @@ public interface DeliveryService {
 		
 		public List<DeliveryEntity> findByName(String name);
 		
-		public DeliveryEntity findByPk(long id);
+		public Optional<DeliveryEntity> findByPk(long id);
 		
 		public List<DeliveryEntity> search(DeliveryEntity bean, long pageNo, int pageSize);
 		

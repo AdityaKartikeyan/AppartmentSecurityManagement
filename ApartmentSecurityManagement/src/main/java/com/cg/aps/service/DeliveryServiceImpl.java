@@ -4,6 +4,7 @@
 package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -45,8 +46,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public DeliveryEntity findByPk(long id) {
-		return null;
+	public Optional<DeliveryEntity> findByPk(long id) {
+		return dao.findById((int) id);
 	}
 
 	@Override
