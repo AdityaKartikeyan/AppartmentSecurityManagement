@@ -63,7 +63,7 @@ public class GuardSalaryServiceImpl implements GuardSalaryService {
 	@Override
 	public List<GuardSalaryEntity> search(GuardSalaryEntity bean) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 }

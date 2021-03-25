@@ -98,4 +98,19 @@ class GuardSalaryServiceTest {
 		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
 		
 	}
+	
+	@Test
+	public void testSearch()
+	{
+		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
+		GuardSalaryEntity obj1 = new GuardSalaryEntity(1, "anshul", "ambarish", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()),"Aravind",2000,"102","received",Date.valueOf(LocalDate.now()));
+		
+		List<GuardSalaryEntity> list1  = new ArrayList();
+		list1.add(obj);
+		list1.add(obj1);
+		
+		
+		Mockito.when(dao.findAll()).thenReturn(list1);
+		assertEquals(2,service.search(obj1).size());
+	}
 }
