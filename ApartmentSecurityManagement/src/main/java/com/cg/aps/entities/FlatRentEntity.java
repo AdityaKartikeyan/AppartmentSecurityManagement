@@ -36,6 +36,13 @@ public class FlatRentEntity extends BaseEntity {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public FlatRentEntity(String ownerName, String flatNo, String amount, String type) {
+		super();
+		this.ownerName = ownerName;
+		this.flatNo = flatNo;
+		this.amount = amount;
+		this.type = type;
+	}
 	
 
 

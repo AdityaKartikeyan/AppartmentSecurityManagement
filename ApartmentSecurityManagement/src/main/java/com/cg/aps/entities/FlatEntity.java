@@ -46,4 +46,13 @@ public class FlatEntity extends BaseEntity {
 		this.flatType = flatType;
 	}
 
+	public FlatEntity(String ownerName, String flatNo, String floorNo, String flatType) {
+		super();
+		this.ownerName = ownerName;
+		this.flatNo = flatNo;
+		this.floorNo = floorNo;
+		this.flatType = flatType;
+	}
+
+	
 }
