@@ -94,4 +94,18 @@ public class FlatRentServiceTest {
 		assertEquals(obj.get().getFlatNo(),obj1.get().getFlatNo());
 		
 	}
+	
+	@Test
+	public void testSearch()
+	{
+		FlatRentEntity obj = new FlatRentEntity(101, "Sahitya", "shrivastava", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "Owner", "1041b", "5200", "3BHK");
+		FlatRentEntity obj1 = new FlatRentEntity(102, "Anshul", "paaji", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "Owner", "1042", "5300", "3BHK");	
+		List<FlatRentEntity> list1  = new ArrayList();
+		list1.add(obj);
+		list1.add(obj1);
+		
+		
+		Mockito.when(dao.findAll()).thenReturn(list1);
+		assertEquals(2,service.search(obj1).size());
+	}
 }

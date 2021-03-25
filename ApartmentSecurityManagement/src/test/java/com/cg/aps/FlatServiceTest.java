@@ -90,5 +90,19 @@ public class FlatServiceTest {
 		assertEquals(obj.get().getFlatNo(),obj1.get().getFlatNo());
 		
 	}
+	
+	@Test
+	public void testSearch()
+	{
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");	    
+		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner2", "1045", "12", "2BHK");
+		List<FlatEntity> list1  = new ArrayList();
+		list1.add(obj);
+		list1.add(obj1);
+		
+		
+		Mockito.when(dao.findAll()).thenReturn(list1);
+		assertEquals(2,service.search(obj1).size());
+	}
 }
 
