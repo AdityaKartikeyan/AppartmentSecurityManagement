@@ -9,7 +9,7 @@ import com.cg.aps.entities.FlatEntity;
 import com.cg.aps.entities.FlatRentEntity;
 
 	@Repository
-	public interface FlatDaoInt extends JpaRepository<FlatEntity, Integer> {
+	public interface FlatDaoInt extends JpaRepository<FlatEntity, String> {
 		List<FlatEntity> findByOwnerName(String name);
 	}
 	

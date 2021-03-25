@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -74,6 +75,19 @@ public class FlatServiceTest {
 	
 		Mockito.when(dao.findByOwnerName(name)).thenReturn(list1);
 		assertEquals(2,service.findByName(name).size());
+		
+	}
+	
+	@Test
+	public void testFindByPk()
+	{
+		
+		Optional<FlatEntity> obj =Optional.of(new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK"));	    
+
+ 
+		Mockito.when(dao.findById( obj.get().getFlatNo())).thenReturn(obj);
+		Optional<FlatEntity> obj1 = service.findByPk(obj.get().getFlatNo());
+		assertEquals(obj.get().getFlatNo(),obj1.get().getFlatNo());
 		
 	}
 }

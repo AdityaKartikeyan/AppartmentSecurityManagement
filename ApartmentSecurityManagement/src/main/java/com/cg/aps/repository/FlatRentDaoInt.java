@@ -8,7 +8,7 @@ import com.cg.aps.entities.FlatRentEntity;
 import java.util.List;
 
 	@Repository
-	public interface FlatRentDaoInt extends JpaRepository<FlatRentEntity, Integer> {
+	public interface FlatRentDaoInt extends JpaRepository<FlatRentEntity, String> {
 		List<FlatRentEntity> findByOwnerName(String name);
 	}
 	

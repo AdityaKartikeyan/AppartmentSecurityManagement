@@ -1,6 +1,7 @@
 package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -44,9 +45,9 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 	}
 
 	@Override
-	public FlatRentEntity findByPk(long id) {
+	public Optional<FlatRentEntity> findByPk(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findById(id);
 	}
 
 	@Override

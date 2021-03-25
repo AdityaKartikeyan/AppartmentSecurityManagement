@@ -1,6 +1,7 @@
 package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.cg.aps.entities.FlatEntity;
 
@@ -16,7 +17,7 @@ public interface FlatServiceInt {
 	
 	public List<FlatEntity> findByName(String name);
 	
-	public FlatEntity findByPk(long id);
+	public Optional<FlatEntity> findByPk(String id);
 	
 	public List<FlatEntity> search(FlatEntity bean, long pageNo, int pageSize);
 	
