@@ -5,8 +5,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,8 +35,8 @@ class VehicleTests {
 	@Test
 	public void testAddVehicle() {
 
-		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
+		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", LocalDateTime.now(),
+				LocalDateTime.now(), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
 				"103", "Honda City");
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
@@ -47,8 +47,8 @@ class VehicleTests {
 	@Test
 	public void testVehicle() {
 
-		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
+		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", LocalDateTime.now(),
+				LocalDateTime.now(), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
 				"103", "Honda City");
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
@@ -67,8 +67,8 @@ class VehicleTests {
 
 	@Test
 	public void testvehicle() {
-		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
+		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", LocalDateTime.now(),
+				LocalDateTime.now(), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
 				"103", "Honda City");
 		service.delete(obj);
 		verify(dao, times(1)).delete(obj);
@@ -79,11 +79,11 @@ class VehicleTests {
 	@Test
 	public void testFindByName() {
 		String name = "Anshul";
-		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
+		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", LocalDateTime.now(),
+				LocalDateTime.now(), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
 				"103", "Honda City");
-		VehicleEntity obj1 = new VehicleEntity(1222, "Joshi", "Anshul", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "Anshul", "103", "10:30", "1:30",
+		VehicleEntity obj1 = new VehicleEntity(1222, "Joshi", "Anshul", LocalDateTime.now(),
+				LocalDateTime.now(), "Anshul", "103", "10:30", "1:30",
 				Date.valueOf(LocalDate.now()), "104", "Honda Jazz");
 
 		List<VehicleEntity> list = new ArrayList();
@@ -100,7 +100,7 @@ class VehicleTests {
 	public void testFindByPk() {
 
 		Optional<VehicleEntity> obj = Optional.of(new VehicleEntity(1222, "Anshul", "Joshi",
-				new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "AJ", "101",
+				LocalDateTime.now(), LocalDateTime.now(), "AJ", "101",
 				"11:30", "12:30", Date.valueOf(LocalDate.now()), "103", "Honda Fit"));
 
 		Mockito.when(dao.findById(obj.get().getVehicleNo())).thenReturn(obj);
@@ -113,11 +113,11 @@ class VehicleTests {
 
 	@Test
 	public void testSearch() {
-		VehicleEntity obj = new VehicleEntity(777, "Anshul", "Joshi", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "AJ", "104", "1:30", "4:30", Date.valueOf(LocalDate.now()),
+		VehicleEntity obj = new VehicleEntity(777, "Anshul", "Joshi", LocalDateTime.now(),
+				LocalDateTime.now(), "AJ", "104", "1:30", "4:30", Date.valueOf(LocalDate.now()),
 				"108", "Honda Fit");
-		VehicleEntity obj1 = new VehicleEntity(799, "Aditya", "Aravind", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "AJ", "109", "2:30", "7:30", Date.valueOf(LocalDate.now()),
+		VehicleEntity obj1 = new VehicleEntity(799, "Aditya", "Aravind", LocalDateTime.now(),
+				LocalDateTime.now(), "AJ", "109", "2:30", "7:30", Date.valueOf(LocalDate.now()),
 				"110", "Honda Jazz");
 		List<VehicleEntity> list1 = new ArrayList();
 		list1.add(obj);

@@ -1,6 +1,6 @@
 package com.cg.aps.entities;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -79,8 +79,11 @@ public class VehicleEntity extends BaseEntity {
 		this.vehicleType = vehicleType;
 	}
 
-	public VehicleEntity(long id, String createdBy, String modifiedBy, java.sql.Timestamp createdDateTime,
-			java.sql.Timestamp modifiedDateTime, String name, String parkingNo, String arrivalTime,
+	public VehicleEntity() {
+		// TODO Auto-generated constructor stub
+	}
+	public VehicleEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime, String name, String parkingNo, String arrivalTime,
 			String departureTime, Date date, String vehicleNo, String vehicleType) {
 		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
 		this.name = name;
