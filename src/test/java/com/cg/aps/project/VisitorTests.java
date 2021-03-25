@@ -9,8 +9,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +20,6 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.aps.entities.VisitorEntity;
 import com.cg.aps.repository.VisitorDao;
@@ -41,8 +40,8 @@ class VisitorTests {
 	public void testAddVisitor()
 	{
 		
-		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", new Timestamp(System.currentTimeMillis()), 
-		new Timestamp(System.currentTimeMillis()), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
+		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
+		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
 		
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj,service.add(obj));
@@ -53,8 +52,8 @@ class VisitorTests {
 	public void testUpdateVisitor()
 	{
 		
-		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", new Timestamp(System.currentTimeMillis()), 
-		new Timestamp(System.currentTimeMillis()), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "11:30", "1:00");
+		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
+		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 	    
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 	    assertEquals(obj,service.add(obj));
@@ -66,8 +65,8 @@ class VisitorTests {
 	@Test
 	public void testDeleteVisitor()
 	{
-		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", new Timestamp(System.currentTimeMillis()), 
-		new Timestamp(System.currentTimeMillis()), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
+		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
+		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
 		service.delete(obj);
 	    verify(dao,times(1)).delete(obj);
 	}	    
@@ -77,10 +76,10 @@ class VisitorTests {
 	public void testFindByName()
 	{
 		String name="Ambarish";
-		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", new Timestamp(System.currentTimeMillis()), 
-		new Timestamp(System.currentTimeMillis()), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
-		VisitorEntity obj1 = new VisitorEntity(1111, "roy", "anand", new Timestamp(System.currentTimeMillis()), 
-		new Timestamp(System.currentTimeMillis()), "adiya", "Aravind", "103", Date.valueOf(LocalDate.now()), "4:30", "9:00");
+		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
+		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
+		VisitorEntity obj1 = new VisitorEntity(1111, "roy", "anand", LocalDateTime.now(), 
+		LocalDateTime.now(), "adiya", "Aravind", "103", Date.valueOf(LocalDate.now()), "4:30", "9:00");
 		 
 		List<VisitorEntity> list = new ArrayList();
 		list.add(obj);
@@ -97,7 +96,7 @@ class VisitorTests {
 	{
 		
 		Optional<VisitorEntity> obj = Optional.of(new VisitorEntity(1111,"ambarish","aditya", 
-		new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()), 
+		LocalDateTime.now(),LocalDateTime.now(), 
 		"Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00"));
  
 		Mockito.when(dao.findById((int) obj.get().getId())).thenReturn(obj);
@@ -110,10 +109,10 @@ class VisitorTests {
 	@Test
 	public void testSearch()
 	{
-		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", new Timestamp(System.currentTimeMillis()), 
-		new Timestamp(System.currentTimeMillis()), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
-		VisitorEntity obj1 = new VisitorEntity(1111, "roy", "anand", new Timestamp(System.currentTimeMillis()), 
-		new Timestamp(System.currentTimeMillis()), "adiya", "Aravind", "103", Date.valueOf(LocalDate.now()), "4:30", "9:00");
+		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
+		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
+		VisitorEntity obj1 = new VisitorEntity(1111, "roy", "anand", LocalDateTime.now(), 
+		LocalDateTime.now(), "adiya", "Aravind", "103", Date.valueOf(LocalDate.now()), "4:30", "9:00");
 		
 		List<VisitorEntity> list1  = new ArrayList();
 		list1.add(obj);

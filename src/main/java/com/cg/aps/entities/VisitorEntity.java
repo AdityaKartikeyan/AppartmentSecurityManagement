@@ -1,6 +1,6 @@
 package com.cg.aps.entities;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -21,8 +21,8 @@ public class VisitorEntity extends BaseEntity{
 	private String arrivalTime;
 	private String departureTime;
 	
-	public VisitorEntity(long id, String createdBy, String modifiedBy, Timestamp createdDateTime,
-			Timestamp modifiedDateTime, String name, String ownerName, String flatNo, Date date, String arrivalTime,
+	public VisitorEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime, String name, String ownerName, String flatNo, Date date, String arrivalTime,
 			String departureTime) {
 		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
 		this.name = name;
@@ -70,4 +70,7 @@ public class VisitorEntity extends BaseEntity{
 		this.departureTime = departureTime;
 	}
 	
+	public VisitorEntity() {
+		// TODO Auto-generated constructor stub
+	}
 }
