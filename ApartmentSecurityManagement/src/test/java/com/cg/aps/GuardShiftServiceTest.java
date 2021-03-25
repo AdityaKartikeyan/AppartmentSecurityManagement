@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -87,6 +88,19 @@ class GuardShiftServiceTest {
 	
 		Mockito.when(dao.findByName(name)).thenReturn(list);
 		assertEquals(2,service.findByName(name).size());
+		
+	}
+	
+	@Test
+	public void testFindByPk()
+	{
+		
+		Optional<GuardShiftEntity> obj =Optional.of(new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+				Date.valueOf(LocalDate.now())));
+ 
+		Mockito.when(dao.findById((int) obj.get().getUserId())).thenReturn(obj);
+		Optional<GuardShiftEntity> obj1 = service.findByPk(obj.get().getUserId());
+		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
 		
 	}
 }

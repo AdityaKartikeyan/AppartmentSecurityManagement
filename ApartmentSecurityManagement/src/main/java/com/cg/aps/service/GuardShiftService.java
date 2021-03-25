@@ -3,6 +3,7 @@ package com.cg.aps.service;
 import com.cg.aps.entities.GuardShiftEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author HP
@@ -18,7 +19,7 @@ public GuardShiftEntity add(GuardShiftEntity bean);
 	
 	public List<GuardShiftEntity> findByName(String name);
 	
-	public GuardShiftEntity findByPk(long id);
+	public Optional<GuardShiftEntity> findByPk(long id);
 	
 	public List<GuardShiftEntity> search(GuardShiftEntity bean, long pageNo, int pageSize);
 	

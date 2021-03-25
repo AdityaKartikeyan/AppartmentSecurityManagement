@@ -1,6 +1,7 @@
  package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -47,9 +48,9 @@ public class GuardShiftServiceImpl implements GuardShiftService
 	}
 
 	@Override
-	public GuardShiftEntity findByPk(long id) {
+	public Optional<GuardShiftEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findById((int) id);
 	}
 
 	@Override
