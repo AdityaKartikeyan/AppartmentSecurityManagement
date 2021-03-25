@@ -88,6 +88,22 @@ public class SecurityServiceTest {
 	}
 	
 	
+	//testing search
+		@Test
+		public void testSearch()
+		{
+			SecurityEntity obj = new SecurityEntity(12, "aditya", "harsh",new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 2, "intruder", "door", LocalDate.now());
+			SecurityEntity obj1 = new SecurityEntity(11, "aditya", "harsh",new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), 1, "intruder", "door", LocalDate.now());
+			List<SecurityEntity> list1  = new ArrayList();
+			list1.add(obj);
+			list1.add(obj1);
+			
+			
+			Mockito.when(dao.findAll()).thenReturn(list1);
+			assertEquals(2,service.search().size());
+		}
+		
+	
 	
 	
 }

@@ -57,7 +57,7 @@ public class SecurityServiceImpl implements SecurityService {
 	@Override
 	public List<SecurityEntity> search() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 	
