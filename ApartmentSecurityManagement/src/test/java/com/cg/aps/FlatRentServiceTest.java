@@ -5,17 +5,27 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.aps.entities.FlatRentEntity;
 import com.cg.aps.repository.FlatRentDaoInt;
 import com.cg.aps.service.FlatRentServiceInt;
 
+//@RunWith(SpringRunner.class)
+/**
+ * @author sahis
+ *
+ */
 @SpringBootTest
 public class FlatRentServiceTest {
 	@MockBean
@@ -24,7 +34,7 @@ public class FlatRentServiceTest {
 	FlatRentServiceInt service;
 
 	@Test
-	public void testAddGuardTraining() {
+	public void testAddFlatRent() {
 
 		FlatRentEntity obj = new FlatRentEntity(101, "Sahitya", "shrivastava", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "Owner", "1041b", "5200", "3BHK");
 
@@ -33,7 +43,7 @@ public class FlatRentServiceTest {
 	}
 	
 	@Test 
-	public void testUpdateGuardTraining()
+	public void testUpdateFlatRent()
 	{
 		
 		FlatRentEntity obj = new FlatRentEntity(101, "Sahitya", "shrivastava", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "Owner", "1041b", "5200", "3BHK");
@@ -50,10 +60,25 @@ public class FlatRentServiceTest {
 }
 	
 	@Test
-	public void testDeleteGuardTraining()
+	public void testDeleteFlatRent()
 	{
 		FlatRentEntity obj = new FlatRentEntity(101, "Sahitya", "shrivastava", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "Owner", "1041b", "5200", "3BHK");
 	    service.delete(obj);
 	    verify(dao,times(1)).delete(obj);
+	}
+	
+	@Test
+	public void testFindByName()
+	{
+		String name="Sahitya";
+		FlatRentEntity obj = new FlatRentEntity(101, "Sahitya", "shrivastava", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "Owner", "1041b", "5200", "3BHK");
+		FlatRentEntity obj1 = new FlatRentEntity(102, "Anshul", "paaji", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "Owner", "1042", "5300", "3BHK");		
+	 List<FlatRentEntity> list  = new ArrayList();
+	list.add(obj);
+	list.add(obj1);
+	
+		Mockito.when(dao.findByOwnerName(name)).thenReturn(list);
+		assertEquals(2,service.findByName(name).size());
+		
 	}
 }

@@ -5,6 +5,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -26,7 +28,7 @@ public class FlatServiceTest {
 	FlatServiceInt service;
 
 	@Test
-	public void testAddGuardTraining() {
+	public void testAddFlat() {
 
 		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
 
@@ -35,7 +37,7 @@ public class FlatServiceTest {
 	}
 	
 	@Test 
-	public void testUpdateGuardTraining()
+	public void testUpdateFlat()
 	{
 		
 		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
@@ -52,9 +54,27 @@ public class FlatServiceTest {
 	
 }
 	@Test
-	public void testDeleteGuardTraining()
+	public void testDeleteFlat()
 	{
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");	    service.delete(obj);
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");	    
+		service.delete(obj);
 	    verify(dao,times(1)).delete(obj);
 	}
+	
+	@Test
+	public void testFindByName()
+	{
+		String name="Sahitya";
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");	    
+		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "owner2", "1045", "12", "2BHK");	    	 List<FlatRentEntity> list  = new ArrayList();
+	
+		List<FlatEntity> list1  = new ArrayList();
+		 list1.add(obj);
+		 list1.add(obj1);
+	
+		Mockito.when(dao.findByOwnerName(name)).thenReturn(list1);
+		assertEquals(2,service.findByName(name).size());
+		
+	}
 }
+

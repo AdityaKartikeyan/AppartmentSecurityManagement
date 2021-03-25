@@ -38,9 +38,9 @@ public class FlatServiceImpl implements FlatServiceInt {
 	}
 
 	@Override
-	public FlatEntity findByName(String name) {
+	public List<FlatEntity> findByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findByOwnerName(name);
 	}
 
 	@Override

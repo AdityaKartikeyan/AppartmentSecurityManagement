@@ -14,7 +14,7 @@ public interface FlatRentServiceInt {
 	
 	public void delete(FlatRentEntity bean);
 	
-	public FlatRentEntity findByName(String name);
+	public List<FlatRentEntity> findByName(String name);
 	
 	public FlatRentEntity findByPk(long id);
 	
