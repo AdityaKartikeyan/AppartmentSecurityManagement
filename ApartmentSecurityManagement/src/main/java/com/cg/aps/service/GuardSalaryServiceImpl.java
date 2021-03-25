@@ -1,6 +1,7 @@
 package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -48,9 +49,9 @@ public class GuardSalaryServiceImpl implements GuardSalaryService {
 	}
 
 	@Override
-	public GuardSalaryEntity findByPk(long id) {
+	public Optional<GuardSalaryEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findById((int) id);
 	}
 
 	@Override

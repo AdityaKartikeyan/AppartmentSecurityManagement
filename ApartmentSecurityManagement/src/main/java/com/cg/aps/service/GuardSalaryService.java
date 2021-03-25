@@ -1,6 +1,7 @@
 package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.cg.aps.entities.GuardSalaryEntity;
 
@@ -21,7 +22,7 @@ public interface GuardSalaryService {
 
 	public List<GuardSalaryEntity> findByName(String name);
 
-	public GuardSalaryEntity findByPk(long id);
+	public Optional<GuardSalaryEntity> findByPk(long id);
 
 	public List<GuardSalaryEntity> search(GuardSalaryEntity bean, long pageNo, int pageSize);
 
