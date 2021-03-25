@@ -8,7 +8,7 @@ import com.cg.aps.entities.FlatRentEntity;
 
 public interface FlatRentServiceInt {
 
-	public long add(FlatRentEntity bean);
+	public FlatRentEntity add(FlatRentEntity bean);
 	
 	public void update(FlatRentEntity bean);
 	

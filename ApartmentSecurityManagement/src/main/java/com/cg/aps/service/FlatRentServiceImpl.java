@@ -7,59 +7,60 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.aps.entities.FlatEntity;
-import com.cg.aps.repository.FlatDaoInt;
+import com.cg.aps.entities.FlatRentEntity;
+import com.cg.aps.repository.FlatRentDaoInt;
 
-@Service("FlatService")
+
+
+@Service("FlatRentService")
 @Transactional
-
-public class FlatServiceImpl implements FlatServiceInt {
-
+public class FlatRentServiceImpl implements FlatRentServiceInt{
 	
 	@Autowired
-	FlatDaoInt dao;
-	
+	FlatRentDaoInt dao;
+
 	@Override
-	public FlatEntity add(FlatEntity bean) {
+	public FlatRentEntity add(FlatRentEntity bean) {
 		// TODO Auto-generated method stub
 		return dao.save(bean);
 	}
 
 	@Override
-	public void update(FlatEntity bean) {
+	public void update(FlatRentEntity bean) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(FlatEntity bean) {
+	public void delete(FlatRentEntity bean) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public FlatEntity findByName(String name) {
+	public FlatRentEntity findByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public FlatEntity findByPk(long id) {
+	public FlatRentEntity findByPk(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<FlatEntity> search(FlatEntity bean, long pageNo, int pageSize) {
+	public List<FlatRentEntity> search(FlatRentEntity bean, long pageNo, int pageSize) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<FlatEntity> search(FlatEntity bean) {
+	public List<FlatRentEntity> search(FlatRentEntity bean) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	
 
 }

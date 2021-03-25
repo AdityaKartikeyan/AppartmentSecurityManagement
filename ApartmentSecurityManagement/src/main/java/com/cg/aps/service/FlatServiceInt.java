@@ -8,7 +8,7 @@ import com.cg.aps.entities.FlatEntity;
 
 public interface FlatServiceInt {
 
-	public long add(FlatEntity bean);
+	public FlatEntity add(FlatEntity bean);
 	
 	public void update(FlatEntity bean);
 	
