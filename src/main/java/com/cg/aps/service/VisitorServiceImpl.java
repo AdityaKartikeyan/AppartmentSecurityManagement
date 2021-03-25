@@ -1,3 +1,7 @@
+/**
+ * @author AMBARISH DATAR
+ *
+ */
 package com.cg.aps.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +12,7 @@ import com.cg.aps.entities.VisitorEntity;
 import com.cg.aps.repository.VisitorDao;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("VisitorService")
 @Transactional
@@ -17,34 +22,33 @@ public class VisitorServiceImpl implements VisitorService {
 	VisitorDao dao;
 	
 	@Override
-	public long add(VisitorEntity bean) {
+	public VisitorEntity add(VisitorEntity bean) {
 		// TODO Auto-generated method stub
-		
-		return 0;
+		return dao.save(bean);
 	}
 
 	@Override
-	public void update(VisitorEntity bean) {
+	public VisitorEntity update(VisitorEntity bean) {
 		// TODO Auto-generated method stub
-		
+		return dao.save(bean);
 	}
 
 	@Override
 	public void delete(VisitorEntity bean) {
 		// TODO Auto-generated method stub
-		
+		dao.delete(bean);
 	}
 
 	@Override
-	public VisitorEntity findByName(String name) {
+	public List<VisitorEntity> findByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findByName(name);
 	}
 
 	@Override
-	public VisitorEntity findByPk(long id) {
+	public Optional<VisitorEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findById((int) id);
 	}
 
 	@Override
@@ -54,9 +58,9 @@ public class VisitorServiceImpl implements VisitorService {
 	}
 
 	@Override
-	public List<VisitorEntity> search(VisitorEntity bean) {
+	public List<VisitorEntity> search() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 }

@@ -6,6 +6,10 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * @author AMBARISH DATAR
+ *
+ */
 @Entity
 @Table(name="Visitor")
 public class VisitorEntity extends BaseEntity{
