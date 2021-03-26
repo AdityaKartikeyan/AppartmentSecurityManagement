@@ -11,7 +11,7 @@ public interface DomesticHelpService {
 		
 		public DomesticHelpEntity update(DomesticHelpEntity bean);
 		
-		public void delete(DomesticHelpEntity bean);
+		public void delete(long l);
 		
 		public List<DomesticHelpEntity> findByName(String name);
 		

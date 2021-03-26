@@ -1,6 +1,8 @@
 package com.cg.aps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -17,7 +19,7 @@ import com.cg.aps.repository.DomesticHelpDao;
 import com.cg.aps.service.DomesticHelpService;
 
 @SpringBootTest
-class ApartmentSecurityManagementApplicationTests {
+class DomesticHelpTest {
 	@MockBean
 	DomesticHelpDao dao;
 	@Autowired
@@ -35,7 +37,7 @@ class ApartmentSecurityManagementApplicationTests {
 	} 
 	
 	@Test
-	public void testDomesticHelp() {
+	public void testDomesticHelp1() {
 
 		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
 				new Timestamp(System.currentTimeMillis()), 11, "AT", "11:30", Date.valueOf(LocalDate.now()));
@@ -49,5 +51,12 @@ class ApartmentSecurityManagementApplicationTests {
 //		obj.setStatus("working");
 
 		assertEquals(obj, service.update(obj));
+	}
+	@Test
+	public void testDomesticHelp() {
+		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), 11, "AT", "11:30", Date.valueOf(LocalDate.now()));
+		service.delete(obj.getId());
+		verify(dao, times(1)).deleteById((int) obj.getId());
 	}
 }

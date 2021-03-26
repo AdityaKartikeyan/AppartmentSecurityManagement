@@ -31,9 +31,9 @@ DomesticHelpDao dao;
 	}
 
 	@Override
-	public void delete(DomesticHelpEntity bean) {
+	public void delete(long id) {
 		// TODO Auto-generated method stub
-		
+		dao.deleteById((int) id);
 	}
 
 	@Override
