@@ -5,8 +5,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +32,7 @@ class GuardShiftServiceTest {
 	public void testAddGuardTraining()
 	{
 		
-		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", LocalDateTime.now() , LocalDateTime.now(), 10, "anshul", "11:30", 
 				Date.valueOf(LocalDate.now()));
 		
 		
@@ -49,7 +49,7 @@ class GuardShiftServiceTest {
 	public void testUpdateGuardTraining()
 	{
 		
-		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", LocalDateTime.now() , LocalDateTime.now(), 10, "anshul", "11:30", 
 				Date.valueOf(LocalDate.now()));
 	
 	   
@@ -66,10 +66,10 @@ class GuardShiftServiceTest {
 	
 	public void testDeleteGuardTraining()
 	{
-		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", LocalDateTime.now() , LocalDateTime.now(), 10, "anshul", "11:30", 
 				Date.valueOf(LocalDate.now()));
-		service.delete(obj);
-	    verify(dao,times(1)).delete(obj);
+		service.delete(obj.getUserId());
+	    verify(dao,times(1)).deleteById(obj.getUserId());
 	}
 
 	
@@ -77,9 +77,9 @@ class GuardShiftServiceTest {
 	public void testFindByName()
 	{
 		String name="Anshul";
-		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", LocalDateTime.now() , LocalDateTime.now(), 10, "anshul", "11:30", 
 				Date.valueOf(LocalDate.now()));
-		GuardShiftEntity obj1 = new GuardShiftEntity(10, "anshul", "aravind", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 100, "aditya", "12:30", 
+		GuardShiftEntity obj1 = new GuardShiftEntity(10, "anshul", "aravind", LocalDateTime.now() , LocalDateTime.now(), 100, "aditya", "12:30", 
 				Date.valueOf(LocalDate.now()));
 		
 	List<GuardShiftEntity> list  = new ArrayList();
@@ -95,10 +95,10 @@ class GuardShiftServiceTest {
 	public void testFindByPk()
 	{
 		
-		Optional<GuardShiftEntity> obj =Optional.of(new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+		Optional<GuardShiftEntity> obj =Optional.of(new GuardShiftEntity(1, "yash", "aditya", LocalDateTime.now() , LocalDateTime.now(), 10, "anshul", "11:30", 
 				Date.valueOf(LocalDate.now())));
  
-		Mockito.when(dao.findById((int) obj.get().getUserId())).thenReturn(obj);
+		Mockito.when(dao.findById( obj.get().getUserId())).thenReturn(obj);
 		Optional<GuardShiftEntity> obj1 = service.findByPk(obj.get().getUserId());
 		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
 		
@@ -106,9 +106,9 @@ class GuardShiftServiceTest {
 	@Test
 	public void testSearch()
 	{
-		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 10, "anshul", "11:30", 
+		GuardShiftEntity obj = new GuardShiftEntity(1, "yash", "aditya", LocalDateTime.now() , LocalDateTime.now(), 10, "anshul", "11:30", 
 				Date.valueOf(LocalDate.now()));
-		GuardShiftEntity obj1 = new GuardShiftEntity(1, "pk", "ankit", new Timestamp(System.currentTimeMillis()) , new Timestamp(System.currentTimeMillis()), 100, "aman", "12:30", 
+		GuardShiftEntity obj1 = new GuardShiftEntity(1, "pk", "ankit", LocalDateTime.now() , LocalDateTime.now(), 100, "aman", "12:30", 
 				Date.valueOf(LocalDate.now()));
 		List<GuardShiftEntity> list1  = new ArrayList();
 		list1.add(obj);

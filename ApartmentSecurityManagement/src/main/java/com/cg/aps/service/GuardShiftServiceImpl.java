@@ -36,9 +36,9 @@ public class GuardShiftServiceImpl implements GuardShiftService
 	}
 
 	@Override
-	public void delete(GuardShiftEntity bean) {
+	public void delete(long id) {
 		// TODO Auto-generated method stub
-		dao.delete(bean);
+		dao.deleteById(id);
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class GuardShiftServiceImpl implements GuardShiftService
 	@Override
 	public Optional<GuardShiftEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
-		return dao.findById((int) id);
+		return dao.findById(id);
 	}
 
 	@Override

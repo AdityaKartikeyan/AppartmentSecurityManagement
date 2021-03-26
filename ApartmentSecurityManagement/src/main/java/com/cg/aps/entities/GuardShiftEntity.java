@@ -1,9 +1,12 @@
 package com.cg.aps.entities;
 
 import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -17,14 +20,9 @@ import javax.persistence.Table;
 public class GuardShiftEntity extends BaseEntity
 {
 	
-	public GuardShiftEntity(long id, String createdBy, String modifiedBy, Timestamp createdDateTime,
-			Timestamp modifiedDateTime, long userId, String name, String time, Date date) {
-		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
-		this.userId = userId;
-		this.name = name;
-		this.time = time;
-		this.date = date;
-	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long userId;
 	private String name;
 	private String time;
@@ -52,6 +50,17 @@ public class GuardShiftEntity extends BaseEntity
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public GuardShiftEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime, long userId, String name, String time, Date date) {
+		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
+		this.userId = userId;
+		this.name = name;
+		this.time = time;
+		this.date = date;
+	}
+	public GuardShiftEntity() {
+		// TODO Auto-generated constructor stub
 	}
 
 }
