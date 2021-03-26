@@ -44,10 +44,10 @@ import io.swagger.annotations.ApiOperation;
 		}
 		
 		@ApiOperation(value="Add FlatRent")
-		@DeleteMapping("/deleteFlatRent")
-		public void deleteFlatRent(@RequestBody FlatRentEntity guard)
+		@DeleteMapping("/deleteFlatRent/{flatno}")
+		public void deleteFlatRent(@PathVariable("flatno") String id)
 		{
-			service.delete(guard);
+			service.delete(id);
 		}
 		
 		@ApiOperation(value="Add FlatRent")

@@ -33,9 +33,9 @@ public class FlatServiceImpl implements FlatServiceInt {
 	}
 
 	@Override
-	public void delete(FlatEntity bean) {
+	public void delete(String id) {
 		// TODO Auto-generated method stub
-		dao.delete(bean);
+		dao.deleteById(id);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class FlatServiceImpl implements FlatServiceInt {
 	@Override
 	public Optional<FlatEntity> findByPk(String id) {
 		// TODO Auto-generated method stub
-		return dao.findById(id);
+		return dao.findByFlatNo(id);
 	}
 
 	@Override

@@ -3,6 +3,8 @@ package com.cg.aps.entities;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -11,6 +13,7 @@ import javax.persistence.Table;
 public class FlatRentEntity extends BaseEntity {
 
 	private String ownerName;
+	@Id
 	private String flatNo;
 	private String amount;
 	private String type;
@@ -48,6 +51,8 @@ public class FlatRentEntity extends BaseEntity {
 	}
 	
 	
-	
+	public FlatRentEntity() {
+		// TODO Auto-generated constructor stub
+	}
 
 }

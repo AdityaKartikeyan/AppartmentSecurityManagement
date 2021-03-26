@@ -13,7 +13,7 @@ public interface FlatRentServiceInt {
 	
 	public FlatRentEntity update(FlatRentEntity bean);
 	
-	public void delete(FlatRentEntity bean);
+	public void delete(String id);
 	
 	public List<FlatRentEntity> findByName(String name);
 	

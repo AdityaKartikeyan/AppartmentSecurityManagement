@@ -59,8 +59,8 @@ public class FlatServiceTest {
 	public void testDeleteFlat() {
 		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", LocalDateTime.now(),
 				LocalDateTime.now(), "owner", "1041b", "10", "3BHK");
-		service.delete(obj);
-		verify(dao, times(1)).delete(obj);
+		service.delete(obj.getFlatNo());
+		verify(dao, times(1)).deleteById(obj.getFlatNo());
 	}
 
 	@Test

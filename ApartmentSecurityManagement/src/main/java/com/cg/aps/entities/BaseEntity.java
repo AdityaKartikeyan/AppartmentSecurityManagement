@@ -18,7 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
-	@Id
+	
 	@GeneratedValue
 	protected long id;
 
@@ -86,6 +86,9 @@ public class BaseEntity {
 		this.modifiedBy = modifiedBy;
 		this.createdDateTime = createdDateTime;
 		this.modifiedDateTime = modifiedDateTime;
+		
 	}
-
+public BaseEntity() {
+	// TODO Auto-generated constructor stub
+}
 }

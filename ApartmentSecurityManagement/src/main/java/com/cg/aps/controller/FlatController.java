@@ -31,23 +31,23 @@ import io.swagger.annotations.ApiOperation;
 		
 		@ApiOperation(value="Add Flat")
 		@PostMapping("/addFlat")
-		public void addFlat(@RequestBody FlatEntity guard)
+		public void addFlat(@RequestBody FlatEntity Flat)
 		{
-			service.add(guard);
+			service.add(Flat);
 		}
 		
 		@ApiOperation(value="Add Flat")
 		@PutMapping("/updateFlat")
-		public void updateFlat(@RequestBody FlatEntity guard)
+		public void updateFlat(@RequestBody FlatEntity Flat)
 		{
-			service.update(guard);
+			service.update(Flat);
 		}
 		
 		@ApiOperation(value="Add Flat")
-		@DeleteMapping("/deleteFlat")
-		public void deleteFlat(@RequestBody FlatEntity guard)
+		@DeleteMapping("/deleteFlat/{flatno}")
+		public void deleteFlat(@PathVariable("flatno") String id)
 		{
-			service.delete(guard);
+			service.delete(id);
 		}
 		
 		@ApiOperation(value="Add Flat")
@@ -67,7 +67,7 @@ import io.swagger.annotations.ApiOperation;
 		
 		@ApiOperation(value="Add Flat")
 		@GetMapping("/getAll")
-		List<FlatEntity> searchGuards()
+		List<FlatEntity> searchFlats()
 		{
 			return service.search();
 		}
