@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,8 +31,8 @@ public class FlatServiceTest {
 	@Test
 	public void testAddFlat() {
 
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", LocalDateTime.now(),
+				LocalDateTime.now(), "owner", "1041b", "10", "3BHK");
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
@@ -41,8 +41,8 @@ public class FlatServiceTest {
 	@Test
 	public void testUpdateFlat() {
 
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", LocalDateTime.now(),
+				LocalDateTime.now(), "owner", "1041b", "10", "3BHK");
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 
@@ -57,8 +57,8 @@ public class FlatServiceTest {
 
 	@Test
 	public void testDeleteFlat() {
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", LocalDateTime.now(),
+				LocalDateTime.now(), "owner", "1041b", "10", "3BHK");
 		service.delete(obj);
 		verify(dao, times(1)).delete(obj);
 	}
@@ -66,10 +66,10 @@ public class FlatServiceTest {
 	@Test
 	public void testFindByName() {
 		String name = "Sahitya";
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
-		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "owner2", "1045", "12", "2BHK");
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", LocalDateTime.now(),
+				LocalDateTime.now(), "owner", "1041b", "10", "3BHK");
+		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", LocalDateTime.now(),
+				LocalDateTime.now(), "owner2", "1045", "12", "2BHK");
 		List<FlatRentEntity> list = new ArrayList();
 
 		List<FlatEntity> list1 = new ArrayList();
@@ -85,8 +85,8 @@ public class FlatServiceTest {
 	public void testFindByPk() {
 
 		Optional<FlatEntity> obj = Optional
-				.of(new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
-						new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK"));
+				.of(new FlatEntity(101, "Sahitya", "1041", LocalDateTime.now(),
+						LocalDateTime.now(), "owner", "1041b", "10", "3BHK"));
 
 		Mockito.when(dao.findById(obj.get().getFlatNo())).thenReturn(obj);
 		Optional<FlatEntity> obj1 = service.findByPk(obj.get().getFlatNo());
@@ -96,15 +96,15 @@ public class FlatServiceTest {
 
 	@Test
 	public void testSearch() {
-		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "owner", "1041b", "10", "3BHK");
-		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "owner2", "1045", "12", "2BHK");
+		FlatEntity obj = new FlatEntity(101, "Sahitya", "1041", LocalDateTime.now(),
+				LocalDateTime.now(), "owner", "1041b", "10", "3BHK");
+		FlatEntity obj1 = new FlatEntity(101, "mridul", "1045", LocalDateTime.now(),
+				LocalDateTime.now(), "owner2", "1045", "12", "2BHK");
 		List<FlatEntity> list1 = new ArrayList();
 		list1.add(obj);
 		list1.add(obj1);
 
 		Mockito.when(dao.findAll()).thenReturn(list1);
-		assertEquals(2, service.search(obj1).size());
+		assertEquals(2, service.search().size());
 	}
 }

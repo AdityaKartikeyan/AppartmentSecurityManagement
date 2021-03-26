@@ -1,6 +1,6 @@
 package com.cg.aps.entities;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -37,8 +37,8 @@ public class FlatEntity extends BaseEntity {
 	public void setFlatType(String flatType) {
 		this.flatType = flatType;
 	}
-	public FlatEntity(long id, String createdBy, String modifiedBy, Timestamp createdDateTime,
-			Timestamp modifiedDateTime, String ownerName, String flatNo, String floorNo, String flatType) {
+	public FlatEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime, String ownerName, String flatNo, String floorNo, String flatType) {
 		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
 		this.ownerName = ownerName;
 		this.flatNo = flatNo;
