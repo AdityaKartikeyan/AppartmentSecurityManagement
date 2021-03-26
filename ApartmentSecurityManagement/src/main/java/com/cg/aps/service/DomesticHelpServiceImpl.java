@@ -45,7 +45,7 @@ DomesticHelpDao dao;
 	@Override
 	public Optional<DomesticHelpEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findById((int) id);
 	}
 
 	@Override
