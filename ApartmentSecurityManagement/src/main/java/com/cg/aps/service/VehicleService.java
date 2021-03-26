@@ -15,7 +15,7 @@ public interface VehicleService {
 
 	public VehicleEntity update(VehicleEntity bean);
 
-	public void delete(VehicleEntity bean);
+	public void delete(String id);
 
 	public List<VehicleEntity> findByName(String name);
 

@@ -70,8 +70,8 @@ class VehicleTests {
 		VehicleEntity obj = new VehicleEntity(1222, "Anshul", "Joshi", LocalDateTime.now(),
 				LocalDateTime.now(), "AJ", "101", "11:30", "12:30", Date.valueOf(LocalDate.now()),
 				"103", "Honda City");
-		service.delete(obj);
-		verify(dao, times(1)).delete(obj);
+		service.delete(obj.getVehicleNo());
+		verify(dao, times(1)).deleteById(obj.getVehicleNo());
 	}
 
 	// testing find by name

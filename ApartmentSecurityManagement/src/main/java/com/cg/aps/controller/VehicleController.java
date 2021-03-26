@@ -45,9 +45,9 @@ public class VehicleController {
 	}
 
 	@ApiOperation(value="Delete Vehicle")
-	@DeleteMapping("/deletevehicle")
-	public void deleteVehicle(@RequestBody VehicleEntity vehicle) {
-		service.delete(vehicle);
+	@DeleteMapping("/deletevehicle/{id}")
+	public void deleteVehicle(@PathVariable("id") String id) {
+		service.delete(id);
 	}
 	
 	@ApiOperation(value="Get Vehicle Name")
