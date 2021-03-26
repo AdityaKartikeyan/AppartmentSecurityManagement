@@ -72,8 +72,8 @@ class GuardTrainingServiceTest {
 	public void testDeleteGuardTraining()
 	{
 		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,LocalDateTime.now(),LocalDateTime.now(),1,"HARSH","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
-	    service.delete(obj);
-	    verify(dao,times(1)).delete(obj);
+	    service.delete(obj.getUserId());
+	    verify(dao,times(1)).deleteById(obj.getUserId());
 	}
 
 	//testing find by name guard training entity
@@ -118,7 +118,7 @@ class GuardTrainingServiceTest {
 		
 		Optional<GuardTrainingEntity> obj =Optional.of(new GuardTrainingEntity(1222, "aditya","digvijay" ,LocalDateTime.now(),LocalDateTime.now(),100,"aditya","981899","accepted","10.30",Date.valueOf(LocalDate.now())));
  
-		Mockito.when(dao.findById((int) obj.get().getUserId())).thenReturn(obj);
+		Mockito.when(dao.findById(obj.get().getUserId())).thenReturn(obj);
 		Optional<GuardTrainingEntity> obj1 = service.findByPk(obj.get().getUserId());
 		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
 		

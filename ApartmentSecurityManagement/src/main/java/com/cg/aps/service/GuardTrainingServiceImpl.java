@@ -37,9 +37,9 @@ public class GuardTrainingServiceImpl implements GuardTrainingService {
 	}
 
 	@Override
-	public void delete(GuardTrainingEntity bean) {
+	public void delete(long userId) {
 		// TODO Auto-generated method stub
-		dao.delete(bean);
+		dao.deleteById(userId);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class GuardTrainingServiceImpl implements GuardTrainingService {
 	public Optional<GuardTrainingEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
 		
-		return dao.findById((int) id);
+		return dao.findById(id);
 	}
 
 	@Override

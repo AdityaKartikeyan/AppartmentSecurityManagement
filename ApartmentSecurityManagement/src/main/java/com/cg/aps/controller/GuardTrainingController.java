@@ -42,10 +42,10 @@ public class GuardTrainingController {
 	}
 	
 	@ApiOperation(value="Delete Guard Training")
-	@DeleteMapping("/deleteGuard")
-	public void deleteGuardTraining(@RequestBody GuardTrainingEntity guard)
+	@DeleteMapping("/deleteGuard/{id}")
+	public void deleteGuardTraining(@PathVariable("id") long id)
 	{
-		service.delete(guard);
+		service.delete(id);
 	}
 	
 	@ApiOperation(value="Get Guard Name")

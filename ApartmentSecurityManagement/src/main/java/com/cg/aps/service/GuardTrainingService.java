@@ -11,7 +11,7 @@ public interface GuardTrainingService {
 	
 	public GuardTrainingEntity update(GuardTrainingEntity bean);
 	
-	public void delete(GuardTrainingEntity bean);
+	public void delete(long userId);
 	
 	public List<GuardTrainingEntity> findByName(String name);
 	
