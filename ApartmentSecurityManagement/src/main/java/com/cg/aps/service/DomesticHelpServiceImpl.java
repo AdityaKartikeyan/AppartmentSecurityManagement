@@ -39,7 +39,7 @@ DomesticHelpDao dao;
 	@Override
 	public List<DomesticHelpEntity> findByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findByName(name);
 	}
 
 	@Override
