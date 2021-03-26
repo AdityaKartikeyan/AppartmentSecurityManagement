@@ -33,4 +33,21 @@ class ApartmentSecurityManagementApplicationTests {
 		assertEquals(obj, service.add(obj));
 
 	} 
+	
+	@Test
+	public void testDomesticHelp() {
+
+		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), 11, "AT", "11:30", Date.valueOf(LocalDate.now()));
+
+		Mockito.when(dao.save(obj)).thenReturn(obj);
+
+		assertEquals(obj, service.add(obj));
+
+		obj.setName("Joshi");
+		obj.setId(2);
+//		obj.setStatus("working");
+
+		assertEquals(obj, service.update(obj));
+	}
 }
