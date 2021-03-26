@@ -37,9 +37,9 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 
 	@Override
-	public void delete(SecurityEntity bean) {
+	public void delete(int id) {
 		// TODO Auto-generated method stub
-		 dao.delete(bean);
+		 dao.deleteById(id);
 	}
 
 	@Override

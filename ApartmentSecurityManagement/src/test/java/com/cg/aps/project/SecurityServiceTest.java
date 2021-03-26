@@ -72,8 +72,8 @@ public class SecurityServiceTest {
 	public void deleteSecurity()
 	{
 		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now());
-	    service.delete(obj);
-	    verify(dao,times(1)).delete(obj);
+	    service.delete(obj.getAlertId());
+	    verify(dao,times(1)).deleteById(obj.getAlertId());
 	}
 	
 //test find  by name

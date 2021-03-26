@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +21,7 @@ import javax.persistence.Table;
 public class SecurityEntity extends BaseEntity {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer alertId;
 	private String alertMessage;
 	private String alertType;
@@ -91,5 +94,10 @@ public class SecurityEntity extends BaseEntity {
 		this.alertDate = alertDate;
 	}
 	
-	
+	/**
+	 * 
+	 */
+	public SecurityEntity() {
+		// TODO Auto-generated constructor stub
+	}
 }
