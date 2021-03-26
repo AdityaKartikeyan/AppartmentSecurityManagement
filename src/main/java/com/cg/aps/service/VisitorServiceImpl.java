@@ -46,9 +46,9 @@ public class VisitorServiceImpl implements VisitorService {
 	}
 
 	@Override
-	public Optional<VisitorEntity> findByPk(long id) {
+	public Optional<VisitorEntity> findByPk(int id) {
 		// TODO Auto-generated method stub
-		return dao.findById((int) id);
+		return dao.findByVisitorId(id);
 	}
 
 	@Override

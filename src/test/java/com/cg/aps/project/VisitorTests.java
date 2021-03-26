@@ -41,7 +41,7 @@ class VisitorTests {
 	{
 		
 		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
-		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
+		LocalDateTime.now(), 0, "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
 		
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj,service.add(obj));
@@ -53,7 +53,7 @@ class VisitorTests {
 	{
 		
 		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
-		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "11:30", "1:00");
+		LocalDateTime.now(), 0, "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 	    
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 	    assertEquals(obj,service.add(obj));
@@ -66,7 +66,7 @@ class VisitorTests {
 	public void testDeleteVisitor()
 	{
 		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
-		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
+		LocalDateTime.now(), 0, "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
 		service.delete(obj);
 	    verify(dao,times(1)).delete(obj);
 	}	    
@@ -77,9 +77,9 @@ class VisitorTests {
 	{
 		String name="Ambarish";
 		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
-		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
+		LocalDateTime.now(), 0, "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
 		VisitorEntity obj1 = new VisitorEntity(1111, "roy", "anand", LocalDateTime.now(), 
-		LocalDateTime.now(), "adiya", "Aravind", "103", Date.valueOf(LocalDate.now()), "4:30", "9:00");
+		LocalDateTime.now(), 0, "adiya", "Aravind", "103", Date.valueOf(LocalDate.now()), "4:30", "9:00");
 		 
 		List<VisitorEntity> list = new ArrayList();
 		list.add(obj);
@@ -97,11 +97,11 @@ class VisitorTests {
 		
 		Optional<VisitorEntity> obj = Optional.of(new VisitorEntity(1111,"ambarish","aditya", 
 		LocalDateTime.now(),LocalDateTime.now(), 
-		"Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00"));
+		0, "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00"));
  
-		Mockito.when(dao.findById((int) obj.get().getId())).thenReturn(obj);
-		Optional<VisitorEntity> obj1 = service.findByPk(obj.get().getId());
-		assertEquals(obj.get().getId(),obj1.get().getId());
+		Mockito.when(dao.findById(obj.get().getVisitorId())).thenReturn(obj);
+		Optional<VisitorEntity> obj1 = service.findByPk(obj.get().getVisitorId());
+		assertEquals(obj.get().getVisitorId(),obj1.get().getVisitorId());
 		
 	}
 	
@@ -110,9 +110,9 @@ class VisitorTests {
 	public void testSearch()
 	{
 		VisitorEntity obj = new VisitorEntity(1111, "ambarish", "aditya", LocalDateTime.now(), 
-		LocalDateTime.now(), "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
+		LocalDateTime.now(), 0, "Anshul", "Aravind", "101", Date.valueOf(LocalDate.now()), "9:30", "10:00");
 		VisitorEntity obj1 = new VisitorEntity(1111, "roy", "anand", LocalDateTime.now(), 
-		LocalDateTime.now(), "adiya", "Aravind", "103", Date.valueOf(LocalDate.now()), "4:30", "9:00");
+		LocalDateTime.now(), 0, "adiya", "Aravind", "103", Date.valueOf(LocalDate.now()), "4:30", "9:00");
 		
 		List<VisitorEntity> list1  = new ArrayList();
 		list1.add(obj);

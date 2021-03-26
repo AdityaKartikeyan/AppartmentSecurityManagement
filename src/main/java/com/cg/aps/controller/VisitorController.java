@@ -57,9 +57,9 @@ public class VisitorController {
 		return service.findByName(name);
 	}
 	
-	@ApiOperation(value="Get Visitor y id")
+	@ApiOperation(value="Get Visitor by id")
 	@GetMapping("/getId/{id}")
-	Optional<VisitorEntity> getByPk(@PathVariable("id") long id){
+	Optional<VisitorEntity> getByPk(@PathVariable("id") int id){
 		return service.findByPk(id);
 	}
 

@@ -22,9 +22,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 	
-    @Id
-    @GeneratedValue
-	protected long id;
+    protected long id;
 	
 	@CreatedBy
     @Column(name = "created_by")
