@@ -44,14 +44,14 @@ public class GuardSalaryController {
 		service.update(guard);
 	}
 	@ApiOperation(value="Delete Guard Salary")
-	@DeleteMapping("/deleteGuard")
-	public void deleteGuardSalary(@RequestBody GuardSalaryEntity guard)
+	@DeleteMapping("/deleteGuard/{id}")
+	public void deleteGuardSalary(@PathVariable("id")long id)
 	{
-		service.delete(guard);
+		service.delete(id);
 	}
 	
 	@ApiOperation(value="Get Guard Name")
-	@GetMapping("/getName")
+	@GetMapping("/getName/{name}")
 	List<GuardSalaryEntity> getByName(@PathVariable String name)
 	{
 		return service.findByName(name);

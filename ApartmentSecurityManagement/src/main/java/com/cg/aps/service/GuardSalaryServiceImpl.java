@@ -37,9 +37,9 @@ public class GuardSalaryServiceImpl implements GuardSalaryService {
 	}
 
 	@Override
-	public void delete(GuardSalaryEntity bean) {
+	public void delete(long id) {
 		// TODO Auto-generated method stub
-		dao.delete(bean);
+		dao.deleteById(id);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class GuardSalaryServiceImpl implements GuardSalaryService {
 	@Override
 	public Optional<GuardSalaryEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
-		return dao.findById((int) id);
+		return dao.findByUserId((int) id);
 	}
 
 	@Override

@@ -72,8 +72,8 @@ class GuardSalaryServiceTest {
 	public void testDeleteGuardSalary()
 	{
 		GuardSalaryEntity obj = new GuardSalaryEntity(1, "aravind", "aditya", LocalDateTime.now() , LocalDateTime.now(),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now()));
-	    service.delete(obj);
-	    verify(dao,times(1)).delete(obj);
+	    service.delete(obj.getUserId());
+	    verify(dao,times(1)).deleteById(obj.getUserId());
 	}
 	
 	//test case for finding a value by it's name
@@ -100,7 +100,7 @@ class GuardSalaryServiceTest {
 		
 		Optional<GuardSalaryEntity> obj =Optional.of(new GuardSalaryEntity(1, "aravind", "aditya", LocalDateTime.now() , LocalDateTime.now(),"Aravind", 2000,"101","credited",Date.valueOf(LocalDate.now())));
  
-		Mockito.when(dao.findById((int) obj.get().getUserId())).thenReturn(obj);
+		Mockito.when(dao.findByUserId((int) obj.get().getUserId())).thenReturn(obj);
 		Optional<GuardSalaryEntity> obj1 = service.findByPk(obj.get().getUserId());
 		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
 		

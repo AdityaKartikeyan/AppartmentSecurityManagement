@@ -18,7 +18,7 @@ public interface GuardSalaryService {
 
 	public GuardSalaryEntity update(GuardSalaryEntity bean);
 
-	public void delete(GuardSalaryEntity bean);
+	public void delete(long id);
 
 	public List<GuardSalaryEntity> findByName(String name);
 
