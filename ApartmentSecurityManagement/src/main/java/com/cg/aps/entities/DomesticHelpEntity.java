@@ -4,14 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class DomesticHelpEntity extends BaseEntity {
-	public DomesticHelpEntity(long id, String createdBy, String modifiedBy, Timestamp createdDateTime,
-			Timestamp modifiedDateTime, long userId, String name, String time, Date date, String string, String string2) {
-		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
-		this.userId = userId;
-		this.name = name;
-		this.time = time;
-		this.date = date;
-	}
+	
 	private long userId;
 	private String name;
 	private String time;
@@ -48,5 +41,5 @@ public class DomesticHelpEntity extends BaseEntity {
 		this.time = time;
 		this.date = date;
 	}
-
+	
 }
