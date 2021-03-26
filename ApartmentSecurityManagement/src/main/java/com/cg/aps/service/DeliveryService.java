@@ -13,7 +13,7 @@ public interface DeliveryService {
 
 	public DeliveryEntity update(DeliveryEntity bean);
 
-	public void delete(DeliveryEntity bean);
+	public void delete(long id);
 
 	public List<DeliveryEntity> findByOwnerName(String name);
 

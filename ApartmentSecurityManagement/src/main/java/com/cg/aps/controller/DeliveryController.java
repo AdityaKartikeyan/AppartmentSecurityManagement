@@ -46,9 +46,9 @@ public class DeliveryController {
 	}
 
 	@ApiOperation(value = "Delete Delivery Using Id")
-	@DeleteMapping("/deleteDelivery/{id}")
-	public void deleteDelivery(@RequestBody DeliveryEntity id) {
-		service.delete(id);
+	@DeleteMapping("/deleteDelivery/{deliveryId}")
+	public void deleteDelivery(@PathVariable("deliveryId") long deliveryId) {
+		service.delete(deliveryId);
 	}
 
 	@ApiOperation(value = "Find By OwnerName")

@@ -35,8 +35,8 @@ public class DeliveryEntityTest {
 	@Test // Testing add method to add delivery entity
 	public void testAddDeliveryEntity() {
 
-		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(),
-				LocalDateTime.now(), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
+		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(), LocalDateTime.now(), 1,
+				"Vishal", "12:30", Date.valueOf(LocalDate.now()));
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
 
@@ -45,8 +45,8 @@ public class DeliveryEntityTest {
 	@Test // Testing update method to update delivery entity
 	public void testUpdateDeliveryEntity() {
 
-		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(),
-				LocalDateTime.now(), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
+		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(), LocalDateTime.now(), 1,
+				"Vishal", "12:30", Date.valueOf(LocalDate.now()));
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
 		obj.setOwnerName("harsh");
@@ -56,21 +56,21 @@ public class DeliveryEntityTest {
 	@Test // Testing delete method to delete delivery entity
 	public void testDeleteDeliveryEntity() {
 
-		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(),
-				LocalDateTime.now(), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
+		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(), LocalDateTime.now(), 1,
+				"Vishal", "12:30", Date.valueOf(LocalDate.now()));
 		Mockito.when(dao.save(obj)).thenReturn(obj);
-		service.delete(obj);
-		verify(dao, times(1)).delete(obj);
+		service.delete(obj.getDeliveryId());
+		verify(dao, times(1)).deleteByDeliveryId(obj.getDeliveryId());
 	}
 
 	@Test // Testing findByName method to find By Name
 	public void testFindByOnwerName() {
 		String name = "aditya";
-		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(),
-				LocalDateTime.now(), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
+		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(), LocalDateTime.now(), 1,
+				"Vishal", "12:30", Date.valueOf(LocalDate.now()));
 		Mockito.when(dao.save(obj)).thenReturn(obj);
-		DeliveryEntity obj1 = new DeliveryEntity(1223, "Newname", "Tigvijay", LocalDateTime.now(),
-				LocalDateTime.now(), 2, "Nameowner", "10:30", Date.valueOf(LocalDate.now()));
+		DeliveryEntity obj1 = new DeliveryEntity(1223, "Newname", "Tigvijay", LocalDateTime.now(), LocalDateTime.now(),
+				2, "Nameowner", "10:30", Date.valueOf(LocalDate.now()));
 
 		List<DeliveryEntity> list = new ArrayList<DeliveryEntity>();
 		list.add(obj);
@@ -80,23 +80,22 @@ public class DeliveryEntityTest {
 		assertEquals(2, service.findByOwnerName(name).size());
 	}
 
-	/*
-	 * @Test // Testing findByPk method to find By Id public void testFindByPk() {
-	 * Optional<DeliveryEntity> obj = Optional.of(new DeliveryEntity(1222, "aditya",
-	 * "digvijay", LocalDateTime.now(), LocalDateTime.now(), 1, "Vishal", "12:30",
-	 * Date.valueOf(LocalDate.now())));
-	 * 
-	 * Mockito.when(dao.findById((int) obj.get().getDeliveryId())).thenReturn(obj);
-	 * Optional<DeliveryEntity> obj1 = service.findByPk(obj.get().getDeliveryId());
-	 * assertEquals(obj.get().getDeliveryId(), obj1.get().getDeliveryId()); }
-	 */
-	
+	@Test // Testing findByPk method to find By Id public void testFindByPk() {
+	public void testFindByPk() {
+		Optional<DeliveryEntity> obj = Optional.of(new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(),
+				LocalDateTime.now(), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now())));
+
+		Mockito.when(dao.findByDeliveryId(obj.get().getDeliveryId())).thenReturn(obj);
+		Optional<DeliveryEntity> obj1 = service.findByPk(obj.get().getDeliveryId());
+		assertEquals(obj.get().getDeliveryId(), obj1.get().getDeliveryId());
+	}
+
 	@Test // Testing Search method to find all
 	public void testSearch() {
-		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(),
-				LocalDateTime.now(), 1, "Vishal", "12:30", Date.valueOf(LocalDate.now()));
-		DeliveryEntity obj1 = new DeliveryEntity(1223, "Newname", "Tigvijay", LocalDateTime.now(),
-				LocalDateTime.now(), 2, "Nameowner", "10:30", Date.valueOf(LocalDate.now()));
+		DeliveryEntity obj = new DeliveryEntity(1222, "aditya", "digvijay", LocalDateTime.now(), LocalDateTime.now(), 1,
+				"Vishal", "12:30", Date.valueOf(LocalDate.now()));
+		DeliveryEntity obj1 = new DeliveryEntity(1223, "Newname", "Tigvijay", LocalDateTime.now(), LocalDateTime.now(),
+				2, "Nameowner", "10:30", Date.valueOf(LocalDate.now()));
 		List<DeliveryEntity> list1 = new ArrayList();
 		list1.add(obj);
 		list1.add(obj1);

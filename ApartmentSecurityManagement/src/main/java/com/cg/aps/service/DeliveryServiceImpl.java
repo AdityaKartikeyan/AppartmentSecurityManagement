@@ -36,8 +36,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public void delete(DeliveryEntity bean) {
-		dao.delete(bean);
+	public void delete(long DeliveryId) {
+		dao.deleteByDeliveryId(DeliveryId);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	@Override
 	public Optional<DeliveryEntity> findByPk(long deliveryId) {
-		return dao.findById((int) deliveryId);
+		return dao.findByDeliveryId(deliveryId);
 	}
 
 	@Override
