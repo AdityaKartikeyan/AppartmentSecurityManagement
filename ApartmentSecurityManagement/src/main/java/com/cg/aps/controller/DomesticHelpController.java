@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.aps.entities.DomesticHelpEntity;
 import com.cg.aps.service.DomesticHelpService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @Controller
 @RequestMapping
@@ -26,38 +28,38 @@ public class DomesticHelpController {
 @Autowired
 DomesticHelpService service;
 
-
+@ApiOperation(value="Add Domestic Help")
 @PostMapping("/add Guard")
 public void addDomesticHelp(@RequestBody DomesticHelpEntity guard)
 {
 	service.add(guard);
 }
-
+@ApiOperation(value="Add Domestic Help")
 @PutMapping("/updateGuard")
-public void uupdateGuardTraining(@RequestBody DomesticHelpEntity guard)
+public void uupdateDomesticHelp(@RequestBody DomesticHelpEntity guard)
 {
 	service.update(guard);
 
 }
-
-@DeleteMapping("/deleteGuard")
-public void deleteGuardTraining(@RequestBody DomesticHelpEntity guard)
+@ApiOperation(value="Add Domestic Help")
+@DeleteMapping("/deleteGuard/{id}")
+public void deleteDomesticHelp(@PathVariable("id") long id )
 {
-	service.delete(guard);
+	service.delete(id);
 }
-
+@ApiOperation(value="Add Domestic Help")
 @GetMapping("/getName/{name}")
 List<DomesticHelpEntity> getByName(@PathVariable("name") String name)
 {
 	return service.findByName(name);
 }
-
+@ApiOperation(value="Add Domestic Help")
 @GetMapping("/getById/{id}")
 Optional<DomesticHelpEntity> getByPk(@PathVariable("id") long id)
 {
 	return service.findByPk(id);	
 }
-
+@ApiOperation(value="Add Domestic Help")
 @GetMapping("/getAll")
 List<DomesticHelpEntity> searchGuards()
 {

@@ -1,7 +1,6 @@
 package com.cg.aps.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -10,14 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.cg.aps.entities.DomesticHelpEntity;
 import com.cg.aps.repository.DomesticHelpDao;
-
+import com.cg.aps.service.DomesticHelpService;
 
 @Service("DomesticHelpService")
 @Transactional
-public class DomesticHelpServiceImpl implements DomesticHelpService {
-@Autowired
-DomesticHelpDao dao;
-
+public class DomesticHelpServiceImpl implements DomesticHelpService{
+	@Autowired
+	DomesticHelpDao dao;
 	@Override
 	public DomesticHelpEntity add(DomesticHelpEntity bean) {
 		// TODO Auto-generated method stub
@@ -25,27 +23,27 @@ DomesticHelpDao dao;
 	}
 
 	@Override
-	public DomesticHelpEntity update(DomesticHelpEntity bean) {
+	public void update(DomesticHelpEntity bean) {
 		// TODO Auto-generated method stub
-		return dao.save(bean);
+		
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(DomesticHelpEntity bean) {
 		// TODO Auto-generated method stub
-		dao.deleteById((int) id);
+		
 	}
 
 	@Override
-	public List<DomesticHelpEntity> findByName(String name) {
+	public DomesticHelpEntity findByName(String name) {
 		// TODO Auto-generated method stub
-		return dao.findByName(name);
+		return null;
 	}
 
 	@Override
-	public Optional<DomesticHelpEntity> findByPk(long id) {
+	public DomesticHelpEntity findByPk(long id) {
 		// TODO Auto-generated method stub
-		return dao.findById((int) id);
+		return null;
 	}
 
 	@Override
@@ -55,10 +53,12 @@ DomesticHelpDao dao;
 	}
 
 	@Override
-	public List<DomesticHelpEntity> search() {
+	public List<DomesticHelpEntity> search(DomesticHelpEntity bean) {
 		// TODO Auto-generated method stub
-		
-		return dao.findAll();
+		return null;
 	}
+
+
+	
 
 }
