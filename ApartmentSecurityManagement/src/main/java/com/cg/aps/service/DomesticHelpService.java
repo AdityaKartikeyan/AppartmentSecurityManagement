@@ -10,7 +10,7 @@ public interface DomesticHelpService {
 
 	public DomesticHelpEntity add(DomesticHelpEntity bean);
 	
-	public void update(DomesticHelpEntity bean);
+	public DomesticHelpEntity update(DomesticHelpEntity bean);
 	
 	public void delete(DomesticHelpEntity bean);
 	

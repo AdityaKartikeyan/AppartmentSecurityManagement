@@ -1,15 +1,8 @@
 package com.cg.aps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -38,23 +31,23 @@ class DomesticHelpTest {
 		assertEquals(obj, service.add(obj));
 
 	} 
-//	
-//	@Test
-//	public void testDomesticHelp1() {
-//
-//			DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-	//new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
-//
-//		Mockito.when(dao.save(obj)).thenReturn(obj);
-//
-//		assertEquals(obj, service.add(obj));
-//
-//		obj.setName("Joshi");
-//		obj.setId(2);
-////		obj.setStatus("working");
-//
-//		assertEquals(obj, service.update(obj));
-//	}
+	
+	@Test
+	public void testDomesticHelp1() {
+
+			DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
+	new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+
+		Mockito.when(dao.save(obj)).thenReturn(obj);
+
+		assertEquals(obj, service.add(obj));
+
+		obj.setName("Joshi");
+		obj.setArrivalTime("11:30");
+   //	obj.setStatus("working");
+
+		assertEquals(obj, service.update(obj));
+	}
 //	@Test
 //	public void testDomesticHelp() {
 //		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
