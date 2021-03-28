@@ -20,7 +20,7 @@ public interface DomesticHelpService {
 	
 	public List<DomesticHelpEntity> search(DomesticHelpEntity bean, long pageNo, int pageSize);
 	
-	public List<DomesticHelpEntity> search(DomesticHelpEntity bean);
+	public List<DomesticHelpEntity> search();
 
 	
 }

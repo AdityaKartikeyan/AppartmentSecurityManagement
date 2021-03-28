@@ -54,9 +54,9 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 	}
 
 	@Override
-	public List<DomesticHelpEntity> search(DomesticHelpEntity bean) {
+	public List<DomesticHelpEntity> search() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 
