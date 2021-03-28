@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -76,18 +77,18 @@ class DomesticHelpTest {
 		assertEquals(2,service.findByName(name).size());
 		
 	}
-//	@Test
-//	public void testFindByPk()
-//	{
-//		
-//		Optional<DomesticHelpEntity> obj =Optional.of(new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-//				new Timestamp(System.currentTimeMillis()), 11, "AT", "11:30", Date.valueOf(LocalDate.now())));
-// 
-//		Mockito.when(dao.findById((int) obj.get().getUserId())).thenReturn(obj);
-//		Optional<DomesticHelpEntity> obj1 = service.findByPk(obj.get().getUserId());
-//		assertEquals(obj.get().getUserId(),obj1.get().getUserId());
-//		
-//	}
+	@Test
+	public void testFindByPk()
+	{
+		
+		Optional<DomesticHelpEntity> obj =Optional.of(new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021"));
+ 
+		Mockito.when(dao.findById((int) obj.get().getId())).thenReturn(obj);
+		Optional<DomesticHelpEntity> obj1 = service.findByPk(obj.get().getId());
+		assertEquals(obj.get().getId(),obj1.get().getId());
+		
+	}
 //	@Test
 //	public void testSearch()
 //	{

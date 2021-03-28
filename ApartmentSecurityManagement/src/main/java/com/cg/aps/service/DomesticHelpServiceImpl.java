@@ -1,6 +1,7 @@
 package com.cg.aps.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -41,9 +42,9 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 	}
 
 	@Override
-	public DomesticHelpEntity findByPk(long id) {
+	public Optional<DomesticHelpEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findById((int) id);
 	}
 
 	@Override
