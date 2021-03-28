@@ -5,6 +5,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -58,22 +60,22 @@ class DomesticHelpTest {
 		service.delete(obj.getId());
 		verify(dao, times(1)).deleteById((int) obj.getId());
 	}
-//	@Test
-//	public void testFindByName()
-//	{
-//		String name="Anant";
-//		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-//				new Timestamp(System.currentTimeMillis()), 11, "AT", "11:30", Date.valueOf(LocalDate.now()));
-//		DomesticHelpEntity obj1 = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-//				new Timestamp(System.currentTimeMillis()), 11, "AT", "11:30", Date.valueOf(LocalDate.now()));
-//	 List<DomesticHelpEntity> list  = new ArrayList();
-//	list.add(obj);
-//	list.add(obj1);
-//	
-//		Mockito.when(dao.findByName(name)).thenReturn(list);
-//		assertEquals(2,service.findByName(name).size());
-//		
-//	}
+	@Test
+	public void testFindByName()
+	{
+		String name="Anant";
+		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		DomesticHelpEntity obj1 = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+	 List<DomesticHelpEntity> list  = new ArrayList();
+	list.add(obj);
+	list.add(obj1);
+	
+		Mockito.when(dao.findByName(name)).thenReturn(list);
+		assertEquals(2,service.findByName(name).size());
+		
+	}
 //	@Test
 //	public void testFindByPk()
 //	{

@@ -35,9 +35,9 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 	}
 
 	@Override
-	public DomesticHelpEntity findByName(String name) {
+	public List<DomesticHelpEntity> findByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findByName(name);
 	}
 
 	@Override

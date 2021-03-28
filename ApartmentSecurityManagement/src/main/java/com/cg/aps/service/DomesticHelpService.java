@@ -14,7 +14,7 @@ public interface DomesticHelpService {
 	
 	public void delete(long id);
 	
-	public DomesticHelpEntity findByName(String name);
+	public List<DomesticHelpEntity> findByName(String name);
 	
 	public DomesticHelpEntity findByPk(long id);
 	
