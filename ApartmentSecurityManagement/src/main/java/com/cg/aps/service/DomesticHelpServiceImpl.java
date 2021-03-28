@@ -19,7 +19,8 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 	@Override
 	public DomesticHelpEntity add(DomesticHelpEntity bean) {
 		// TODO Auto-generated method stub
-		return dao.save(bean);
+	//	return dao.save(bean);
+		return null;
 	}
 
 	@Override
