@@ -1,6 +1,6 @@
 package com.cg.aps.entities;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -19,7 +19,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 public class BaseEntity {
-
+@Id
+@GeneratedValue
 protected long id;
 
 @CreatedBy
@@ -32,11 +33,11 @@ protected String modifiedBy;
 
 @CreationTimestamp
 @Column(name = "created_date")
-protected Timestamp createdDateTime;
+protected LocalDateTime createdDateTime;
 
 @UpdateTimestamp
 @Column(name = "modified_date")
-protected Timestamp modifiedDateTime;
+protected LocalDateTime modifiedDateTime;
 
 public long getId() {
 	return id;
@@ -62,23 +63,23 @@ public void setModifiedBy(String modifiedBy) {
 	this.modifiedBy = modifiedBy;
 }
 
-public Timestamp getCreatedDateTime() {
+public LocalDateTime getCreatedDateTime() {
 	return createdDateTime;
 }
 
-public void setCreatedDateTime(Timestamp createdDateTime) {
+public void setCreatedDateTime(LocalDateTime createdDateTime) {
 	this.createdDateTime = createdDateTime;
 }
 
-public Timestamp getModifiedDateTime() {
+public LocalDateTime getModifiedDateTime() {
 	return modifiedDateTime;
 }
 
-public void setModifiedDateTime(Timestamp modifiedDateTime) {
+public void setModifiedDateTime(LocalDateTime modifiedDateTime) {
 	this.modifiedDateTime = modifiedDateTime;
 }
 
-public BaseEntity(long id, String createdBy, String modifiedBy, Timestamp createdDateTime, Timestamp modifiedDateTime) {
+public BaseEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime, LocalDateTime modifiedDateTime) {
 	super();
 	this.id = id;
 	this.createdBy = createdBy;

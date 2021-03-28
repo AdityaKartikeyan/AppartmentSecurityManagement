@@ -9,8 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.cg.aps.entities.DomesticHelpEntity;
 @Repository
 
-public interface DomesticHelpDao extends JpaRepository<DomesticHelpEntity,Integer> {
+public interface DomesticHelpDao extends JpaRepository<DomesticHelpEntity,String> {
 	
 	List<DomesticHelpEntity> findByName(String name);
-	Optional<DomesticHelpEntity> findByUserId(long id);
+	Optional<DomesticHelpEntity> findByFlatNo(String id);
+	void deleteByFlatNo(String id);
 }

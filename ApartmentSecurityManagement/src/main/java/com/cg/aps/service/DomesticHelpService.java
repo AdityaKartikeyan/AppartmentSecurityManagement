@@ -12,11 +12,11 @@ public interface DomesticHelpService {
 	
 	public DomesticHelpEntity update(DomesticHelpEntity bean);
 	
-	public void delete(long id);
+	public void delete(String id);
 	
 	public List<DomesticHelpEntity> findByName(String name);
 	
-	public Optional<DomesticHelpEntity> findByPk(long id);
+	public Optional<DomesticHelpEntity> findByPk(String id);
 	
 	public List<DomesticHelpEntity> search(DomesticHelpEntity bean, long pageNo, int pageSize);
 	

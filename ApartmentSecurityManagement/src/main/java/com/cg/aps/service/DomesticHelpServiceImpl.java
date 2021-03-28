@@ -30,9 +30,9 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(String id) {
 		// TODO Auto-generated method stub
-		dao.deleteById((int) id);
+		dao.deleteByFlatNo(id);
 	}
 
 	@Override
@@ -42,9 +42,9 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 	}
 
 	@Override
-	public Optional<DomesticHelpEntity> findByPk(long id) {
+	public Optional<DomesticHelpEntity> findByPk(String id) {
 		// TODO Auto-generated method stub
-		return dao.findById((int) id);
+		return dao.findByFlatNo(id);
 	}
 
 	@Override

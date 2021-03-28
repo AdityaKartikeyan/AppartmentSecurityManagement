@@ -29,21 +29,21 @@ public class DomesticHelpController {
 DomesticHelpService service;
 
 @ApiOperation(value="Add Domestic Help")
-@PostMapping("/add Guard")
-public void addDomesticHelp(@RequestBody DomesticHelpEntity guard)
+@PostMapping("/addDomesticHelp")
+public void addDomesticHelp(@RequestBody DomesticHelpEntity DomesticHelp)
 {
-	service.add(guard);
+	service.add(DomesticHelp);
 }
 @ApiOperation(value="Add Domestic Help")
-@PutMapping("/updateGuard")
-public void uupdateDomesticHelp(@RequestBody DomesticHelpEntity guard)
+@PutMapping("/updateDomesticHelp")
+public void updateDomesticHelp(@RequestBody DomesticHelpEntity DomesticHelp)
 {
-	service.update(guard);
+	service.update(DomesticHelp);
 
 }
 @ApiOperation(value="Add Domestic Help")
-@DeleteMapping("/deleteGuard/{id}")
-public void deleteDomesticHelp(@PathVariable("id") long id )
+@DeleteMapping("/deleteDomesticHelp/{id}")
+public void deleteDomesticHelp(@PathVariable("id") String id )
 {
 	service.delete(id);
 }
@@ -55,13 +55,13 @@ List<DomesticHelpEntity> getByName(@PathVariable("name") String name)
 }
 @ApiOperation(value="Add Domestic Help")
 @GetMapping("/getById/{id}")
-Optional<DomesticHelpEntity> getByPk(@PathVariable("id") long id)
+Optional<DomesticHelpEntity> getByPk(@PathVariable("id") String id)
 {
 	return service.findByPk(id);	
 }
 @ApiOperation(value="Add Domestic Help")
 @GetMapping("/getAll")
-List<DomesticHelpEntity> searchGuards()
+List<DomesticHelpEntity> searchDomesticHelps()
 {
 	return service.search();
 }

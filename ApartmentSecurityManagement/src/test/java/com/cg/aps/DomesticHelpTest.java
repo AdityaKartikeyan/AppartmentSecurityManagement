@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +29,8 @@ class DomesticHelpTest {
 	@Test
 	public void testAddDomesticHelp() {
 
-		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
+				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
@@ -40,8 +40,8 @@ class DomesticHelpTest {
 	@Test
 	public void testDomesticHelp1() {
 
-			DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-	new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+			DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
+	LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 
@@ -55,20 +55,20 @@ class DomesticHelpTest {
 	}
 	@Test
 	public void testDomesticHelp() {
-		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
+				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
 
-		service.delete(obj.getId());
-		verify(dao, times(1)).deleteById((int) obj.getId());
+		service.delete(obj.getFlatNo());
+		verify(dao, times(1)).deleteById(obj.getFlatNo());
 	}
 	@Test
 	public void testFindByName()
 	{
 		String name="Anant";
-		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
-		DomesticHelpEntity obj1 = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
+				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		DomesticHelpEntity obj1 = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
+				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
 	 List<DomesticHelpEntity> list  = new ArrayList();
 	list.add(obj);
 	list.add(obj1);
@@ -81,21 +81,21 @@ class DomesticHelpTest {
 	public void testFindByPk()
 	{
 		
-		Optional<DomesticHelpEntity> obj =Optional.of(new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021"));
+		Optional<DomesticHelpEntity> obj =Optional.of(new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
+				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021"));
  
-		Mockito.when(dao.findById((int) obj.get().getId())).thenReturn(obj);
-		Optional<DomesticHelpEntity> obj1 = service.findByPk(obj.get().getId());
-		assertEquals(obj.get().getId(),obj1.get().getId());
+		Mockito.when(dao.findByFlatNo( obj.get().getFlatNo())).thenReturn(obj);
+		Optional<DomesticHelpEntity> obj1 = service.findByPk(obj.get().getFlatNo());
+		assertEquals(obj.get().getFlatNo(),obj1.get().getFlatNo());
 		
 	}
 	@Test
 	public void testSearch()
 	{
-		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
-		DomesticHelpEntity obj1 = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
+				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		DomesticHelpEntity obj1 = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
+				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
 		List<DomesticHelpEntity> list1  = new ArrayList();
 		list1.add(obj);
 		list1.add(obj1);
