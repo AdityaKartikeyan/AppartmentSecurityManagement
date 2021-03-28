@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.cg.aps.entities.DomesticHelpEntity;
 import com.cg.aps.repository.DomesticHelpDao;
-import com.cg.aps.service.DomesticHelpService;
 
 @Service("DomesticHelpService")
 @Transactional
@@ -30,9 +29,9 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 	}
 
 	@Override
-	public void delete(DomesticHelpEntity bean) {
+	public void delete(long id) {
 		// TODO Auto-generated method stub
-		
+		dao.deleteById((int) id);
 	}
 
 	@Override

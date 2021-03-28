@@ -1,6 +1,8 @@
 package com.cg.aps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.sql.Timestamp;
 
@@ -48,13 +50,14 @@ class DomesticHelpTest {
 
 		assertEquals(obj, service.update(obj));
 	}
-//	@Test
-//	public void testDomesticHelp() {
-//		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
-//				new Timestamp(System.currentTimeMillis()), 11, "AT", "11:30", Date.valueOf(LocalDate.now()));
-//		service.delete(obj.getId());
-//		verify(dao, times(1)).deleteById((int) obj.getId());
-//	}
+	@Test
+	public void testDomesticHelp() {
+		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", new Timestamp(System.currentTimeMillis()),
+				new Timestamp(System.currentTimeMillis()), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+
+		service.delete(obj.getId());
+		verify(dao, times(1)).deleteById((int) obj.getId());
+	}
 //	@Test
 //	public void testFindByName()
 //	{

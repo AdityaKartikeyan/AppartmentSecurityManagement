@@ -12,7 +12,7 @@ public interface DomesticHelpService {
 	
 	public DomesticHelpEntity update(DomesticHelpEntity bean);
 	
-	public void delete(DomesticHelpEntity bean);
+	public void delete(long id);
 	
 	public DomesticHelpEntity findByName(String name);
 	
