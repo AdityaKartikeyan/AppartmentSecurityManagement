@@ -3,13 +3,9 @@
  */
 package com.cg.aps.entities;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -20,49 +16,23 @@ import javax.persistence.Table;
 @Table(name = "Delivery")
 public class DeliveryEntity extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long deliveryId;
 	private String ownerName;
 	private String time;
 	private Date date;
+	private String status;
 
 	/**
-	 * @param id
-	 * @param createdBy
-	 * @param modifiedBy
-	 * @param createdDateTime
-	 * @param modifiedDateTime
-	 * @param deliveryId
 	 * @param ownerName
 	 * @param time
 	 * @param date
+	 * @param status
 	 */
-	public DeliveryEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
-			LocalDateTime modifiedDateTime, int deliveryId, String ownerName, String time, Date date) {
-		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
-		this.deliveryId = deliveryId;
+	public DeliveryEntity(String ownerName, String time, Date date, String status) {
+		super();
 		this.ownerName = ownerName;
 		this.time = time;
 		this.date = date;
-	}
-
-	public DeliveryEntity() {
-
-	}
-
-	/**
-	 * @return the deliveryId
-	 */
-	public long getDeliveryId() {
-		return deliveryId;
-	}
-
-	/**
-	 * @param deliveryId the deliveryId to set
-	 */
-	public void setDeliveryId(int deliveryId) {
-		this.deliveryId = deliveryId;
+		this.status = status;
 	}
 
 	/**
@@ -105,5 +75,22 @@ public class DeliveryEntity extends BaseEntity {
 	 */
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public DeliveryEntity() {
 	}
 }

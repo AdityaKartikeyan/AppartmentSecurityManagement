@@ -3,6 +3,7 @@
  */
 package com.cg.aps.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +37,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public void delete(long DeliveryId) {
-		dao.deleteByDeliveryId(DeliveryId);
+	public void delete(long deliveryId) {
+		dao.deleteById(deliveryId);
 	}
 
 	@Override
@@ -46,13 +47,13 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public Optional<DeliveryEntity> findByPk(long deliveryId) {
-		return dao.findByDeliveryId(deliveryId);
+	public Optional<DeliveryEntity> findByPk(long id) {
+		return dao.findById(id);
 	}
 
 	@Override
 	public List<DeliveryEntity> search(DeliveryEntity bean, long pageNo, int pageSize) {
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
