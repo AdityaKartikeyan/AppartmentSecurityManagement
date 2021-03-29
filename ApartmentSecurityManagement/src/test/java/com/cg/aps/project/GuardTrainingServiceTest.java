@@ -36,7 +36,7 @@ class GuardTrainingServiceTest {
 	public void testAddGuardTraining()
 	{
 		
-		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,LocalDateTime.now(),LocalDateTime.now(),1,"HARSH","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"HARSH","981899",Date.valueOf(LocalDate.now()));
 	    
 	     
 		
@@ -52,7 +52,7 @@ class GuardTrainingServiceTest {
 	public void testUpdateGuardTraining()
 	{
 		
-		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,LocalDateTime.now(),LocalDateTime.now(),1,"HARSH","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"HARSH","981899",Date.valueOf(LocalDate.now()));
 	
 	   
 	    Mockito.when(dao.save(obj)).thenReturn(obj);
@@ -71,7 +71,7 @@ class GuardTrainingServiceTest {
 	@Test
 	public void testDeleteGuardTraining()
 	{
-		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,LocalDateTime.now(),LocalDateTime.now(),1,"HARSH","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"HARSH","981899",Date.valueOf(LocalDate.now()));
 	    service.delete(obj.getUserId());
 	    verify(dao,times(1)).deleteById(obj.getUserId());
 	}
@@ -82,8 +82,8 @@ class GuardTrainingServiceTest {
 	public void testFindByName()
 	{
 		String name="aditya";
-		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,LocalDateTime.now(),LocalDateTime.now(),1,"aditya","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
-		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,LocalDateTime.now(),LocalDateTime.now(),1,"aditya","981899","good","10.30",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,"aditya","981899",Date.valueOf(LocalDate.now()));
 		
 	 List<GuardTrainingEntity> list  = new ArrayList();
 	list.add(obj);
@@ -99,8 +99,8 @@ class GuardTrainingServiceTest {
 	public void testFindByName1()
 	{
 		String name="aditya";
-		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,LocalDateTime.now(),LocalDateTime.now(),1,"aditya","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
-		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,LocalDateTime.now(),LocalDateTime.now(),1,"aditya","981899","good","10.30",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,"aditya","981899",Date.valueOf(LocalDate.now()));
 		
 		
 	List<GuardTrainingEntity> list  = new ArrayList();
@@ -116,7 +116,7 @@ class GuardTrainingServiceTest {
 	public void testFindByPk()
 	{
 		
-		Optional<GuardTrainingEntity> obj =Optional.of(new GuardTrainingEntity(1222, "aditya","digvijay" ,LocalDateTime.now(),LocalDateTime.now(),100,"aditya","981899","accepted","10.30",Date.valueOf(LocalDate.now())));
+		Optional<GuardTrainingEntity> obj =Optional.of(new GuardTrainingEntity(1222, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now())));
  
 		Mockito.when(dao.findById(obj.get().getUserId())).thenReturn(obj);
 		Optional<GuardTrainingEntity> obj1 = service.findByPk(obj.get().getUserId());
@@ -127,8 +127,8 @@ class GuardTrainingServiceTest {
 	@Test
 	public void testSearch()
 	{
-		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,LocalDateTime.now(),LocalDateTime.now(),1,"aditya","981899","accepted","10.30",Date.valueOf(LocalDate.now()));
-		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,LocalDateTime.now(),LocalDateTime.now(),1,"aditya","981899","good","10.30",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now()));
+		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,"aditya","981899",Date.valueOf(LocalDate.now()));
 		List<GuardTrainingEntity> list1  = new ArrayList();
 		list1.add(obj);
 		list1.add(obj1);

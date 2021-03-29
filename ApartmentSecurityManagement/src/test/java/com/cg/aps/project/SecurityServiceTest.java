@@ -46,7 +46,7 @@ public class SecurityServiceTest {
 	public void addSecurity()
 	{
       
-		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now());
+		SecurityEntity obj = new SecurityEntity("aditya", "harsh");
 		
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj,service.add(obj));
@@ -57,7 +57,7 @@ public class SecurityServiceTest {
 	@Test
 	public void updateSecurity()
 	{
-		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now());
+		SecurityEntity obj = new SecurityEntity("aditya", "harsh");
 	    Mockito.when(dao.save(obj)).thenReturn(obj);
 
 	    assertEquals(obj,service.add(obj));
@@ -71,9 +71,9 @@ public class SecurityServiceTest {
 	@Test 
 	public void deleteSecurity()
 	{
-		SecurityEntity obj = new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now());
-	    service.delete(obj.getAlertId());
-	    verify(dao,times(1)).deleteById(obj.getAlertId());
+		SecurityEntity obj = new SecurityEntity("aditya", "harsh");
+	    service.delete(obj.getId());
+	    verify(dao,times(1)).deleteById(obj.getId());
 	}
 	
 //test find  by name
@@ -81,10 +81,10 @@ public class SecurityServiceTest {
 	public void testFindByPk()
 	{
 		
-	Optional<SecurityEntity> obj =	Optional.of(new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now()));
-		Mockito.when(dao.findById(obj.get().getAlertId())).thenReturn(obj);
-		Optional<SecurityEntity> obj1 = service.findByPk(obj.get().getAlertId());
-		assertEquals(obj.get().getAlertId(),obj1.get().getAlertId());
+	Optional<SecurityEntity> obj =	Optional.of(new SecurityEntity("aditya", "harsh"));
+		Mockito.when(dao.findById(obj.get().getId())).thenReturn(obj);
+		Optional<SecurityEntity> obj1 = service.findByPk(obj.get().getId());
+		assertEquals(obj.get().getId(),obj1.get().getId());
 		
 	}
 	
@@ -93,8 +93,8 @@ public class SecurityServiceTest {
 		@Test
 		public void testSearch()
 		{
-			SecurityEntity obj = new SecurityEntity(12, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 2, "intruder", "door", LocalDate.now());
-			SecurityEntity obj1 = new SecurityEntity(11, "aditya", "harsh",LocalDateTime.now(), LocalDateTime.now(), 1, "intruder", "door", LocalDate.now());
+			SecurityEntity obj = new SecurityEntity("aditya", "harsh");
+			SecurityEntity obj1 = new SecurityEntity("aditya", "harsh");
 			List<SecurityEntity> list1  = new ArrayList();
 			list1.add(obj);
 			list1.add(obj1);

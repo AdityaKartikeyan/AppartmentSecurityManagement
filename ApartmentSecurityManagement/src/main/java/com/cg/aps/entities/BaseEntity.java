@@ -3,10 +3,13 @@ package com.cg.aps.entities;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -16,13 +19,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 //import java.security.LocalDateTime;
 
-
-@MappedSuperclass
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name="Base")
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 	
     
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue
 	protected long id;
 	
 	@CreatedBy

@@ -17,8 +17,8 @@ public interface SecurityService {
 
 	public SecurityEntity add(SecurityEntity bean); 
 	public SecurityEntity update(SecurityEntity bean);
-	public void delete(int id);
-	public Optional<SecurityEntity> findByPk(Integer id); 
+	public void delete(long id);
+	public Optional<SecurityEntity> findByPk(long id); 
 	public List<SecurityEntity> search(Integer pageNo, Integer pageSize); 
 	public List<SecurityEntity> search();
 	

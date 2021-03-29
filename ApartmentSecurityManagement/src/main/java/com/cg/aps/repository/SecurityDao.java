@@ -11,6 +11,6 @@ import com.cg.aps.entities.SecurityEntity;
  *
  */
 @Repository
-public interface SecurityDao extends JpaRepository<SecurityEntity,Integer>{
+public interface SecurityDao extends JpaRepository<SecurityEntity,Long>{
 
 }

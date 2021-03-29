@@ -37,13 +37,13 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(long id) {
 		// TODO Auto-generated method stub
 		 dao.deleteById(id);
 	}
 
 	@Override
-	public Optional<SecurityEntity> findByPk(Integer id) {
+	public Optional<SecurityEntity> findByPk(long id) {
 		// TODO Auto-generated method stub
 		return dao.findById(id);
 	}

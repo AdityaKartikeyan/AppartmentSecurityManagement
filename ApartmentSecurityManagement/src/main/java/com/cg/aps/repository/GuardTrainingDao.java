@@ -12,5 +12,5 @@ import com.cg.aps.entities.GuardTrainingEntity;
 public interface GuardTrainingDao extends JpaRepository<GuardTrainingEntity,Long>{
 
  List<GuardTrainingEntity> findByName(String name);
- Optional<GuardTrainingEntity> findByUserId(long id);
+
 }
