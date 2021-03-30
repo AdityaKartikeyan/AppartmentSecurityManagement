@@ -3,6 +3,7 @@
  */
 package com.cg.aps.entities;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,26 +14,68 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "Delivery")
+@Table(name = "delivery")
 public class DeliveryEntity extends BaseEntity {
 
+	private long deliveryId;
 	private String ownerName;
 	private String time;
 	private Date date;
 	private String status;
 
+	public DeliveryEntity() {
+	}
+
 	/**
+	 * @param deliveryId
 	 * @param ownerName
 	 * @param time
 	 * @param date
 	 * @param status
 	 */
-	public DeliveryEntity(String ownerName, String time, Date date, String status) {
+	public DeliveryEntity(long deliveryId, String ownerName, String time, Date date, String status) {
 		super();
+		this.deliveryId = deliveryId;
 		this.ownerName = ownerName;
 		this.time = time;
 		this.date = date;
 		this.status = status;
+	}
+	
+	/**
+	 * @param id
+	 * @param createdBy
+	 * @param modifiedBy
+	 * @param createdDateTime
+	 * @param modifiedDateTime
+	 * @param deliveryId
+	 * @param ownerName
+	 * @param time
+	 * @param date
+	 * @param status
+	 */
+	public DeliveryEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime, long deliveryId, String ownerName, String time, Date date, String status) {
+		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
+		this.deliveryId = deliveryId;
+		this.ownerName = ownerName;
+		this.time = time;
+		this.date = date;
+		this.status = status;
+	}
+
+	/**
+	 * @return the deliveryId
+	 */
+	public long getDeliveryId() {
+		return deliveryId;
+	}
+
+	/**
+	 * @param deliveryId the deliveryId to set
+	 */
+	public void setDeliveryId(long deliveryId) {
+		this.deliveryId = deliveryId;
 	}
 
 	/**
@@ -91,6 +134,4 @@ public class DeliveryEntity extends BaseEntity {
 		this.status = status;
 	}
 
-	public DeliveryEntity() {
-	}
 }

@@ -4,6 +4,7 @@
 package com.cg.aps.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,19 @@ public interface DeliveryDao extends JpaRepository<DeliveryEntity, Long> {
 
 	/**
 	 * @param name
-	 * @return Details of the delivery for the OwnerName
+	 * @return
 	 */
 	List<DeliveryEntity> findByOwnerName(String name);
+
+	/**
+	 * @param deliveryId
+	 * @return
+	 */
+	Optional<DeliveryEntity> findByDeliveryId(long deliveryId);
+
+	/**
+	 * @param deliveryId
+	 * @return
+	 */
+	DeliveryEntity deleteByDeliveryId(long deliveryId);
 }

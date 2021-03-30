@@ -1,8 +1,6 @@
 package com.cg.aps.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -17,6 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cg.aps.entities.DeliveryEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 import com.cg.aps.repository.DeliveryDao;
 import com.cg.aps.service.DeliveryService;
 
@@ -31,67 +32,174 @@ class DeliveryEntityTest {
 	@Autowired
 	DeliveryService service;
 
-	@Test // Testing add method to add delivery entity
-	void testAddDeliveryEntity() {
+	/**
+	 * @throws DuplicateRecordException
+	 */
+	@Test // Adding delivery
+	void testAddDelivery() throws DuplicateRecordException {
 
-		DeliveryEntity obj = new DeliveryEntity("Akhil", "Diljit", Date.valueOf(LocalDate.now()), "New Delivery Added");
+		DeliveryEntity obj = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
-
 	}
 
-	@Test // Testing update method to update delivery entity
-	void testUpdateDeliveryEntity() {
+	/**
+	 * @throws DuplicateRecordException
+	 */
+	@Test // Adding delivery false case
+	void testAddDeliveryWrong() throws DuplicateRecordException {
+		long deliveryId = 2;
+		DeliveryEntity obj = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
 
-		DeliveryEntity obj = new DeliveryEntity("Akhil", "Diljit", Date.valueOf(LocalDate.now()), "New Delivery Added");
 		Mockito.when(dao.save(obj)).thenReturn(obj);
-		assertEquals(obj, service.add(obj));
-		obj.setOwnerName("harsh");
-		assertEquals(obj, service.update(obj));
+		try {
+			assertEquals(deliveryId, service.add(obj).getDeliveryId());
+		} catch (DuplicateRecordException e) {
+			e.printStackTrace();
+		}
 	}
 
-	@Test // Testing delete method to delete delivery entity
-	void testDeleteDeliveryEntity() {
+	/**
+	 * @throws DuplicateRecordException
+	 */
+	@Test // Adding delivery to existing delivery
+	void testAddExistingDelivery() throws DuplicateRecordException {
+		long deliveryId = 1;
+		DeliveryEntity obj = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+		DeliveryEntity obj1 = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
 
-		DeliveryEntity obj = new DeliveryEntity("Akhil", "Diljit", Date.valueOf(LocalDate.now()), "New Delivery Added");
 		Mockito.when(dao.save(obj)).thenReturn(obj);
-		service.delete(obj.getId());
-		verify(dao, times(1)).deleteById(obj.getId());
+		Mockito.when(dao.save(obj1)).thenReturn(obj1);
+		try {
+			assertEquals(deliveryId, service.add(obj).getDeliveryId());
+		} catch (DuplicateRecordException e) {
+			e.printStackTrace();
+		}
 	}
 
-	@Test // Testing findByName method to find By Name
-	void testFindByOnwerName() {
+	/**
+	 * @throws RecordNotFoundException
+	 */
+	@Test // Testing update delivery entity
+	void testUpdateDelivery() throws RecordNotFoundException {
+		DeliveryEntity obj = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
 
-		String name = "Akhil";
-		DeliveryEntity obj = new DeliveryEntity("Akhil", "Diljit", Date.valueOf(LocalDate.now()), "New Delivery Added");
 		Mockito.when(dao.save(obj)).thenReturn(obj);
-		DeliveryEntity obj1 = new DeliveryEntity("Karan", "Akhil", Date.valueOf(LocalDate.now()), "New Delivery Added");
+		try {
+			assertEquals(obj, service.update(obj));
+		} catch (RecordNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
-		List<DeliveryEntity> list = new ArrayList<DeliveryEntity>();
-		list.add(obj);
-		list.add(obj1);
+	/**
+	 * @throws RecordNotFoundException
+	 */
+	@Test // Testing update delivery entity false case
+	void testUpdateDeliveryWrong() throws RecordNotFoundException {
+		String onwerName = "OnwerNew";
+		DeliveryEntity obj = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
 
-		Mockito.when(dao.findByOwnerName(name)).thenReturn(list);
+		Mockito.when(dao.save(obj)).thenReturn(obj);
+
+		try {
+			assertEquals(onwerName, service.update(obj));
+		} catch (RecordNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @throws RecordNotFoundException
+	 */
+	@Test // Testing delete delivery entity
+	void testDeleteDelivery() throws RecordNotFoundException {
+		DeliveryEntity obj = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+		Optional<DeliveryEntity> obj1 = Optional.of(new DeliveryEntity(2, "Onwer", "12:30", null, null, 0, null, null,
+				Date.valueOf(LocalDate.now()), "Delivery Added"));
+
+		Mockito.when(dao.findByDeliveryId(obj1.get().getDeliveryId())).thenReturn(obj1);
+		Mockito.when(dao.deleteByDeliveryId(obj1.get().getDeliveryId())).thenReturn(obj1.get());
+		try {
+			DeliveryEntity src = service.delete(obj.getDeliveryId());
+			assertEquals(1, src.getDeliveryId());
+		} catch (RecordNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @throws RecordNotFoundException
+	 */
+	@Test // Testing find by name
+	void testFindByName() throws RecordNotFoundException {
+		String name = "Onwername";
+		List<DeliveryEntity> obj = new ArrayList<DeliveryEntity>();
+		DeliveryEntity obj1 = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+		DeliveryEntity obj2 = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+		obj.add(obj1);
+		obj.add(obj2);
+
+		Mockito.when(dao.findByOwnerName(name)).thenReturn(obj);
 		assertEquals(2, service.findByOwnerName(name).size());
 	}
 
-	@Test // Testing findByPk method to find By Id void testFindByPk() {
-	void testFindByPk() {
+	/**
+	 * @throws RecordNotFoundException
+	 */
+	@Test // Testing find by name false case
+	void testFindByNameWrong() throws RecordNotFoundException {
+		String name = "Onwername";
+		List<DeliveryEntity> obj = new ArrayList<DeliveryEntity>();
+		DeliveryEntity obj1 = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+		DeliveryEntity obj2 = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+		obj.add(obj1);
+		obj.add(obj2);
 
-		Optional<DeliveryEntity> obj = Optional
-				.of(new DeliveryEntity("Akhil", "Diljit", Date.valueOf(LocalDate.now()), "New Delivery Added"));
-
-		Mockito.when(dao.findById(obj.get().getId())).thenReturn(obj);
-		Optional<DeliveryEntity> obj1 = service.findByPk(obj.get().getId());
-		assertEquals(obj.get().getId(), obj1.get().getId());
+		Mockito.when(dao.findByOwnerName(name)).thenReturn(obj);
+		assertEquals(3, service.findByOwnerName(name).size());
 	}
 
-	@Test // Testing Search method to find all
-	void testSearch() {
+	/**
+	 * @throws RecordNotFoundException
+	 */
+	@Test // Testing for find by Id
+	void testFindByPk() throws RecordNotFoundException {
+		Optional<DeliveryEntity> obj = Optional
+				.of(new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added"));
 
-		DeliveryEntity obj = new DeliveryEntity("Akhil", "Diljit", Date.valueOf(LocalDate.now()), "New Delivery Added");
-		Mockito.when(dao.save(obj)).thenReturn(obj);
-		DeliveryEntity obj1 = new DeliveryEntity("Karan", "Akhil", Date.valueOf(LocalDate.now()), "New Delivery Added");
+		Mockito.when(dao.findByDeliveryId(obj.get().getDeliveryId())).thenReturn(obj);
+		Optional<DeliveryEntity> obj1 = Optional.of(service.findByPk(obj.get().getDeliveryId()));
+		assertEquals(obj.get().getDeliveryId(), obj1.get().getDeliveryId());
+
+	}
+
+	/**
+	 * @throws RecordNotFoundException
+	 */
+	@Test // Testing for find by Id false case
+	void testFindByPkWrong() throws RecordNotFoundException {
+		long deliveryId = 2;
+		Optional<DeliveryEntity> obj = Optional
+				.of(new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added"));
+		try {
+
+			Mockito.when(dao.findByDeliveryId(obj.get().getDeliveryId())).thenReturn(obj);
+			Optional<DeliveryEntity> obj1 = Optional.of(service.findByPk(obj.get().getDeliveryId()));
+			assertEquals(deliveryId, obj1.get().getDeliveryId());
+		} catch (RecordNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @throws DatabaseException
+	 */
+	@Test // Testing for findAll
+	void testSearch() throws DatabaseException {
+		DeliveryEntity obj = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+		DeliveryEntity obj1 = new DeliveryEntity(2, "Onwer1", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
 
 		List<DeliveryEntity> list1 = new ArrayList<DeliveryEntity>();
 		list1.add(obj);
@@ -100,4 +208,21 @@ class DeliveryEntityTest {
 		Mockito.when(dao.findAll()).thenReturn(list1);
 		assertEquals(2, service.search().size());
 	}
+
+	/**
+	 * @throws DatabaseException
+	 */
+	@Test // Testing for findAll false case
+	void testSearchWrong() throws DatabaseException {
+		DeliveryEntity obj = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+		DeliveryEntity obj1 = new DeliveryEntity(2, "Onwer1", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+
+		List<DeliveryEntity> list1 = new ArrayList<DeliveryEntity>();
+		list1.add(obj);
+		list1.add(obj1);
+
+		Mockito.when(dao.findAll()).thenReturn(list1);
+		assertEquals(3, service.search().size());
+	}
+
 }

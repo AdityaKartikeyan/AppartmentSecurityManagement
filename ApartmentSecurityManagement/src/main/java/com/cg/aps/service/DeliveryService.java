@@ -1,9 +1,11 @@
 package com.cg.aps.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.cg.aps.entities.DeliveryEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 
 /**
  * @author Vishal Rana
@@ -14,31 +16,37 @@ public interface DeliveryService {
 	/**
 	 * @param bean
 	 * @return
+	 * @throws DuplicateRecordException
 	 */
-	public DeliveryEntity add(DeliveryEntity bean);
+	public DeliveryEntity add(DeliveryEntity bean) throws DuplicateRecordException;
 
 	/**
 	 * @param bean
 	 * @return
+	 * @throws RecordNotFoundException
 	 */
-	public DeliveryEntity update(DeliveryEntity bean);
+	public DeliveryEntity update(DeliveryEntity bean) throws RecordNotFoundException;
 
 	/**
 	 * @param id
+	 * @return
+	 * @throws RecordNotFoundException
 	 */
-	public void delete(long id);
+	public DeliveryEntity delete(long id) throws RecordNotFoundException;
 
 	/**
 	 * @param name
 	 * @return
+	 * @throws RecordNotFoundException
 	 */
-	public List<DeliveryEntity> findByOwnerName(String name);
+	public List<DeliveryEntity> findByOwnerName(String name) throws RecordNotFoundException;
 
 	/**
 	 * @param id
 	 * @return
+	 * @throws RecordNotFoundException
 	 */
-	public Optional<DeliveryEntity> findByPk(long id);
+	public DeliveryEntity findByPk(long id) throws RecordNotFoundException;
 
 	/**
 	 * @param bean
@@ -50,7 +58,8 @@ public interface DeliveryService {
 
 	/**
 	 * @return
+	 * @throws DatabaseException
 	 */
-	public List<DeliveryEntity> search();
+	public List<DeliveryEntity> search() throws DatabaseException;
 
 }

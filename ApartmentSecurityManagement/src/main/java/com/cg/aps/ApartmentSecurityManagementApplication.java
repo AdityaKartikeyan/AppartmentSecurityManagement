@@ -2,6 +2,7 @@
  * 
  */
 package com.cg.aps;
+
 /**
  * @author Vishal Rana
  *
@@ -26,15 +27,21 @@ public class ApartmentSecurityManagementApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApartmentSecurityManagementApplication.class, args);
 	}
+
+	/**
+	 * @return
+	 */
 	@Bean
-	   public Docket productApi() {
-	      return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
-	         .apis(RequestHandlerSelectors.basePackage("com.cg.aps.controller")).build();
-	   }
-	
+	public Docket productApi() {
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
+				.apis(RequestHandlerSelectors.basePackage("com.cg.aps.controller")).build();
+	}
+
+	/**
+	 * @return
+	 */
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("Apartment Security Management")
-				.description("API reference for developers")
+		return new ApiInfoBuilder().title("Apartment Security Management").description("API reference for developers")
 				.version("V1.0").build();
 	}
 }

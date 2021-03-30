@@ -17,9 +17,13 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+/**
+ * @author Vishal Rana
+ *
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "Base")
+@Table(name = "base")
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
