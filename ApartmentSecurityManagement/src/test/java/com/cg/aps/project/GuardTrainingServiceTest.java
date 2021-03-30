@@ -39,7 +39,7 @@ class GuardTrainingServiceTest {
 	//adding correct details
 	@Test
 	@DisplayName("Test add guard - correct values entered")
-	public void testAddGuardTraining() throws DuplicateRecordException
+	 void testAddGuardTraining() throws DuplicateRecordException
 	{
 		
 		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"HARSH","981899",Date.valueOf(LocalDate.now()));
@@ -52,7 +52,7 @@ class GuardTrainingServiceTest {
 	//adding duplicate details
 	@Test
 	@DisplayName("Test add guard - duplicate values entered")
-	public void testAddExistingGuardTraining() throws DuplicateRecordException
+	 void testAddExistingGuardTraining() throws DuplicateRecordException
 	{
 		long userId=1;
 		GuardTrainingEntity obj = new GuardTrainingEntity(1, "aditya","digvijay" ,"HARSH","981899",Date.valueOf(LocalDate.now()));
@@ -71,7 +71,7 @@ class GuardTrainingServiceTest {
 	
 	@Test
 	@DisplayName("Test add guard - incorrect values entered")
-	public void testAddWrongGuardTraining() throws DuplicateRecordException
+	 void testAddWrongGuardTraining() throws DuplicateRecordException
 	{
 		int userId=2;
 		GuardTrainingEntity obj = new GuardTrainingEntity(1, "aditya","digvijay" ,"HARSH","981899",Date.valueOf(LocalDate.now()));
@@ -93,7 +93,7 @@ class GuardTrainingServiceTest {
 	//testing update guard training entity
 	@Test
 	@DisplayName("Test update guard - correct values entered")
-	public void testUpdateGuardTraining() throws DuplicateRecordException, RecordNotFoundException {
+	 void testUpdateGuardTraining() throws DuplicateRecordException, RecordNotFoundException {
 
 		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya", "digvijay", "HARSH", "981899",
 				Date.valueOf(LocalDate.now()));
@@ -111,7 +111,7 @@ class GuardTrainingServiceTest {
 //putting incorrect details
 	@Test 
 	@DisplayName("Test update guard - null detail entered")
-	public void testUpdate2GuardTraining() throws DuplicateRecordException, RecordNotFoundException
+	 void testUpdate2GuardTraining() throws DuplicateRecordException, RecordNotFoundException
 	{
 		
 		GuardTrainingEntity obj = new GuardTrainingEntity(1222," ","701147419" ,"joined","11.30",Date.valueOf(LocalDate.now()));
@@ -124,13 +124,13 @@ class GuardTrainingServiceTest {
 	     }
 	     catch(RecordNotFoundException e)
 	     {
-	    	 assertEquals(e.getMessage(),"Name not found");
+	    	 assertEquals("Name not found",e.getMessage());
 	     }
 	}
 	
 	@Test 
 	@DisplayName("Test update guard - incorrect detail entered")
-	public void testUpdateWrongGuardTraining() throws DuplicateRecordException, RecordNotFoundException
+	 void testUpdateWrongGuardTraining() throws DuplicateRecordException, RecordNotFoundException
 	{
 		
 		
@@ -155,7 +155,7 @@ class GuardTrainingServiceTest {
 	//testing delete guard training entity
 	@Test
 	@DisplayName("Test delete guard - correct detail entered")
-	public void testDeleteGuardTraining() throws RecordNotFoundException
+	 void testDeleteGuardTraining() throws RecordNotFoundException
 	{
 		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"HARSH","981899",Date.valueOf(LocalDate.now()));
 		Optional<GuardTrainingEntity> obj1 = Optional.of(new GuardTrainingEntity(1, null, null, null,
@@ -182,7 +182,7 @@ class GuardTrainingServiceTest {
 	
 	@Test
 	@DisplayName("Test delete guard - incorrect detail entered")
-	public void testDeleteGuardTrainingWrong() throws RecordNotFoundException
+	 void testDeleteGuardTrainingWrong() throws RecordNotFoundException
 	{
 		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"HARSH","981899",Date.valueOf(LocalDate.now()));
 		Optional<GuardTrainingEntity> obj1 = Optional.of(new GuardTrainingEntity(1, null, null, null,
@@ -211,7 +211,7 @@ class GuardTrainingServiceTest {
 	//test case positive
 	@Test
 	@DisplayName("Test find by name - correct details entered")
-	public void testFindByName() throws RecordNotFoundException
+	 void testFindByName() throws RecordNotFoundException
 	{
 		Optional<GuardTrainingEntity> obj =Optional.of(new GuardTrainingEntity(1222, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now())));
 		 
@@ -225,7 +225,7 @@ class GuardTrainingServiceTest {
 	//test case negative 
 	@Test
 	@DisplayName("Test find by name - incorrect details entered")
-	public void testFindByName1() throws RecordNotFoundException
+	 void testFindByName1() throws RecordNotFoundException
 	{
 		String name="raju";
 		Optional<GuardTrainingEntity> obj =Optional.of(new GuardTrainingEntity(1222, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now())));
@@ -242,7 +242,7 @@ class GuardTrainingServiceTest {
 	//testing find by id 
 	@Test
 	@DisplayName("Test find by id - correct details entered")
-	public void testFindByPk() throws RecordNotFoundException
+	 void testFindByPk() throws RecordNotFoundException
 	{
 		
 		Optional<GuardTrainingEntity> obj =Optional.of(new GuardTrainingEntity(1222, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now())));
@@ -255,7 +255,7 @@ class GuardTrainingServiceTest {
 	
 	@Test
 	@DisplayName("Test find by id - incorrect details entered")
-	public void testFindByPkWrong() throws RecordNotFoundException
+	 void testFindByPkWrong() throws RecordNotFoundException
 	{
 		int getId=3;
 		Optional<GuardTrainingEntity> obj =Optional.of(new GuardTrainingEntity(2, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now())));
@@ -275,7 +275,7 @@ class GuardTrainingServiceTest {
 	//testing search
 	@Test
 	@DisplayName("Test search all  - correct details entered")
-	public void testSearch() throws DatabaseException
+	 void testSearch() throws DatabaseException
 	{
 		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now()));
 		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,"aditya","981899",Date.valueOf(LocalDate.now()));
@@ -291,7 +291,7 @@ class GuardTrainingServiceTest {
 	
 	@Test
 	@DisplayName("Test search all  - No details entered")
-	public void testSearchNull() throws DatabaseException
+	 void testSearchNull() throws DatabaseException
 	{
 		
 		List<GuardTrainingEntity> list = new ArrayList<GuardTrainingEntity>();
@@ -307,7 +307,7 @@ class GuardTrainingServiceTest {
 		}
 		catch(DatabaseException e)
 		{
-			assertEquals(e.getMessage(), "No Records available in Database");
+			assertEquals("No Records available in Database", e.getMessage());
 		
 	}
 	
@@ -315,7 +315,7 @@ class GuardTrainingServiceTest {
 	
 	@Test
 	@DisplayName("Test search all  - incorrect details entered")
-	public void testSearchWrong() throws DatabaseException
+	 void testSearchWrong() throws DatabaseException
 	{
 		GuardTrainingEntity obj = new GuardTrainingEntity(1222, "aditya","digvijay" ,"aditya","981899",Date.valueOf(LocalDate.now()));
 		GuardTrainingEntity obj1 = new GuardTrainingEntity(1225, "harsh","hello" ,"aditya","981899",Date.valueOf(LocalDate.now()));
@@ -329,7 +329,7 @@ class GuardTrainingServiceTest {
 		}
 		catch(DatabaseException e)
 		{
-			assertEquals(e.getMessage(), "No Records available in Database");
+			assertEquals("No Records available in Database", e.getMessage());
 		
 	}
 		

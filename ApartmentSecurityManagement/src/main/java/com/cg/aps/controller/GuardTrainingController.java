@@ -1,7 +1,7 @@
 package com.cg.aps.controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -92,7 +92,7 @@ public class GuardTrainingController {
 			tags = "get-guard-name",
 			httpMethod = "GET")
 	@GetMapping("/getName/{name}")
-	ResponseEntity<GuardTrainingEntity> getByName(@PathVariable("name") String name) throws RecordNotFoundException
+	public ResponseEntity<GuardTrainingEntity> getByName(@PathVariable("name") String name) throws RecordNotFoundException
 	{
 		try {
 		GuardTrainingEntity getGuardName =  service.findByName(name);
@@ -110,7 +110,7 @@ public class GuardTrainingController {
 			tags = "get-guard-id",
 			httpMethod = "GET")
 	@GetMapping("/getById/{id}")
-	ResponseEntity<GuardTrainingEntity> getByPk(@PathVariable("id") long id) throws RecordNotFoundException
+	public ResponseEntity<GuardTrainingEntity> getByPk(@PathVariable("id") long id) throws RecordNotFoundException
 	 {
 		try {
 		GuardTrainingEntity getByid = service.findByPk(id);
@@ -127,7 +127,7 @@ public class GuardTrainingController {
 			httpMethod = "GET"
 			)
 	@GetMapping("/getAll")
-	ResponseEntity<List<GuardTrainingEntity>> searchGuards() throws DatabaseException
+	public ResponseEntity<List<GuardTrainingEntity>> searchGuards() throws DatabaseException
 	{
 		try {
 		List<GuardTrainingEntity> getAllGuards =  service.search();

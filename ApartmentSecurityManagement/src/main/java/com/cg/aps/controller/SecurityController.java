@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.cg.aps.entities.GuardTrainingEntity;
+
 import com.cg.aps.entities.SecurityEntity;
 import com.cg.aps.exception.DatabaseException;
 import com.cg.aps.exception.DuplicateRecordException;
@@ -103,7 +103,7 @@ public class SecurityController {
 			tags = "get-security-details-byId",
 			httpMethod = "GET")
 	@GetMapping("/getById/{id}")
-	 ResponseEntity<Optional<SecurityEntity>> getByPk(@PathVariable("id") String  id) throws RecordNotFoundException
+	public ResponseEntity<Optional<SecurityEntity>> getByPk(@PathVariable("id") String  id) throws RecordNotFoundException
 	 {
 		try {
 		Optional<SecurityEntity> getByid = Optional.of(service.findByPk(id));
@@ -121,7 +121,7 @@ public class SecurityController {
 			tags = "get-all-security-details",
 			httpMethod = "GET")
 	@GetMapping("/getAll")
-	ResponseEntity<List<SecurityEntity>> searchSecurity() throws DatabaseException
+	public ResponseEntity<List<SecurityEntity>> searchSecurity() throws DatabaseException
 	{
 		try {
 		List<SecurityEntity> getAllSecurity =  service.search();

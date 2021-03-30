@@ -3,13 +3,10 @@
  */
 package com.cg.aps.entities;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -143,6 +140,6 @@ public class SecurityEntity extends BaseEntity {
 
 
 	public SecurityEntity() {
-		// TODO Auto-generated constructor stub
+	
 	}
 }

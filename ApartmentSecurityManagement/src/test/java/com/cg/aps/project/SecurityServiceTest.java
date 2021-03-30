@@ -36,7 +36,7 @@ import com.cg.aps.service.SecurityService;
  */
 
 @SpringBootTest
-public class SecurityServiceTest {
+ class SecurityServiceTest {
 
 	
 
@@ -48,7 +48,7 @@ public class SecurityServiceTest {
 	//test add security bean
 	@Test
 	@DisplayName("Test add security - Correct values entered")
-	public void addSecurity() throws DuplicateRecordException
+	 void addSecurity() throws DuplicateRecordException
 	{
       
 		SecurityEntity obj = new SecurityEntity("1","aditya", "harsh");
@@ -60,7 +60,7 @@ public class SecurityServiceTest {
 	
 	@Test
 	@DisplayName("Test add security - duplicate values entered")
-	public void testAddExistingSecurityTraining() throws DuplicateRecordException
+	 void testAddExistingSecurityTraining() throws DuplicateRecordException
 	{
 		String alertId="1";
 		SecurityEntity obj = new SecurityEntity("1","aditya", "harsh");
@@ -77,7 +77,7 @@ public class SecurityServiceTest {
 	
 	@Test
 	@DisplayName("Test add security - incorrect values entered")
-	public void testAddWrongSecurityTraining() throws DuplicateRecordException
+	 void testAddWrongSecurityTraining() throws DuplicateRecordException
 	{
 		String alertId="2";
 		SecurityEntity obj = new SecurityEntity("1","aditya", "harsh");
@@ -96,7 +96,7 @@ public class SecurityServiceTest {
 	
 	//test update security bean
 	@Test
-	public void updateSecurity() throws  RecordNotFoundException
+	 void updateSecurity() throws  RecordNotFoundException
 	{
 
 		SecurityEntity obj = new SecurityEntity("1","aditya", "harsh");
@@ -112,7 +112,7 @@ public class SecurityServiceTest {
 	
 	@Test 
 	@DisplayName("Test update guard - null detail entered")
-	public void testUpdateSecurityTraining() throws  RecordNotFoundException
+	 void testUpdateSecurityTraining() throws  RecordNotFoundException
 	{
 		SecurityEntity obj = new SecurityEntity("1","aditya", "harsh");
 		Mockito.when(dao.save(obj)).thenReturn(obj);
@@ -122,13 +122,13 @@ public class SecurityServiceTest {
 	     }
 	     catch(RecordNotFoundException e)
 	     {
-	    	 assertEquals(e.getMessage(),"Message not found");
+	    	 assertEquals("Message not found",e.getMessage());
 	     }
 	}
 	
 	@Test
 	@DisplayName("Test update guard - incorrect detail entered")
-	public void updateSecurityIncorrectDetails() throws  RecordNotFoundException
+	 void updateSecurityIncorrectDetails() throws  RecordNotFoundException
 	{
 
 		SecurityEntity obj = new SecurityEntity("1","aditya", "harsh");
@@ -147,7 +147,7 @@ public class SecurityServiceTest {
 	
 	//test delete security bean 
 	@Test 
-	public void deleteSecurity() throws RecordNotFoundException
+	 void deleteSecurity() throws RecordNotFoundException
 	{
 		Optional<SecurityEntity> obj1 = Optional.of(new SecurityEntity(1,"1","aditya", null, null, "harsh", null, null));
 
@@ -166,7 +166,7 @@ public class SecurityServiceTest {
 	}
 	
 	@Test 
-	public void deleteSecurityWrong() throws RecordNotFoundException
+	 void deleteSecurityWrong() throws RecordNotFoundException
 	{
 		Optional<SecurityEntity> obj1 = Optional.of(new SecurityEntity(1,"1","aditya", null, null, "harsh", null, null));
 
@@ -187,7 +187,7 @@ public class SecurityServiceTest {
 //test find  by id
 	@Test
 	@DisplayName("Test find by id - correct details entered")
-	public void testFindByPk() throws RecordNotFoundException
+	 void testFindByPk() throws RecordNotFoundException
 	{
 		
 	Optional<SecurityEntity> obj =	Optional.of( new SecurityEntity("1","aditya", "harsh"));
@@ -199,15 +199,15 @@ public class SecurityServiceTest {
 	
 	@Test
 	@DisplayName("Test find by id - incorrect details entered")
-	public void testFindByPkWrong() throws RecordNotFoundException
+	 void testFindByPkWrong() throws RecordNotFoundException
 	{
-		int alertId=3;
-		Optional<SecurityEntity> obj =	Optional.of( new SecurityEntity("1","aditya", "harsh"));
 		
+		Optional<SecurityEntity> obj =	Optional.of( new SecurityEntity("1","aditya", "harsh"));
+		Optional<SecurityEntity> obj2 =	Optional.of( new SecurityEntity("3","aditya", "harsh"));
 		try {
 			Mockito.when(dao.findByAlertId(obj.get().getAlertId())).thenReturn(obj);
 			Optional<SecurityEntity> obj1 = Optional.of(service.findByPk(obj.get().getAlertId()));
-		assertEquals(alertId,obj1.get().getAlertId());
+		assertEquals(obj2.get().getAlertId(),obj1.get().getAlertId());
 		}
 		catch(RecordNotFoundException e)
 		{
@@ -220,7 +220,7 @@ public class SecurityServiceTest {
 	//testing search
 		@Test
 		@DisplayName("Test search all  - Correct details entered")
-		public void testSearch() throws DatabaseException
+		 void testSearch() throws DatabaseException
 		{
 			SecurityEntity obj = new SecurityEntity("1","aditya", "harsh");
 			SecurityEntity obj1 = new SecurityEntity("2","aditya", "harsh");
@@ -236,7 +236,7 @@ public class SecurityServiceTest {
 		
 		@Test
 		@DisplayName("Test search all  - No details entered")
-		public void testSearchWrong() throws DatabaseException
+		 void testSearchWrong() throws DatabaseException
 		{
 			
 			List<SecurityEntity> list = new ArrayList<SecurityEntity>();
@@ -252,7 +252,7 @@ public class SecurityServiceTest {
 			}
 			catch(DatabaseException e)
 			{
-				assertEquals(e.getMessage(), "No Records available in Database");
+				assertEquals("No Records available in Database",e.getMessage());
 			
 		}
 		
@@ -260,7 +260,7 @@ public class SecurityServiceTest {
 	
 		@Test
 		@DisplayName("Test search all  - Incorrect details entered")
-		public void testSearchWrong1() throws DatabaseException {
+		 void testSearchWrong1() throws DatabaseException {
 
 			SecurityEntity obj = new SecurityEntity("1", "aditya", "harsh");
 			SecurityEntity obj1 = new SecurityEntity("2", "aditya", "harsh");

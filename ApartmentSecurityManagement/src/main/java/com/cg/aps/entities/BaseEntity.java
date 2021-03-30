@@ -17,7 +17,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-//import java.security.LocalDateTime;
+
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -46,11 +46,9 @@ public class BaseEntity {
 	@Column(name = "modified_date")
 	protected LocalDateTime modifiedDateTime;
 	
-	/**
-	 * 
-	 */
+	
 	public BaseEntity() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public BaseEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,

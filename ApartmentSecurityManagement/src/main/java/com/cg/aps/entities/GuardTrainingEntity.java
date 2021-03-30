@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 import javax.persistence.Table;
 
 @Entity
@@ -203,7 +203,7 @@ public GuardTrainingEntity(long userId, String name, String mobileNo, String sta
 
 
 public GuardTrainingEntity() {
-	// TODO Auto-generated constructor stub
+
 }
 	
 	
