@@ -5,24 +5,26 @@
 package com.cg.aps.service;
 
 import java.util.List;
+//import java.util.Optional;
 import java.util.Optional;
 
 import com.cg.aps.entities.VisitorEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 
 public interface VisitorService {
 	
-	public VisitorEntity add(VisitorEntity bean);
+	public VisitorEntity add(VisitorEntity bean)throws DuplicateRecordException;
 	
-	public VisitorEntity update(VisitorEntity bean);
+	public VisitorEntity update(VisitorEntity bean)throws RecordNotFoundException;
 	
-	public void delete(VisitorEntity bean);
+	public VisitorEntity delete(long id)throws RecordNotFoundException;
 	
-	public List<VisitorEntity> findByName(String name);
+	public VisitorEntity findByName(String name)throws RecordNotFoundException;
 	
-	public Optional<VisitorEntity> findByPk(int id);
+	public VisitorEntity findByPk(String visitorId) throws RecordNotFoundException;
 	
-	public List<VisitorEntity> search(VisitorEntity bean, long pageNo, int pageSize);
-	
-	public List<VisitorEntity> search();
-	
+	public List<VisitorEntity> search() throws DatabaseException;
+
 }

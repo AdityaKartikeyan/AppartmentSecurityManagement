@@ -16,19 +16,30 @@ import javax.persistence.Table;
 @Table(name="Visitor")
 public class VisitorEntity extends BaseEntity{
 
-	@Id
-	@GeneratedValue
-	private int visitorId;
-	private String name;
-	private String ownerName;
-	private String flatNo;
-	private Date date;
-	private String arrivalTime;
-	private String departureTime;
+	private String visitorId;		//Visitor ID
+	private String name;			//Visitor Name
+	private String ownerName;		//Owner Name
+	private String flatNo;			//Flat Number
+	private Date date;				//Entry Date
+	private String arrivalTime;		//Entry Time
+	private String departureTime;	//Exit Time
 	
 	
+	public VisitorEntity(String visitorId, String name, String ownerName, String flatNo, Date date, String arrivalTime,
+			String departureTime) {
+		super();
+		this.visitorId = visitorId;
+		this.name = name;
+		this.ownerName = ownerName;
+		this.flatNo = flatNo;
+		this.date = date;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+	}
+
+
 	public VisitorEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
-			LocalDateTime modifiedDateTime, int visitorId, String name, String ownerName, String flatNo, Date date,
+			LocalDateTime modifiedDateTime, String visitorId, String name, String ownerName, String flatNo, Date date,
 			String arrivalTime, String departureTime) {
 		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
 		this.visitorId = visitorId;
@@ -41,17 +52,14 @@ public class VisitorEntity extends BaseEntity{
 	}
 
 
-
-	public int getVisitorId() {
+	public String getVisitorId() {
 		return visitorId;
 	}
 
 
-
-	public void setVisitorId(int visitorId) {
+	public void setVisitorId(String visitorId) {
 		this.visitorId = visitorId;
 	}
-
 
 
 	public String getName() {
@@ -59,11 +67,9 @@ public class VisitorEntity extends BaseEntity{
 	}
 
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 
 	public String getOwnerName() {
@@ -71,11 +77,9 @@ public class VisitorEntity extends BaseEntity{
 	}
 
 
-
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
-
 
 
 	public String getFlatNo() {
@@ -83,11 +87,9 @@ public class VisitorEntity extends BaseEntity{
 	}
 
 
-
 	public void setFlatNo(String flatNo) {
 		this.flatNo = flatNo;
 	}
-
 
 
 	public Date getDate() {
@@ -95,11 +97,9 @@ public class VisitorEntity extends BaseEntity{
 	}
 
 
-
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
 
 
 	public String getArrivalTime() {
@@ -107,11 +107,9 @@ public class VisitorEntity extends BaseEntity{
 	}
 
 
-
 	public void setArrivalTime(String arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-
 
 
 	public String getDepartureTime() {
@@ -119,11 +117,9 @@ public class VisitorEntity extends BaseEntity{
 	}
 
 
-
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
-
 
 
 	public VisitorEntity() {

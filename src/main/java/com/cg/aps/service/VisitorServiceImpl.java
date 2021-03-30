@@ -4,15 +4,19 @@
  */
 package com.cg.aps.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.aps.entities.VisitorEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 import com.cg.aps.repository.VisitorDao;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service("VisitorService")
 @Transactional
@@ -20,47 +24,112 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Autowired
 	VisitorDao dao;
-	
+
 	@Override
-	public VisitorEntity add(VisitorEntity bean) {
+	public VisitorEntity add(VisitorEntity bean) throws DuplicateRecordException {
 		// TODO Auto-generated method stub
-		return dao.save(bean);
+		try {
+			Optional<VisitorEntity> getId = dao.findByVisitorId(bean.getVisitorId());
+			if (getId.isPresent()) {
+				throw new DuplicateRecordException("The Id is already added");
+			}
+			else {
+				return dao.save(bean);
+			}
+		} catch (DataAccessException e) {
+			throw new DuplicateRecordException(e.getMessage());
+		} catch (Exception e) {
+			throw new DuplicateRecordException(e.getMessage());
+		}
+		// return dao.save(bean);
 	}
 
 	@Override
-	public VisitorEntity update(VisitorEntity bean) {
+	public VisitorEntity update(VisitorEntity bean) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		return dao.save(bean);
+		try {
+			if (bean.getName().isEmpty()) {
+				throw new RecordNotFoundException("Name not found");
+			} else {
+				return dao.save(bean);
+			}
+		} catch (DataAccessException e) {
+			throw new RecordNotFoundException(e.getMessage());
+		} catch (Exception e) {
+			throw new RecordNotFoundException(e.getMessage());
+		}
+		// return dao.save(bean);
 	}
 
 	@Override
-	public void delete(VisitorEntity bean) {
+	public VisitorEntity delete(long id) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		dao.delete(bean);
+		try {
+		Optional<VisitorEntity> visitor =dao.findById(id);
+		if (!visitor.isPresent()) {
+			throw new RecordNotFoundException("Id Not Found");
+		} else {
+		     return dao.deleteById(id);
+		}
+
+		} catch (DataAccessException e) {
+		throw new RecordNotFoundException(e.getMessage());
+		} catch (Exception e) {
+		throw new RecordNotFoundException(e.getMessage());
+		}
+	}
+		// dao.deleteById(id);
+
+	@Override
+	public VisitorEntity findByName(String name) throws RecordNotFoundException {
+		// TODO Auto-generated method stub
+		try {
+			Optional<VisitorEntity> visitor = dao.findByName(name);
+			if (!visitor.isPresent()) {
+				throw new RecordNotFoundException("Name not found");
+			} else {
+				return visitor.get();
+			}
+		} catch (DataAccessException e) {
+			throw new RecordNotFoundException(e.getMessage());
+		} catch (Exception e) {
+			throw new RecordNotFoundException(e.getMessage());
+		}
+		// return dao.findByName(name);
 	}
 
 	@Override
-	public List<VisitorEntity> findByName(String name) {
+	public VisitorEntity findByPk(String visitorId) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		return dao.findByName(name);
+		try {
+			Optional<VisitorEntity> optional = dao.findByVisitorId(visitorId);
+			if (optional.isPresent()) {
+				return optional.get();
+			} else {
+				throw new RecordNotFoundException("Invalid id");
+			}
+		} catch (DataAccessException e) {
+			throw new RecordNotFoundException(e.getMessage());
+		} catch (Exception e) {
+			throw new RecordNotFoundException(e.getMessage());
+		}
+		// return dao.findById(id);
 	}
 
 	@Override
-	public Optional<VisitorEntity> findByPk(int id) {
+	public List<VisitorEntity> search() throws DatabaseException {
 		// TODO Auto-generated method stub
-		return dao.findByVisitorId(id);
+		try {
+			if (dao.findAll().isEmpty()) {
+				throw new DatabaseException("No Records available in Database");
+			} else {
+				return dao.findAll();
+			}
+		} catch (DataAccessException e) {
+			throw new DatabaseException(e.getMessage());
+		} catch (Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
+		// return dao.findAll();
 	}
-
-	@Override
-	public List<VisitorEntity> search(VisitorEntity bean, long pageNo, int pageSize) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<VisitorEntity> search() {
-		// TODO Auto-generated method stub
-		return dao.findAll();
-	}
-
 }
