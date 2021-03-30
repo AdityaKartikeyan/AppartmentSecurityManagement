@@ -1,9 +1,10 @@
 package com.cg.aps.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.cg.aps.entities.FlatRentEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 import com.cg.aps.service.FlatRentServiceInt;
 
 import io.swagger.annotations.ApiOperation;
@@ -29,46 +34,110 @@ import io.swagger.annotations.ApiOperation;
 		@Autowired
 		FlatRentServiceInt service;
 		
-		@ApiOperation(value="Add FlatRent")
-		@PostMapping("/addFlatRent")
-		public void addFlatRent(@RequestBody FlatRentEntity guard)
+		@ApiOperation(value="Add Flat Rent",
+				response = FlatRentEntity.class,
+				tags = "add-flat rent",
+				httpMethod = "POST")
+		@PostMapping("/addFlatrent")
+		public ResponseEntity<FlatRentEntity> addFlatRent(@RequestBody FlatRentEntity FlatRent) throws DuplicateRecordException
 		{
-			service.add(guard);
+			try {
+				 FlatRentEntity addFlatRent =  service.add(FlatRent);
+				 return new ResponseEntity<FlatRentEntity>(addFlatRent, HttpStatus.OK);
+				}
+				catch(DuplicateRecordException e)
+				{
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+				}
 		}
 		
-		@ApiOperation(value="Add FlatRent")
+		@ApiOperation(value="Update Flat Rent",
+				response = FlatRentEntity.class,
+				tags = "update-flat rent",
+				httpMethod = "PUT")
 		@PutMapping("/updateFlatRent")
-		public void updateFlatRent(@RequestBody FlatRentEntity guard)
-		{
-			service.update(guard);
-		}
 		
-		@ApiOperation(value="Add FlatRent")
-		@DeleteMapping("/deleteFlatRent/{flatno}")
-		public void deleteFlatRent(@PathVariable("flatno") String id)
+		public ResponseEntity<FlatRentEntity> updateFlatRent(@RequestBody FlatRentEntity flatrent) throws RecordNotFoundException
 		{
-			service.delete(id);
-		}
-		
-		@ApiOperation(value="Add FlatRent")
-		@GetMapping("/getName/{name}")
-		List<FlatRentEntity> getByName(@PathVariable("name") String name)
-		{
+			try {
+			FlatRentEntity updateflatrent =  service.update(flatrent);
+			 return new ResponseEntity<FlatRentEntity>(updateflatrent, HttpStatus.OK);
+			}
+			catch(RecordNotFoundException e)
+			{
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+			}
 			
-			return service.findByName(name);
 		}
 		
-		@ApiOperation(value="Add FlatRent")
+		@ApiOperation(value="Delete Flat Rent",
+				response = String.class,
+				tags = "delete-flatrent",
+				httpMethod = "DELETE")
+		@DeleteMapping("/deleteFlatRent/{id}")
+		public ResponseEntity<String> deleteFlatRent(@PathVariable("id") long id) throws RecordNotFoundException
+		{
+			try {
+			service.delete(id);
+			return new ResponseEntity<>("Deleted successfully",HttpStatus.OK);
+			}
+			catch(RecordNotFoundException e)
+			{
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+			}
+			
+		}
+		
+		@ApiOperation(value="Get Flat Rent",
+				response = FlatRentEntity.class,
+				tags = "get-flat-Ownername",
+				httpMethod = "GET")
+		@GetMapping("/getOwnerName/{name}")
+		ResponseEntity<FlatRentEntity> getByOwnerName(@PathVariable("name") String name) throws RecordNotFoundException
+		{
+			try {
+			FlatRentEntity getOwnerName =  service.findByName(name);
+			 return new ResponseEntity<FlatRentEntity>(getOwnerName, HttpStatus.OK);
+			}catch(RecordNotFoundException e)
+			{
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+			}
+			
+			
+		}
+		
+		@ApiOperation(value="Get FlatRent Details by Id",
+				response = FlatRentEntity.class,
+				tags = "get-flatrent-id",
+				httpMethod = "GET")
 		@GetMapping("/getById/{id}")
-		 Optional<FlatRentEntity> getByPk(@PathVariable("id") String id)
+		ResponseEntity<FlatRentEntity> getByPk(@PathVariable("id") String id) throws RecordNotFoundException
 		 {
-			return service.findByPk(id);
+			try {
+			FlatRentEntity getByid = service.findByPk(id);
+			  return new ResponseEntity<FlatRentEntity>(getByid, HttpStatus.OK);
+			}catch(RecordNotFoundException e)
+			{
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+			}
+			
 		 }
 		
-		@ApiOperation(value="Add FlatRent")
+		@ApiOperation(value="Get All FlatRent",response = FlatRentEntity.class,
+				tags = "get-all-flatrent",
+				httpMethod = "GET"
+				)
 		@GetMapping("/getAll")
-		List<FlatRentEntity> searchGuards()
+		ResponseEntity<List<FlatRentEntity>> searchFlatrent() throws DatabaseException
 		{
-			return service.search();
+			try {
+			List<FlatRentEntity> getAllFlatrent =  service.search();
+			  return new ResponseEntity<List<FlatRentEntity>>(getAllFlatrent, HttpStatus.OK);
+			}
+			catch(DatabaseException e)
+			{
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+			}
+			
 		}
 	}

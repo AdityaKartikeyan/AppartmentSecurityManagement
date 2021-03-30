@@ -4,24 +4,29 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.aps.entities.FlatEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 
 
 
 public interface FlatServiceInt {
 
-	public FlatEntity add(FlatEntity bean);
+	public FlatEntity add(FlatEntity bean) throws DuplicateRecordException;
 	
-	public FlatEntity update(FlatEntity bean);
+	public FlatEntity update(FlatEntity bean) throws RecordNotFoundException;
 	
-	public void delete(String id);
+	public FlatEntity delete(long id) throws RecordNotFoundException;
 	
-	public List<FlatEntity> findByName(String name);
+	public FlatEntity findByName(String name) throws RecordNotFoundException;
 	
-	public Optional<FlatEntity> findByPk(String id);
+	public FlatEntity findByPk(String id) throws RecordNotFoundException;
 	
 	public List<FlatEntity> search(FlatEntity bean, long pageNo, int pageSize);
 	
-	public List<FlatEntity> search();
+	public List<FlatEntity> search() throws DatabaseException;
+
+	
 	
 	
 }
