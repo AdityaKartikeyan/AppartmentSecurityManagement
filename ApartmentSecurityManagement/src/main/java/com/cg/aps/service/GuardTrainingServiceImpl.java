@@ -6,9 +6,13 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.cg.aps.entities.GuardTrainingEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 import com.cg.aps.repository.GuardTrainingDao;
 
 @Service("GuardTrainingService")
@@ -18,54 +22,137 @@ public class GuardTrainingServiceImpl implements GuardTrainingService {
 	@Autowired
 	GuardTrainingDao dao;
 	@Override
-	public GuardTrainingEntity add(GuardTrainingEntity bean) {
+	public GuardTrainingEntity add(GuardTrainingEntity bean) throws DuplicateRecordException {
 		// TODO Auto-generated method stub
 	
-		  return dao.save(bean);
-		//  return bean.getUserId();
+		try {
+
+			
+			  Optional<GuardTrainingEntity> getId = dao.findByUserId(bean.getUserId());
+			  if(getId.isPresent())
+			  {
+				  throw new DuplicateRecordException("The Id is already added");
+			  }
+			  
+			else {
+				return dao.save(bean);
+			}
+
+		} catch (DataAccessException e) {
+			throw new DuplicateRecordException(e.getMessage());
+		} catch (Exception e) {
+			throw new DuplicateRecordException(e.getMessage());
+		}
+		//  return bean.getUserId();			 
 		
-		 
-		 
+	}
+
+	@Override
+	public GuardTrainingEntity update(GuardTrainingEntity bean) throws RecordNotFoundException {
+		// TODO Auto-generated method stub
+		try {			
+			  if(bean.getName().isEmpty())
+		        {
+		           
+		            throw new RecordNotFoundException("Name not found");
+		        }
+			  else {
+				  
+				  return dao.save(bean);
+			  }
+			
+		}catch(DataAccessException e) {
+			throw new RecordNotFoundException(e.getMessage());
+		}catch(Exception e) {
+			throw new RecordNotFoundException(e.getMessage());
+		}
 		
+	
 	}
 
 	@Override
-	public GuardTrainingEntity update(GuardTrainingEntity bean) {
+	public GuardTrainingEntity delete(long id) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
 		
-		return dao.save(bean);
+		//dao.deleteById(id);
+		try {
+		
+		Optional<GuardTrainingEntity> guard =dao.findById(id);
+		if (!guard.isPresent()) {
+			throw new RecordNotFoundException("Id Not Found");
+		} else {
+		     return dao.deleteById(id);
+		}
+
+	} catch (DataAccessException e) {
+		throw new RecordNotFoundException(e.getMessage());
+	} catch (Exception e) {
+		throw new RecordNotFoundException(e.getMessage());
+	}
+
 	}
 
 	@Override
-	public void delete(long userId) {
+	public GuardTrainingEntity findByName(String name) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		dao.deleteById(userId);
+	  
+		
+	   try {
+		   Optional<GuardTrainingEntity> guard =dao.findByName(name);
+		   if(!guard.isPresent())
+		   {
+			   throw new RecordNotFoundException("Name not found");
+		   }
+		   else
+		   {
+			   return guard.get();
+		   }
+		
+		}catch(DataAccessException e) {
+			throw new RecordNotFoundException(e.getMessage());
+		}catch(Exception e) {
+			throw new RecordNotFoundException(e.getMessage());
+		}
 	}
 
 	@Override
-	public List<GuardTrainingEntity> findByName(String name) {
-		// TODO Auto-generated method stub
-	   return  dao.findByName(name);
-	}
-
-	@Override
-	public Optional<GuardTrainingEntity> findByPk(long id) {
+	public GuardTrainingEntity findByPk(long id) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
 		
-		return dao.findById(id);
-	}
-
-	@Override
-	public List<GuardTrainingEntity> search(GuardTrainingEntity bean, long pageNo, int pageSize) {
-		// TODO Auto-generated method stub
-		return null;
+		try {			
+			Optional<GuardTrainingEntity> optional = dao.findByUserId(id);
+			if(optional.isPresent()) {
+				return optional.get();
+			}else {
+				throw new RecordNotFoundException("Invalid id");
+			}
+		
+		}catch(DataAccessException e) {
+			throw new RecordNotFoundException(e.getMessage());
+		}catch(Exception e) {
+			throw new RecordNotFoundException(e.getMessage());
+		}
 	}
 
 	
 	@Override
-	public List<GuardTrainingEntity> search() {
+	public List<GuardTrainingEntity> search() throws DatabaseException {
 		// TODO Auto-generated method stub
-		return dao.findAll();
+		try {			
+			
+			if(dao.findAll().isEmpty())
+			{
+				throw new DatabaseException("No Records available in Database");
+			}
+			else {
+				return dao.findAll();
+			}
+		
+		}catch(DataAccessException e) {
+			throw new DatabaseException(e.getMessage());
+		}catch(Exception e) {
+			throw new DatabaseException(e.getMessage());
+		}
 	}
 
 }

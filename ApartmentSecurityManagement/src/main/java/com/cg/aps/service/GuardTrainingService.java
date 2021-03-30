@@ -4,22 +4,23 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.aps.entities.GuardTrainingEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 
 public interface GuardTrainingService {
 
-    public GuardTrainingEntity add(GuardTrainingEntity bean);
+    public GuardTrainingEntity add(GuardTrainingEntity bean) throws DuplicateRecordException;
 	
-	public GuardTrainingEntity update(GuardTrainingEntity bean);
+	public GuardTrainingEntity update(GuardTrainingEntity bean) throws RecordNotFoundException;
 	
-	public void delete(long userId);
+	public GuardTrainingEntity delete(long id) throws RecordNotFoundException;
 	
-	public List<GuardTrainingEntity> findByName(String name);
+	public GuardTrainingEntity findByName(String name) throws RecordNotFoundException;
 	
-	public Optional<GuardTrainingEntity> findByPk(long id);
+	public GuardTrainingEntity findByPk(long id) throws RecordNotFoundException;
 	
-	public List<GuardTrainingEntity> search(GuardTrainingEntity bean, long pageNo, int pageSize);
-	
-	public List<GuardTrainingEntity> search();
+	public List<GuardTrainingEntity> search() throws DatabaseException;
 	
 	
 }

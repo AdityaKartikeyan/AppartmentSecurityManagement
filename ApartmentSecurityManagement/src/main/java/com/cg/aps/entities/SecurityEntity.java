@@ -21,18 +21,48 @@ import javax.persistence.Table;
 public class SecurityEntity extends BaseEntity {
 
 
-	
+	private String alertId;
 	private String alertMessage;
 	private String alertType;
 	
 	
 	 
+	
+
+
+	/**
+	 * @return the alertId
+	 */
+	public String getAlertId() {
+		return alertId;
+	}
+
+
+
+
+
+
+	/**
+	 * @param alertId the alertId to set
+	 */
+	public void setAlertId(String alertId) {
+		this.alertId = alertId;
+	}
+
+
+
+
+
+
 	/**
 	 * @return the alertMessage
 	 */
 	public String getAlertMessage() {
 		return alertMessage;
 	}
+
+
+
 
 
 
@@ -43,18 +73,8 @@ public class SecurityEntity extends BaseEntity {
 		this.alertMessage = alertMessage;
 	}
 
-	
 
 
-	/**
-	 * @param alertMessage
-	 * @param alertType
-	 */
-	public SecurityEntity(String alertMessage, String alertType) {
-		super();
-		this.alertMessage = alertMessage;
-		this.alertType = alertType;
-	}
 
 
 
@@ -67,12 +87,58 @@ public class SecurityEntity extends BaseEntity {
 
 
 
+
+
+
 	/**
 	 * @param alertType the alertType to set
 	 */
 	public void setAlertType(String alertType) {
 		this.alertType = alertType;
 	}
+
+
+
+
+
+
+	/**
+	 * @param alertId
+	 * @param alertMessage
+	 * @param alertType
+	 */
+	public SecurityEntity(String alertId, String alertMessage, String alertType) {
+		super();
+		this.alertId = alertId;
+		this.alertMessage = alertMessage;
+		this.alertType = alertType;
+	}
+
+
+
+
+
+
+	/**
+	 * @param id
+	 * @param createdBy
+	 * @param modifiedBy
+	 * @param createdDateTime
+	 * @param modifiedDateTime
+	 * @param alertId
+	 * @param alertMessage
+	 * @param alertType
+	 */
+	public SecurityEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime, String alertId, String alertMessage, String alertType) {
+		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
+		this.alertId = alertId;
+		this.alertMessage = alertMessage;
+		this.alertType = alertType;
+	}
+
+
+
 
 
 

@@ -150,7 +150,14 @@ public class GuardTrainingEntity extends BaseEntity{
 
 
 
+
+ 
 /**
+	 * @param id
+	 * @param createdBy
+	 * @param modifiedBy
+	 * @param createdDateTime
+	 * @param modifiedDateTime
 	 * @param userId
 	 * @param name
 	 * @param mobileNo
@@ -158,8 +165,10 @@ public class GuardTrainingEntity extends BaseEntity{
 	 * @param timing
 	 * @param date
 	 */
-	public GuardTrainingEntity(long userId, String name, String mobileNo, String status, String timing, Date date) {
-		super();
+	public GuardTrainingEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime, long userId, String name, String mobileNo, String status, String timing,
+			Date date) {
+		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
 		this.userId = userId;
 		this.name = name;
 		this.mobileNo = mobileNo;
@@ -167,13 +176,32 @@ public class GuardTrainingEntity extends BaseEntity{
 		this.timing = timing;
 		this.date = date;
 	}
+	
 
 
 
 
 /**
- * 
+ * @param userId
+ * @param name
+ * @param mobileNo
+ * @param status
+ * @param timing
+ * @param date
  */
+public GuardTrainingEntity(long userId, String name, String mobileNo, String status, String timing, Date date) {
+	super();
+	this.userId = userId;
+	this.name = name;
+	this.mobileNo = mobileNo;
+	this.status = status;
+	this.timing = timing;
+	this.date = date;
+}
+
+
+
+
 public GuardTrainingEntity() {
 	// TODO Auto-generated constructor stub
 }

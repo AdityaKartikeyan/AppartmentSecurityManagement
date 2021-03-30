@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.aps.entities.SecurityEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 
 /**
  * @author Administrator
@@ -15,11 +18,10 @@ import com.cg.aps.entities.SecurityEntity;
 public interface SecurityService {
 
 
-	public SecurityEntity add(SecurityEntity bean); 
-	public SecurityEntity update(SecurityEntity bean);
-	public void delete(long id);
-	public Optional<SecurityEntity> findByPk(long id); 
-	public List<SecurityEntity> search(Integer pageNo, Integer pageSize); 
-	public List<SecurityEntity> search();
+	public SecurityEntity add(SecurityEntity bean) throws DuplicateRecordException; 
+	public SecurityEntity update(SecurityEntity bean) throws RecordNotFoundException;
+	public SecurityEntity delete(long id) throws RecordNotFoundException;
+	public SecurityEntity findByPk(String id) throws RecordNotFoundException;  
+	public List<SecurityEntity> search() throws DatabaseException;
 	
 }
