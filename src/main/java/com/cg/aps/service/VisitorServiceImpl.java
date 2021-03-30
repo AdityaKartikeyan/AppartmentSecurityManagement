@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,12 +35,9 @@ public class VisitorServiceImpl implements VisitorService {
 			else {
 				return dao.save(bean);
 			}
-		} catch (DataAccessException e) {
-			throw new DuplicateRecordException(e.getMessage());
 		} catch (Exception e) {
 			throw new DuplicateRecordException(e.getMessage());
 		}
-		// return dao.save(bean);
 	}
 
 	@Override
@@ -53,12 +49,9 @@ public class VisitorServiceImpl implements VisitorService {
 			} else {
 				return dao.save(bean);
 			}
-		} catch (DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
 		} catch (Exception e) {
 			throw new RecordNotFoundException(e.getMessage());
 		}
-		// return dao.save(bean);
 	}
 
 	@Override
@@ -72,13 +65,10 @@ public class VisitorServiceImpl implements VisitorService {
 		     return dao.deleteById(id);
 		}
 
-		} catch (DataAccessException e) {
-		throw new RecordNotFoundException(e.getMessage());
 		} catch (Exception e) {
 		throw new RecordNotFoundException(e.getMessage());
 		}
 	}
-		// dao.deleteById(id);
 
 	@Override
 	public VisitorEntity findByName(String name) throws RecordNotFoundException {
@@ -90,12 +80,9 @@ public class VisitorServiceImpl implements VisitorService {
 			} else {
 				return visitor.get();
 			}
-		} catch (DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
 		} catch (Exception e) {
 			throw new RecordNotFoundException(e.getMessage());
 		}
-		// return dao.findByName(name);
 	}
 
 	@Override
@@ -108,12 +95,9 @@ public class VisitorServiceImpl implements VisitorService {
 			} else {
 				throw new RecordNotFoundException("Invalid id");
 			}
-		} catch (DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
-		} catch (Exception e) {
+		}  catch (Exception e) {
 			throw new RecordNotFoundException(e.getMessage());
 		}
-		// return dao.findById(id);
 	}
 
 	@Override
@@ -125,11 +109,8 @@ public class VisitorServiceImpl implements VisitorService {
 			} else {
 				return dao.findAll();
 			}
-		} catch (DataAccessException e) {
-			throw new DatabaseException(e.getMessage());
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}
-		// return dao.findAll();
 	}
 }

@@ -6,7 +6,6 @@
 package com.cg.aps.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,10 +40,10 @@ public class VisitorController {
 			tags = "add-Visitor slary",
 			httpMethod = "POST")
 	@PostMapping("/addVisitor")
-	public ResponseEntity<VisitorEntity> addVisitorSalary(@RequestBody VisitorEntity Visitor) throws DuplicateRecordException
+	public ResponseEntity<VisitorEntity> addVisitorSalary(@RequestBody VisitorEntity visitor) throws DuplicateRecordException
 	{
 		try {
-			VisitorEntity addVisitor =  service.add(Visitor);
+			VisitorEntity addVisitor =  service.add(visitor);
 			 return new ResponseEntity<VisitorEntity>(addVisitor, HttpStatus.OK);
 			}
 			catch(DuplicateRecordException e)
@@ -59,10 +58,10 @@ public class VisitorController {
 			httpMethod = "PUT")
 	@PutMapping("/updateVisitor")
 	
-	public ResponseEntity<VisitorEntity> updateVisitorTraining(@RequestBody VisitorEntity Visitor) throws RecordNotFoundException
+	public ResponseEntity<VisitorEntity> updateVisitorTraining(@RequestBody VisitorEntity visitor) throws RecordNotFoundException
 	{
 		try {
-		VisitorEntity updateVisitor =  service.update(Visitor);
+		VisitorEntity updateVisitor =  service.update(visitor);
 		 return new ResponseEntity<VisitorEntity>(updateVisitor, HttpStatus.OK);
 		}
 		catch(RecordNotFoundException e)
@@ -95,7 +94,7 @@ public class VisitorController {
 			tags = "get-Visitor-name",
 			httpMethod = "GET")
 	@GetMapping("/getName/{name}")
-	ResponseEntity<VisitorEntity> getByName(@PathVariable("name") String name) throws RecordNotFoundException
+	public ResponseEntity<VisitorEntity> getByName(@PathVariable("name") String name) throws RecordNotFoundException
 	{
 		try {
 		VisitorEntity getVisitorName =  service.findByName(name);
@@ -113,7 +112,7 @@ public class VisitorController {
 			tags = "get-Visitor-id",
 			httpMethod = "GET")
 	@GetMapping("/getById/{id}")
-	ResponseEntity<VisitorEntity> getByPk(@PathVariable("id") String id) throws RecordNotFoundException
+	public ResponseEntity<VisitorEntity> getByPk(@PathVariable("id") String id) throws RecordNotFoundException
 	 {
 		try {
 		VisitorEntity getByid = service.findByPk(id);
@@ -130,7 +129,7 @@ public class VisitorController {
 			httpMethod = "GET"
 			)
 	@GetMapping("/getAll")
-	ResponseEntity<List<VisitorEntity>> searchVisitors() throws DatabaseException
+	public ResponseEntity<List<VisitorEntity>> searchVisitors() throws DatabaseException
 	{
 		try {
 		List<VisitorEntity> getAllVisitors =  service.search();

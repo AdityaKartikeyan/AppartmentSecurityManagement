@@ -29,7 +29,6 @@ import com.cg.aps.exception.RecordNotFoundException;
 import com.cg.aps.repository.VisitorDao;
 import com.cg.aps.service.VisitorService;
 
-
 @SpringBootTest
 class VisitorTests {
 	
@@ -41,7 +40,7 @@ class VisitorTests {
 	
 	//Add Visitor
 	@Test
-	public void testAddVisitor() throws DuplicateRecordException
+	void testAddVisitor() throws DuplicateRecordException
 	{
 		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 	    
@@ -56,9 +55,10 @@ class VisitorTests {
 	}
 	
 	@Test
-	public void testAddVisitorWrong() throws DuplicateRecordException
+	void testAddVisitorWrong() throws DuplicateRecordException
 	{
 		String name = "1234";
+		
 		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 	    
 		Mockito.when(dao.save(obj)).thenReturn(obj);
@@ -73,7 +73,7 @@ class VisitorTests {
 	
 	
 	@Test
-	public void testAddVisitorExisiting() throws DuplicateRecordException
+	void testAddVisitorExisiting() throws DuplicateRecordException
 	{
 		String visitorId = "1";
 		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
@@ -90,7 +90,7 @@ class VisitorTests {
 	
 	//Update Visitor
 	@Test 
-	public void testVisitorEntity() throws RecordNotFoundException
+	void testVisitorEntity() throws RecordNotFoundException
 	{
 		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 	    
@@ -103,7 +103,7 @@ class VisitorTests {
 		}
 	}
 	@Test 
-	public void testVisitorEntityWrong() throws RecordNotFoundException
+	void testVisitorEntityWrong() throws RecordNotFoundException
 	{
 		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 		VisitorEntity obj1 = new VisitorEntity("2", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
@@ -118,7 +118,7 @@ class VisitorTests {
 
 	//Delete Visitor
 	@Test
-	public void testDeleteVisitor() throws RecordNotFoundException
+	void testDeleteVisitor() throws RecordNotFoundException
 	{
 		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 		Optional<VisitorEntity> obj1 = Optional.of(new VisitorEntity(1,"2", "ambarish", null, null, "aditya", "Anshul", null, null, Date.valueOf(LocalDate.now()), "11:30", "1:00"));
@@ -133,11 +133,28 @@ class VisitorTests {
 		     {
 		    	 e.printStackTrace();
 		     }
-	}	    
+	}	  
+	@Test
+	void testDeleteVisitorWrong() throws RecordNotFoundException
+	{
+		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
+		Optional<VisitorEntity> obj1 = Optional.of(new VisitorEntity(1,"2", "ambarish", null, null, "aditya", "Anshul", null, null, Date.valueOf(LocalDate.now()), "11:30", "1:00"));
+		
+		Mockito.when(dao.findById(obj1.get().getId())).thenReturn(obj1);
+		Mockito.when(dao.deleteById(obj1.get().getId())).thenReturn(obj1.get());
+		  try {
+			 VisitorEntity src= service.delete(obj1.get().getId());
+			 assertEquals(0,src.getId());
+		  }
+		  catch(RecordNotFoundException e)
+		     {
+		    	 e.printStackTrace();
+		     }
+	}	
 	
 	//Find Visitor by Name
 	@Test
-	public void testFindByName() throws RecordNotFoundException
+	void testFindByName() throws RecordNotFoundException
 	{
 		Optional<VisitorEntity> obj = Optional.of(new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "9:30", "10:00"));
 		 
@@ -146,7 +163,7 @@ class VisitorTests {
 		assertEquals(obj.get().getName(),obj1.get().getName());
 	}
 	@Test
-	public void testFindByNameWrong() throws RecordNotFoundException
+	void testFindByNameWrong() throws RecordNotFoundException
 	{
 		String name="Raju";
 		Optional<VisitorEntity> obj = Optional.of(new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "9:30", "10:00"));
@@ -164,7 +181,7 @@ class VisitorTests {
 	
 	//find by Pk
 	@Test
-	public void testFindByPk() throws RecordNotFoundException
+	void testFindByPk() throws RecordNotFoundException
 	{
 		Optional<VisitorEntity> obj = Optional.of(new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "9:30", "10:00"));
 		
@@ -173,7 +190,7 @@ class VisitorTests {
 		assertEquals(obj.get().getVisitorId(),obj1.get().getVisitorId());
 	}
 	@Test
-	public void testFindByPkWrong() throws RecordNotFoundException
+	void testFindByPkWrong() throws RecordNotFoundException
 	{
 		long userId=123;
 		Optional<VisitorEntity> obj = Optional.of(new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "9:30", "10:00"));
@@ -190,7 +207,7 @@ class VisitorTests {
 	
 	//Searching in list
 	@Test
-	public void testSearch() throws DatabaseException
+	void testSearch() throws DatabaseException
 	{
 		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 		VisitorEntity obj1 = new VisitorEntity("2", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
@@ -208,7 +225,7 @@ class VisitorTests {
 		}
 	}
 	@Test
-	public void testSearchWrong() throws DatabaseException
+	void testSearchWrong() throws DatabaseException
 	{
 		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 		VisitorEntity obj1 = new VisitorEntity("2", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");

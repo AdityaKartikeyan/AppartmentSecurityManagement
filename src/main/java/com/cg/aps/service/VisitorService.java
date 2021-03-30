@@ -5,8 +5,6 @@
 package com.cg.aps.service;
 
 import java.util.List;
-//import java.util.Optional;
-import java.util.Optional;
 
 import com.cg.aps.entities.VisitorEntity;
 import com.cg.aps.exception.DatabaseException;
