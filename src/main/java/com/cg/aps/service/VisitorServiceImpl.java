@@ -26,7 +26,6 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Override
 	public VisitorEntity add(VisitorEntity bean) throws DuplicateRecordException {
-		// TODO Auto-generated method stub
 		try {
 			Optional<VisitorEntity> getId = dao.findByVisitorId(bean.getVisitorId());
 			if (getId.isPresent()) {
@@ -42,7 +41,6 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Override
 	public VisitorEntity update(VisitorEntity bean) throws RecordNotFoundException {
-		// TODO Auto-generated method stub
 		try {
 			if (bean.getName().isEmpty()) {
 				throw new RecordNotFoundException("Name not found");
@@ -56,7 +54,6 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Override
 	public VisitorEntity delete(long id) throws RecordNotFoundException {
-		// TODO Auto-generated method stub
 		try {
 		Optional<VisitorEntity> visitor =dao.findById(id);
 		if (!visitor.isPresent()) {
@@ -72,7 +69,6 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Override
 	public VisitorEntity findByName(String name) throws RecordNotFoundException {
-		// TODO Auto-generated method stub
 		try {
 			Optional<VisitorEntity> visitor = dao.findByName(name);
 			if (!visitor.isPresent()) {
@@ -87,7 +83,6 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Override
 	public VisitorEntity findByPk(String visitorId) throws RecordNotFoundException {
-		// TODO Auto-generated method stub
 		try {
 			Optional<VisitorEntity> optional = dao.findByVisitorId(visitorId);
 			if (optional.isPresent()) {
@@ -102,7 +97,6 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Override
 	public List<VisitorEntity> search() throws DatabaseException {
-		// TODO Auto-generated method stub
 		try {
 			if (dao.findAll().isEmpty()) {
 				throw new DatabaseException("No Records available in Database");
