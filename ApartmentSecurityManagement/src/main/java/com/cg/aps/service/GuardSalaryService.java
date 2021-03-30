@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.aps.entities.GuardSalaryEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 
 
 
@@ -14,18 +17,16 @@ import com.cg.aps.entities.GuardSalaryEntity;
 public interface GuardSalaryService {
 	
 
-	public GuardSalaryEntity add(GuardSalaryEntity bean);
+	public GuardSalaryEntity add(GuardSalaryEntity bean) throws DuplicateRecordException;
 
-	public GuardSalaryEntity update(GuardSalaryEntity bean);
+	public GuardSalaryEntity update(GuardSalaryEntity bean) throws RecordNotFoundException;
 
-	public void delete(long id);
+	public GuardSalaryEntity delete(long id) throws RecordNotFoundException;
 
-	public List<GuardSalaryEntity> findByName(String name);
+	public GuardSalaryEntity findByName(String name) throws RecordNotFoundException;
 
-	public Optional<GuardSalaryEntity> findByPk(long id);
+	public GuardSalaryEntity findByPk(long id) throws RecordNotFoundException;
 
-	public List<GuardSalaryEntity> search(GuardSalaryEntity bean, long pageNo, int pageSize);
-
-	public List<GuardSalaryEntity> search();
+	public List<GuardSalaryEntity> search() throws DatabaseException;
 
 }

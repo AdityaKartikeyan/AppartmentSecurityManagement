@@ -12,6 +12,7 @@ import com.cg.aps.entities.GuardSalaryEntity;
  *
  */
 public interface GuardSalaryDao extends JpaRepository<GuardSalaryEntity, Long> {
-	 List<GuardSalaryEntity> findByName(String name);
+	 Optional<GuardSalaryEntity> findByName(String name);
  Optional<GuardSalaryEntity> findByUserId(long id);
+ GuardSalaryEntity deleteById(long id);
 }
