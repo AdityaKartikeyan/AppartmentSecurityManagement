@@ -1,9 +1,10 @@
 package com.cg.aps.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.cg.aps.entities.VehicleEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 import com.cg.aps.service.VehicleService;
 
 import io.swagger.annotations.ApiOperation;
@@ -32,39 +37,77 @@ public class VehicleController {
 	@Autowired
 	VehicleService service;
 
-	@ApiOperation(value="Add Vehicle")
+	@ApiOperation(value = "Add Vehicle", response = VehicleEntity.class, tags = "add-Vehicle", httpMethod = "POST")
 	@PostMapping("/addVehicle")
-	public void addVehicle(@RequestBody VehicleEntity vehicle) {
-		service.add(vehicle);
+	public ResponseEntity<VehicleEntity> addVehicle(@RequestBody VehicleEntity vehicle)
+			throws DuplicateRecordException {
+		try {
+			VehicleEntity addVehicle = service.add(vehicle);
+			return new ResponseEntity<VehicleEntity>(addVehicle, HttpStatus.OK);
+		} catch (DuplicateRecordException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
 	}
 
-	@ApiOperation(value="Update Vehicle")
-	@PutMapping("/updatevehicle")
-	public void updateVehicle(@RequestBody VehicleEntity vehicle) {
-		service.update(vehicle);
+	@ApiOperation(value = "Update Vehicle", response = VehicleEntity.class, tags = "update-vehicle", httpMethod = "PUT")
+	@PutMapping("/updateVehicle")
+
+	public ResponseEntity<VehicleEntity> updateVehicle(@RequestBody VehicleEntity vehicle)
+			throws RecordNotFoundException {
+		try {
+			VehicleEntity updateVehicle = service.update(vehicle);
+			return new ResponseEntity<VehicleEntity>(updateVehicle, HttpStatus.OK);
+		} catch (RecordNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+
 	}
 
-	@ApiOperation(value="Delete Vehicle")
-	@DeleteMapping("/deletevehicle/{id}")
-	public void deleteVehicle(@PathVariable("id") String id) {
-		service.delete(id);
+	@ApiOperation(value = "Delete Vehicle", response = String.class, tags = "delete-vehicle", httpMethod = "DELETE")
+	@DeleteMapping("/deleteVehicle/{id}")
+	public ResponseEntity<String> deleteVehicle(@PathVariable("id") long id) throws RecordNotFoundException {
+		try {
+			service.delete(id);
+			return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
+		} catch (RecordNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+
 	}
-	
-	@ApiOperation(value="Get Vehicle Name")
+
+	@ApiOperation(value = "Get Vehicle", response = VehicleEntity.class, tags = "get-vehicle", httpMethod = "GET")
 	@GetMapping("/getName/{name}")
-	List<VehicleEntity> getByName(@PathVariable("name") String name) {
-		return service.findByName(name);
+	ResponseEntity<VehicleEntity> getByName(@PathVariable("name") String name) throws RecordNotFoundException {
+		try {
+			VehicleEntity getVehicle = service.findByName(name);
+			return new ResponseEntity<VehicleEntity>(getVehicle, HttpStatus.OK);
+		} catch (RecordNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+
 	}
 
-	@ApiOperation(value="Get Vehicle Details By ID")
+	@ApiOperation(value = "Get Vehicle by Id", response = VehicleEntity.class, tags = "get-vehicle", httpMethod = "GET")
 	@GetMapping("/getById/{id}")
-	Optional<VehicleEntity> getByPk(@PathVariable("id") String id) {
-		return service.findByPk(id);
+	ResponseEntity<VehicleEntity> getByPk(@PathVariable("id") String id) throws RecordNotFoundException {
+		try {
+			VehicleEntity getByid = service.findByPk(id);
+			return new ResponseEntity<VehicleEntity>(getByid, HttpStatus.OK);
+		} catch (RecordNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+
 	}
 
-	@ApiOperation(value="Get all Vehicles")
+	@ApiOperation(value = "Get All Vehicles", response = VehicleEntity.class, tags = "get-all-vehicle", httpMethod = "GET")
 	@GetMapping("/getAll")
-	List<VehicleEntity> searchVehicles() {
-		return service.search();
+	ResponseEntity<List<VehicleEntity>> searchVehicle() throws DatabaseException {
+		try {
+			List<VehicleEntity> getAllVehicle = service.search();
+			return new ResponseEntity<List<VehicleEntity>>(getAllVehicle, HttpStatus.OK);
+		} catch (DatabaseException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+
 	}
 }

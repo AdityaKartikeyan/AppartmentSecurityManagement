@@ -13,7 +13,8 @@ import com.cg.aps.entities.VehicleEntity;
  *
  */
 @Repository
-public interface VehicleDao extends JpaRepository<VehicleEntity, String> {
-	List<VehicleEntity> findByName(String name);
+public interface VehicleDao extends JpaRepository<VehicleEntity, Long> {
+	Optional<VehicleEntity> findByName(String name);
 	Optional<VehicleEntity> findByVehicleNo(String id);
+	VehicleEntity deleteById(long id);
 }

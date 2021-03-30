@@ -3,9 +3,13 @@ package com.cg.aps.entities;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,32 +21,49 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 //@Entity
 //@Table(name="Base")
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name="Base")
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
-
-	// @Id
+	
+    
+	@Id
 	@GeneratedValue
 	protected long id;
-
-	/**
-	 * @author Anshul Joshi
-	 */
+	
 	@CreatedBy
-	@Column(name = "created_by")
+    @Column(name = "created_by")
 	protected String createdBy;
-
+	
 	@LastModifiedBy
-	@Column(name = "modified_by")
+    @Column(name = "modified_by")
 	protected String modifiedBy;
-
+	
 	@CreationTimestamp
 	@Column(name = "created_date")
 	protected LocalDateTime createdDateTime;
-
+	
 	@UpdateTimestamp
 	@Column(name = "modified_date")
 	protected LocalDateTime modifiedDateTime;
+	
+	/**
+	 * 
+	 */
+	public BaseEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public BaseEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+			LocalDateTime modifiedDateTime) {
+		super();
+		this.id = id;
+		this.createdBy = createdBy;
+		this.modifiedBy = modifiedBy;
+		this.createdDateTime = createdDateTime;
+		this.modifiedDateTime = modifiedDateTime;
+	}
 
 	public long getId() {
 		return id;
@@ -68,7 +89,7 @@ public class BaseEntity {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public LocalDateTime getCreatedDateTime() {
+	public LocalDateTime  getCreatedDateTime() {
 		return createdDateTime;
 	}
 
@@ -76,24 +97,14 @@ public class BaseEntity {
 		this.createdDateTime = createdDateTime;
 	}
 
-	public LocalDateTime getModifiedDateTime() {
+	public LocalDateTime  getModifiedDateTime() {
 		return modifiedDateTime;
 	}
 
 	public void setModifiedDateTime(LocalDateTime modifiedDateTime) {
 		this.modifiedDateTime = modifiedDateTime;
 	}
-	public BaseEntity() {
-		// TODO Auto-generated constructor stub
-	}
-	public BaseEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
-			LocalDateTime modifiedDateTime) {
-		super();
-		this.id = id;
-		this.createdBy = createdBy;
-		this.modifiedBy = modifiedBy;
-		this.createdDateTime = createdDateTime;
-		this.modifiedDateTime = modifiedDateTime;
-	}
+	
 
 }
+

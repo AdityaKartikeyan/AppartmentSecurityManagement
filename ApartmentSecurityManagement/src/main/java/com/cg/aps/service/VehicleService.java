@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.aps.entities.VehicleEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 
 /**
  * @author Anshul Joshi
@@ -11,18 +14,18 @@ import com.cg.aps.entities.VehicleEntity;
  */
 public interface VehicleService {
 
-	public VehicleEntity add(VehicleEntity bean);
+	public VehicleEntity add(VehicleEntity bean) throws DuplicateRecordException;
 
-	public VehicleEntity update(VehicleEntity bean);
+	public VehicleEntity update(VehicleEntity bean) throws RecordNotFoundException;
 
-	public void delete(String id);
+	public VehicleEntity delete(long id) throws RecordNotFoundException;
 
-	public List<VehicleEntity> findByName(String name);
+	public VehicleEntity findByName(String name) throws RecordNotFoundException;
 
-	public Optional<VehicleEntity> findByPk(String id);
+	public VehicleEntity findByPk(String id) throws RecordNotFoundException;
 
 	public List<VehicleEntity> search(VehicleEntity bean, long pageNo, int pageSize);
 
-	public List<VehicleEntity> search();
+	public List<VehicleEntity> search() throws DatabaseException;
 
 }
