@@ -21,7 +21,7 @@ public class GuardShiftEntity extends BaseEntity
 {
 	
 	
-	@Id
+	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long userId;
 	private String name;
@@ -51,7 +51,14 @@ public class GuardShiftEntity extends BaseEntity
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public GuardShiftEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+	public GuardShiftEntity(long userId, String name, String time, Date date) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.time = time;
+		this.date = date;
+	}
+public GuardShiftEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
 			LocalDateTime modifiedDateTime, long userId, String name, String time, Date date) {
 		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
 		this.userId = userId;
@@ -59,8 +66,7 @@ public class GuardShiftEntity extends BaseEntity
 		this.time = time;
 		this.date = date;
 	}
-	public GuardShiftEntity() {
-		// TODO Auto-generated constructor stub
-	}
-
+public GuardShiftEntity() {
+	// TODO Auto-generated constructor stub
+}
 }

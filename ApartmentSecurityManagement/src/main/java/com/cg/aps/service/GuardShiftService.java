@@ -1,6 +1,9 @@
 package com.cg.aps.service;
 
 import com.cg.aps.entities.GuardShiftEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,18 +14,18 @@ import java.util.Optional;
  */
 public interface GuardShiftService 
 {
-public GuardShiftEntity add(GuardShiftEntity bean);
+public GuardShiftEntity add(GuardShiftEntity bean) throws DuplicateRecordException;
 	
-	public GuardShiftEntity update(GuardShiftEntity bean);
+	public GuardShiftEntity update(GuardShiftEntity bean) throws RecordNotFoundException;
 	
-	public void delete(long id);
+	public GuardShiftEntity delete(long id) throws RecordNotFoundException;
 	
-	public List<GuardShiftEntity> findByName(String name);
+	public GuardShiftEntity findByName(String name) throws RecordNotFoundException;
 	
-	public Optional<GuardShiftEntity> findByPk(long id);
+	public GuardShiftEntity findByPk(long id) throws RecordNotFoundException;
 	
 	public List<GuardShiftEntity> search(GuardShiftEntity bean, long pageNo, int pageSize);
 	
-	public List<GuardShiftEntity> search();
+	public List<GuardShiftEntity> search() throws DatabaseException;
 
 }

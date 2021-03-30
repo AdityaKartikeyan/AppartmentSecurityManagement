@@ -15,7 +15,8 @@ import com.cg.aps.entities.GuardShiftEntity;
 @Repository
 public interface GuardShiftDao extends JpaRepository<GuardShiftEntity,Long>
 {
-	List<GuardShiftEntity> findByName(String name);
+	Optional<GuardShiftEntity> findByName(String name);
 	Optional<GuardShiftEntity> findByUserId(long id);
+	GuardShiftEntity deleteById(long id);
 }
 	
