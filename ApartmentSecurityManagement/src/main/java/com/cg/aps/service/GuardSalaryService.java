@@ -1,21 +1,17 @@
 package com.cg.aps.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.cg.aps.entities.GuardSalaryEntity;
 import com.cg.aps.exception.DatabaseException;
 import com.cg.aps.exception.DuplicateRecordException;
 import com.cg.aps.exception.RecordNotFoundException;
 
-
-
 /**
  * @author Aravind
  *
  */
 public interface GuardSalaryService {
-	
 
 	public GuardSalaryEntity add(GuardSalaryEntity bean) throws DuplicateRecordException;
 
