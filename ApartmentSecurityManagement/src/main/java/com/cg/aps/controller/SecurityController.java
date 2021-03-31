@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+
 
 
 import com.cg.aps.entities.SecurityEntity;
@@ -49,14 +49,11 @@ public class SecurityController {
 	@PostMapping("/addSecurity")
 	public ResponseEntity<SecurityEntity> addSecurity(@RequestBody SecurityEntity scr) throws DuplicateRecordException
 	{
-		try {
+		
 		SecurityEntity addSecurity =  service.add(scr);
 		 return new ResponseEntity<SecurityEntity>(addSecurity, HttpStatus.OK);
-		}
-		catch(DuplicateRecordException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+		
+	
 	}
 	
 	@ApiOperation(value="Update Security",
@@ -67,14 +64,10 @@ public class SecurityController {
 	@PutMapping("/updateGuard")
 	public  ResponseEntity<SecurityEntity> updateSecurity(@RequestBody SecurityEntity scr) throws RecordNotFoundException
 	{
-		try {
+		
 		SecurityEntity updateSecurity = service.update(scr);
 		return new ResponseEntity<SecurityEntity>(updateSecurity, HttpStatus.OK);
-		}
-		catch(RecordNotFoundException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+		
 		
 	}
 	
@@ -85,14 +78,10 @@ public class SecurityController {
 	@DeleteMapping("/deleteSecurity/{id}")
 	public ResponseEntity<String> deleteSecurity(@PathVariable("id") long id) throws RecordNotFoundException
 	{
-		try {
+		
 		service.delete(id);
 		return new ResponseEntity<>("delete successful", HttpStatus.OK);
-		}
-		catch(RecordNotFoundException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+		
 		
 	}
 	
@@ -105,14 +94,10 @@ public class SecurityController {
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<Optional<SecurityEntity>> getByPk(@PathVariable("id") String  id) throws RecordNotFoundException
 	 {
-		try {
+		
 		Optional<SecurityEntity> getByid = Optional.of(service.findByPk(id));
 		  return new ResponseEntity<Optional<SecurityEntity>>(getByid, HttpStatus.OK);
-		}
-		catch(RecordNotFoundException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+		
 		
 	 }
 	
@@ -123,14 +108,10 @@ public class SecurityController {
 	@GetMapping("/getAll")
 	public ResponseEntity<List<SecurityEntity>> searchSecurity() throws DatabaseException
 	{
-		try {
+		
 		List<SecurityEntity> getAllSecurity =  service.search();
 		  return new ResponseEntity<List<SecurityEntity>>(getAllSecurity, HttpStatus.OK);
-		}
-		catch(DatabaseException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+		
 		
 	}
 	

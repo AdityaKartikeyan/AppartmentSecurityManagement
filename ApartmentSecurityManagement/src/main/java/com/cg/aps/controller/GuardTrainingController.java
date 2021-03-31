@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import com.cg.aps.entities.GuardTrainingEntity;
 import com.cg.aps.exception.DatabaseException;
@@ -40,14 +40,12 @@ public class GuardTrainingController {
 	@PostMapping("/addGuard")
 	public ResponseEntity<GuardTrainingEntity> addGuardTraining(@RequestBody GuardTrainingEntity guard) throws DuplicateRecordException
 	{
-		try {
+		
 		 GuardTrainingEntity addGuard =  service.add(guard);
 		 return new ResponseEntity<GuardTrainingEntity>(addGuard, HttpStatus.OK);
-		}
-		catch(DuplicateRecordException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+		
+		
+	
 	}
 	
 	@ApiOperation(value="Update Guard Training",
@@ -58,14 +56,9 @@ public class GuardTrainingController {
 	
 	public ResponseEntity<GuardTrainingEntity> updateGuardTraining(@RequestBody GuardTrainingEntity guard) throws RecordNotFoundException
 	{
-		try {
+		
 		GuardTrainingEntity updateGuard =  service.update(guard);
 		 return new ResponseEntity<GuardTrainingEntity>(updateGuard, HttpStatus.OK);
-		}
-		catch(RecordNotFoundException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
 		
 	}
 	
@@ -76,14 +69,11 @@ public class GuardTrainingController {
 	@DeleteMapping("/deleteGuard/{id}")
 	public ResponseEntity<String> deleteGuardTraining(@PathVariable("id") long id) throws RecordNotFoundException
 	{
-		try {
+		
 		service.delete(id);
 		return new ResponseEntity<>("Deleted successfully",HttpStatus.OK);
-		}
-		catch(RecordNotFoundException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+	
+		
 		
 	}
 	
@@ -94,13 +84,10 @@ public class GuardTrainingController {
 	@GetMapping("/getName/{name}")
 	public ResponseEntity<GuardTrainingEntity> getByName(@PathVariable("name") String name) throws RecordNotFoundException
 	{
-		try {
+		
 		GuardTrainingEntity getGuardName =  service.findByName(name);
 		 return new ResponseEntity<GuardTrainingEntity>(getGuardName, HttpStatus.OK);
-		}catch(RecordNotFoundException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+		
 		
 		
 	}
@@ -112,13 +99,10 @@ public class GuardTrainingController {
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<GuardTrainingEntity> getByPk(@PathVariable("id") long id) throws RecordNotFoundException
 	 {
-		try {
+		
 		GuardTrainingEntity getByid = service.findByPk(id);
 		  return new ResponseEntity<GuardTrainingEntity>(getByid, HttpStatus.OK);
-		}catch(RecordNotFoundException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+		
 		
 	 }
 	
@@ -129,14 +113,10 @@ public class GuardTrainingController {
 	@GetMapping("/getAll")
 	public ResponseEntity<List<GuardTrainingEntity>> searchGuards() throws DatabaseException
 	{
-		try {
+		
 		List<GuardTrainingEntity> getAllGuards =  service.search();
 		  return new ResponseEntity<List<GuardTrainingEntity>>(getAllGuards, HttpStatus.OK);
-		}
-		catch(DatabaseException e)
-		{
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-		}
+		
 		
 	}
 	
