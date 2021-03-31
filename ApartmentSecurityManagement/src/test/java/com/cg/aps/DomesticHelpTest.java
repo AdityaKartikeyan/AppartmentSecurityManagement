@@ -1,10 +1,9 @@
 package com.cg.aps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cg.aps.entities.DomesticHelpEntity;
+import com.cg.aps.exception.DatabaseException;
+import com.cg.aps.exception.DuplicateRecordException;
+import com.cg.aps.exception.RecordNotFoundException;
 import com.cg.aps.repository.DomesticHelpDao;
 import com.cg.aps.service.DomesticHelpService;
 
@@ -27,10 +29,9 @@ class DomesticHelpTest {
 	DomesticHelpService service;
 
 	@Test
-	public void testAddDomesticHelp() {
+	public void testAddDomesticHelp() throws DuplicateRecordException {
 
-		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
-				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		assertEquals(obj, service.add(obj));
@@ -38,64 +39,147 @@ class DomesticHelpTest {
 	} 
 	
 	@Test
-	public void testDomesticHelp1() {
+	public void testAddDomesticHelpWrong() throws DuplicateRecordException {
+		String helpNo = "7476";
+		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", helpNo, helpNo, helpNo);
 
-			DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
-	LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		Mockito.when(dao.save(obj)).thenReturn(obj);
+		try {
+			assertEquals(helpNo, service.add(obj).getDomestichelpId());
+		} catch (DuplicateRecordException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testAddExistingDomesticHelp() throws DuplicateRecordException {
+		String DomesticHelpNo = "103";
+		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", DomesticHelpNo, DomesticHelpNo, DomesticHelpNo);
+		DomesticHelpEntity obj1 = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", DomesticHelpNo, DomesticHelpNo, DomesticHelpNo);
+		
+		Mockito.when(dao.save(obj)).thenReturn(obj);
+		try {
+			assertEquals(DomesticHelpNo, service.add(obj).getDomestichelpId());
+		} catch (DuplicateRecordException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testUpdateDomesticHelp() throws RecordNotFoundException {
+
+		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 
-		assertEquals(obj, service.add(obj));
-
-		obj.setName("Joshi");
-		obj.setArrivalTime("11:30");
-   //	obj.setStatus("working");
-
-		assertEquals(obj, service.update(obj));
+		try {
+			assertEquals(obj, service.update(obj));
+		} catch (RecordNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	@Test
-	public void testDomesticHelp() {
-		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
-				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+	public void testUpdateDomesticHelpWrong() throws RecordNotFoundException {
+String help="Laundry";
+		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", help, help, help);
 
-		service.delete(obj.getFlatNo());
-		verify(dao, times(1)).deleteById(obj.getFlatNo());
+		Mockito.when(dao.save(obj)).thenReturn(obj);
+
+		try {
+			assertEquals(help, service.update(obj));
+		} catch (RecordNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	@Test
-	public void testFindByName()
+	public void testDomesticHelp() throws RecordNotFoundException {
+		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
+		
+		Optional<DomesticHelpEntity> obj1 = Optional.of(new DomesticHelpEntity(1,"Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null));
+		Mockito.when(dao.findById(obj1.get().getId())).thenReturn(obj1);
+		Mockito.when(dao.deleteById(obj1.get().getId())).thenReturn(obj1.get());
+		try {
+			DomesticHelpEntity src = service.delete(obj1.get().getId());
+
+			assertEquals(1, src.getId());
+		} catch (RecordNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testDomesticHelpWrong() throws RecordNotFoundException {
+		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
+		
+		Optional<DomesticHelpEntity> obj1 = Optional.of(new DomesticHelpEntity(1,"Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null));
+		Mockito.when(dao.findById(obj1.get().getId())).thenReturn(obj1);
+		Mockito.when(dao.deleteById(obj1.get().getId())).thenReturn(obj1.get());
+		try {
+			DomesticHelpEntity src = service.delete(obj1.get().getId());
+
+			assertEquals(0, src.getId());
+		} catch (RecordNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testFindByName() throws RecordNotFoundException
 	{
-		String name="Anant";
-		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
-				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
-		DomesticHelpEntity obj1 = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
-				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
-	 List<DomesticHelpEntity> list  = new ArrayList();
-	list.add(obj);
-	list.add(obj1);
+		
+		Optional<DomesticHelpEntity> obj = Optional.of(new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null));
+
 	
-		Mockito.when(dao.findByName(name)).thenReturn(list);
-		assertEquals(2,service.findByName(name).size());
+		Mockito.when(dao.findByName(obj.get().getName())).thenReturn(obj);
+		Optional<DomesticHelpEntity> obj1 = Optional.of(service.findByName(obj.get().getName()));
+		assertEquals(obj.get().getName(),obj1.get().getName());
+		
+	}
+	public void testFindByNameWrong() throws RecordNotFoundException
+	{
+		String name="leo";
+		Optional<DomesticHelpEntity> obj = Optional.of(new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", name, name, name));
+
+	try {
+		Mockito.when(dao.findByName(obj.get().getName())).thenReturn(obj);
+		Optional<DomesticHelpEntity> obj1 = Optional.of(service.findByName(obj.get().getName()));
+	
+		assertEquals(obj.get().getName(),obj1.get().getName());
+	}
+	catch (RecordNotFoundException e) {
+		e.printStackTrace();
+	}
 		
 	}
 	@Test
-	public void testFindByPk()
+	public void testFindByPk() throws RecordNotFoundException
 	{
 		
-		Optional<DomesticHelpEntity> obj =Optional.of(new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
-				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021"));
+		Optional<DomesticHelpEntity> obj =Optional.of(new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null));
  
-		Mockito.when(dao.findByFlatNo( obj.get().getFlatNo())).thenReturn(obj);
-		Optional<DomesticHelpEntity> obj1 = service.findByPk(obj.get().getFlatNo());
-		assertEquals(obj.get().getFlatNo(),obj1.get().getFlatNo());
+		Mockito.when(dao.findByDomesticHelpId( obj.get().getDomestichelpId())).thenReturn(obj);
+		Optional<DomesticHelpEntity> obj1 = Optional.of(service.findByPk(obj.get().getDomestichelpId()));
+		assertEquals(obj.get().getDomestichelpId(),obj1.get().getDomestichelpId());
 		
 	}
 	@Test
-	public void testSearch()
+	public void testFindByPkWrong() throws RecordNotFoundException
 	{
-		DomesticHelpEntity obj = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
-				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
-		DomesticHelpEntity obj1 = new DomesticHelpEntity(12, "Anant", "Toshniwal", LocalDateTime.now(),
-				LocalDateTime.now(), "11", "AT","Aditya","Laundry", "11:30","12:30", "27/03/2021");
+		String help="leo";
+		
+		Optional<DomesticHelpEntity> obj =Optional.of(new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", help, help, help));
+ try { 
+ 
+		Mockito.when(dao.findByDomesticHelpId( obj.get().getDomestichelpId())).thenReturn(obj);
+		Optional<DomesticHelpEntity> obj1 = Optional.of(service.findByPk(obj.get().getDomestichelpId()));
+		assertEquals(obj.get().getDomestichelpId(),obj1.get().getDomestichelpId());
+ }
+ catch (RecordNotFoundException e) {
+		e.printStackTrace();
+	}
+		
+	}
+	@Test
+	public void testSearch() throws DatabaseException
+	{
+		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
+		DomesticHelpEntity obj1 = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
 		List<DomesticHelpEntity> list1  = new ArrayList();
 		list1.add(obj);
 		list1.add(obj1);
@@ -103,5 +187,18 @@ class DomesticHelpTest {
 		
 		Mockito.when(dao.findAll()).thenReturn(list1);
 		assertEquals(2,service.search().size());
+	}
+	@Test
+	public void testSearchWrong() throws DatabaseException
+	{
+		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
+		DomesticHelpEntity obj1 = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
+		List<DomesticHelpEntity> list1  = new ArrayList();
+		list1.add(obj);
+		list1.add(obj1);
+		
+		
+		Mockito.when(dao.findAll()).thenReturn(list1);
+		assertEquals(3,service.search().size());
 	}
 }

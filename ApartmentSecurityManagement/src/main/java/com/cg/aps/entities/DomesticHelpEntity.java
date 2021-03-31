@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table (name="DomesticHelp")
 public class DomesticHelpEntity extends BaseEntity {
-	
+	private String domestichelpId;
 	private String flatNo;
 	private String ownerName;
 	private String name;
@@ -18,13 +18,21 @@ public class DomesticHelpEntity extends BaseEntity {
 	private String arrivalTime;
 	private String departureTime;
 	private String date;
+	
+	
+public String getDomestichelpId() {
+		return domestichelpId;
+	}
 
-	
-	
+
+	public void setDomestichelpId(String domestichelpId) {
+		this.domestichelpId = domestichelpId;
+	}
+
+
 	public String getFlatNo() {
 		return flatNo;
 	}
-
 
 
 	public void setFlatNo(String flatNo) {
@@ -32,11 +40,9 @@ public class DomesticHelpEntity extends BaseEntity {
 	}
 
 
-
 	public String getOwnerName() {
 		return ownerName;
 	}
-
 
 
 	public void setOwnerName(String ownerName) {
@@ -44,11 +50,9 @@ public class DomesticHelpEntity extends BaseEntity {
 	}
 
 
-
 	public String getName() {
 		return name;
 	}
-
 
 
 	public void setName(String name) {
@@ -56,11 +60,9 @@ public class DomesticHelpEntity extends BaseEntity {
 	}
 
 
-
 	public String getHelpType() {
 		return helpType;
 	}
-
 
 
 	public void setHelpType(String helpType) {
@@ -68,11 +70,9 @@ public class DomesticHelpEntity extends BaseEntity {
 	}
 
 
-
 	public String getArrivalTime() {
 		return arrivalTime;
 	}
-
 
 
 	public void setArrivalTime(String arrivalTime) {
@@ -80,11 +80,9 @@ public class DomesticHelpEntity extends BaseEntity {
 	}
 
 
-
 	public String getDepartureTime() {
 		return departureTime;
 	}
-
 
 
 	public void setDepartureTime(String departureTime) {
@@ -92,11 +90,9 @@ public class DomesticHelpEntity extends BaseEntity {
 	}
 
 
-
 	public String getDate() {
 		return date;
 	}
-
 
 
 	public void setDate(String date) {
@@ -104,11 +100,10 @@ public class DomesticHelpEntity extends BaseEntity {
 	}
 
 
-
-	public DomesticHelpEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
-			LocalDateTime modifiedDateTime, String flatNo, String ownerName, String name, String helpType,
+public DomesticHelpEntity(String domestichelpId, String flatNo, String ownerName, String name, String helpType,
 			String arrivalTime, String departureTime, String date) {
-		super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
+		super();
+		this.domestichelpId = domestichelpId;
 		this.flatNo = flatNo;
 		this.ownerName = ownerName;
 		this.name = name;
@@ -119,11 +114,24 @@ public class DomesticHelpEntity extends BaseEntity {
 	}
 
 
+public DomesticHelpEntity(long id, String createdBy, String modifiedBy, LocalDateTime createdDateTime,
+		LocalDateTime modifiedDateTime, String domestichelpId, String flatNo, String ownerName, String name,
+		String helpType, String arrivalTime, String departureTime, String date) {
+	super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
+	this.domestichelpId = domestichelpId;
+	this.flatNo = flatNo;
+	this.ownerName = ownerName;
+	this.name = name;
+	this.helpType = helpType;
+	this.arrivalTime = arrivalTime;
+	this.departureTime = departureTime;
+	this.date = date;
+}
 
-	public DomesticHelpEntity() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
+public DomesticHelpEntity() {
+	// TODO Auto-generated constructor stub
+}
 	}
 	
 	
