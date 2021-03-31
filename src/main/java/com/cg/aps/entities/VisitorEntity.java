@@ -121,6 +121,6 @@ public class VisitorEntity extends BaseEntity{
 
 
 	public VisitorEntity() {
-		// TODO Auto-generated constructor stub
+
 	}
 }

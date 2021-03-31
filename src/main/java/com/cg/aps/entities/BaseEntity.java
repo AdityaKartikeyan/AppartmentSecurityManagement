@@ -51,7 +51,7 @@ public class BaseEntity {
 	 * 
 	 */
 	public BaseEntity() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public long getId() {

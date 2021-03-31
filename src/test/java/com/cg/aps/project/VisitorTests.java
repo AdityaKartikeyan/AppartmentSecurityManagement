@@ -57,20 +57,19 @@ class VisitorTests {
 	@Test
 	void testAddVisitorWrong() throws DuplicateRecordException
 	{
-		String name = "1234";
-		
+
 		VisitorEntity obj = new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
+		VisitorEntity obj1 = new VisitorEntity("2", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "11:30", "1:00");
 	    
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 		try {
-			assertEquals(name,service.add(obj));
+			assertEquals(service.add(obj1),service.add(obj));
 			}
 			catch(DuplicateRecordException e)
 			{
 				e.printStackTrace();
 			}
-		}
-	
+	}
 	
 	@Test
 	void testAddVisitorExisiting() throws DuplicateRecordException
@@ -192,13 +191,13 @@ class VisitorTests {
 	@Test
 	void testFindByPkWrong() throws RecordNotFoundException
 	{
-		long userId=123;
 		Optional<VisitorEntity> obj = Optional.of(new VisitorEntity("1", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "9:30", "10:00"));
+		Optional<VisitorEntity> obj2 = Optional.of(new VisitorEntity("183", "ambarish", "aditya", "Anshul", Date.valueOf(LocalDate.now()), "9:30", "10:00"));
 		
 		try{
 			Mockito.when(dao.findByVisitorId(obj.get().getVisitorId())).thenReturn(obj);
 		Optional<VisitorEntity> obj1 = Optional.of(service.findByPk(obj.get().getVisitorId()));
-		assertEquals(userId,obj1.get().getVisitorId());
+		assertEquals(obj2.get().getVisitorId(),obj1.get().getVisitorId());
 		}
 		catch (RecordNotFoundException e) {
 			e.printStackTrace();

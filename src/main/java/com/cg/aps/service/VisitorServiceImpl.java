@@ -24,6 +24,7 @@ public class VisitorServiceImpl implements VisitorService {
 	@Autowired
 	VisitorDao dao;
 
+	//Adding a Visitor
 	@Override
 	public VisitorEntity add(VisitorEntity bean) throws DuplicateRecordException {
 		try {
@@ -39,6 +40,7 @@ public class VisitorServiceImpl implements VisitorService {
 		}
 	}
 
+	//Updating a Visitor
 	@Override
 	public VisitorEntity update(VisitorEntity bean) throws RecordNotFoundException {
 		try {
@@ -52,6 +54,7 @@ public class VisitorServiceImpl implements VisitorService {
 		}
 	}
 
+	//Deleting a Visitor
 	@Override
 	public VisitorEntity delete(long id) throws RecordNotFoundException {
 		try {
@@ -67,6 +70,7 @@ public class VisitorServiceImpl implements VisitorService {
 		}
 	}
 
+	//Searching a Visitor by Name
 	@Override
 	public VisitorEntity findByName(String name) throws RecordNotFoundException {
 		try {
@@ -81,6 +85,7 @@ public class VisitorServiceImpl implements VisitorService {
 		}
 	}
 
+	//Searching a Visitor by Visitor ID
 	@Override
 	public VisitorEntity findByPk(String visitorId) throws RecordNotFoundException {
 		try {
@@ -95,6 +100,7 @@ public class VisitorServiceImpl implements VisitorService {
 		}
 	}
 
+	//Searching all the Visitors
 	@Override
 	public List<VisitorEntity> search() throws DatabaseException {
 		try {

@@ -14,10 +14,13 @@ import com.cg.aps.entities.VisitorEntity;
 @Repository
 public interface VisitorDao extends JpaRepository <VisitorEntity,Long> {
 
+	//Finding by name
 	Optional<VisitorEntity> findByName(String name);
 
+	//Finding by visitorId
 	Optional<VisitorEntity> findByVisitorId(String visitorId);
 	
+	//Deleting by ID 
 	VisitorEntity deleteById(long id);
 	
 }

@@ -1,3 +1,7 @@
+/**
+ * @author AMBARISH DATAR
+ *
+ */
 package com.cg.aps.exception;
 
 public class DatabaseException  extends Exception
