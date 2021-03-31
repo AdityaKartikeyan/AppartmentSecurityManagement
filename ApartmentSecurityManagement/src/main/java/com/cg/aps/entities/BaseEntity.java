@@ -136,5 +136,5 @@ public class BaseEntity {
 	public void setModifiedDateTime(LocalDateTime modifiedDateTime) {
 		this.modifiedDateTime = modifiedDateTime;
 	}
-	
+
 }

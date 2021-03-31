@@ -31,8 +31,8 @@ public interface DeliveryDao extends JpaRepository<DeliveryEntity, Long> {
 	Optional<DeliveryEntity> findByDeliveryId(long deliveryId);
 
 	/**
-	 * @param deliveryId
+	 * @param id
 	 * @return
 	 */
-	DeliveryEntity deleteByDeliveryId(long deliveryId);
+	DeliveryEntity deleteById(long id);
 }

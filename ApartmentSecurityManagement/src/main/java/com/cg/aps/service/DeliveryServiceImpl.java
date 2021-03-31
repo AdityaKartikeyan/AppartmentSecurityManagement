@@ -10,7 +10,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.cg.aps.entities.DeliveryEntity;
@@ -40,8 +39,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 				return dao.save(bean);
 			}
 
-		} catch (DataAccessException e) {
-			throw new DuplicateRecordException(e.getMessage());
 		} catch (Exception e) {
 			throw new DuplicateRecordException(e.getMessage());
 		}
@@ -50,31 +47,27 @@ public class DeliveryServiceImpl implements DeliveryService {
 	@Override
 	public DeliveryEntity update(DeliveryEntity bean) throws RecordNotFoundException {
 		try {
-			if (bean.getOwnerName().isEmpty()) {
+			if (bean.getOwnerName().isBlank()) {
 				throw new RecordNotFoundException("Name not found");
 			} else {
 				return dao.save(bean);
 			}
 
-		} catch (DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
 		} catch (Exception e) {
 			throw new RecordNotFoundException(e.getMessage());
 		}
 	}
 
 	@Override
-	public DeliveryEntity delete(long deliveryId) throws RecordNotFoundException {
+	public DeliveryEntity delete(long id) throws RecordNotFoundException {
 		try {
-			Optional<DeliveryEntity> guard = dao.findByDeliveryId(deliveryId);
-			if (!guard.isPresent()) {
+			Optional<DeliveryEntity> delivery = dao.findById(id);
+			if (!delivery.isPresent()) {
 				throw new RecordNotFoundException("Id Not Found");
 			} else {
-				return dao.deleteByDeliveryId(deliveryId);
+				return dao.deleteById(id);
 			}
 
-		} catch (DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
 		} catch (Exception e) {
 			throw new RecordNotFoundException(e.getMessage());
 		}
@@ -90,8 +83,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 				return dao.findByOwnerName(name);
 			}
 
-		} catch (DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
 		} catch (Exception e) {
 			throw new RecordNotFoundException(e.getMessage());
 		}
@@ -106,9 +97,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 			} else {
 				throw new RecordNotFoundException("Invalid id");
 			}
-
-		} catch (DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
 		} catch (Exception e) {
 			throw new RecordNotFoundException(e.getMessage());
 		}
@@ -128,8 +116,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 				return dao.findAll();
 			}
 
-		} catch (DataAccessException e) {
-			throw new DatabaseException(e.getMessage());
 		} catch (Exception e) {
 			throw new DatabaseException(e.getMessage());
 		}

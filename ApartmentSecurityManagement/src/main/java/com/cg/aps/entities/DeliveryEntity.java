@@ -41,7 +41,7 @@ public class DeliveryEntity extends BaseEntity {
 		this.date = date;
 		this.status = status;
 	}
-	
+
 	/**
 	 * @param id
 	 * @param createdBy

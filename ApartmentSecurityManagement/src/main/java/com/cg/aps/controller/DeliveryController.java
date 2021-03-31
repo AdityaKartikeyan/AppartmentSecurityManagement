@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.cg.aps.entities.DeliveryEntity;
 import com.cg.aps.exception.DatabaseException;
@@ -43,16 +42,14 @@ public class DeliveryController {
 	 * @return
 	 * @throws DuplicateRecordException
 	 */
-	@ApiOperation(value = "Add delivery", response = DeliveryEntity.class, tags = "add-Delivery", httpMethod = "POST")
+	@ApiOperation(value = "Add delivery", response = DeliveryEntity.class, tags = "add-Delivery", httpMethod = "POST") // Description
+																														// of
+																														// operation
 	@PostMapping("/addDelivery")
 	public ResponseEntity<DeliveryEntity> addDelivery(@RequestBody DeliveryEntity delivery)
 			throws DuplicateRecordException {
-		try {
-			DeliveryEntity addDelivery = service.add(delivery);
-			return new ResponseEntity<DeliveryEntity>(addDelivery, HttpStatus.OK);
-		} catch (DuplicateRecordException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
+		DeliveryEntity addDelivery = service.add(delivery);
+		return new ResponseEntity<DeliveryEntity>(addDelivery, HttpStatus.OK);
 	}
 
 	/**
@@ -65,13 +62,8 @@ public class DeliveryController {
 
 	public ResponseEntity<DeliveryEntity> updateDeliveryEntity(@RequestBody DeliveryEntity delivery)
 			throws RecordNotFoundException {
-		try {
-			DeliveryEntity updateDelivery = service.update(delivery);
-			return new ResponseEntity<DeliveryEntity>(updateDelivery, HttpStatus.OK);
-		} catch (RecordNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
-
+		DeliveryEntity updateDelivery = service.update(delivery);
+		return new ResponseEntity<DeliveryEntity>(updateDelivery, HttpStatus.OK);
 	}
 
 	/**
@@ -79,16 +71,11 @@ public class DeliveryController {
 	 * @return
 	 * @throws RecordNotFoundException
 	 */
-	@ApiOperation(value = "Delete delivery details by deliveryId", response = String.class, tags = "delete-Delivery", httpMethod = "DELETE")
-	@DeleteMapping("/deleteDelivery/{deliveryId}")
-	public ResponseEntity<String> deleteGuardTraining(@PathVariable("deliveryId") long deliveryId)
-			throws RecordNotFoundException {
-		try {
-			service.delete(deliveryId);
-			return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
-		} catch (RecordNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
+	@ApiOperation(value = "Delete delivery details by Id", response = String.class, tags = "delete-Delivery", httpMethod = "DELETE")
+	@DeleteMapping("/deleteDelivery/{id}")
+	public ResponseEntity<String> deleteGuardTraining(@PathVariable("id") long id) throws RecordNotFoundException {
+		service.delete(id);
+		return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
 	}
 
 	/**
@@ -100,14 +87,8 @@ public class DeliveryController {
 	@GetMapping("/getName/{onwerName}")
 	public ResponseEntity<List<DeliveryEntity>> getByOnwerName(@PathVariable("onwerName") String onwerName)
 			throws RecordNotFoundException {
-		try {
-			List<DeliveryEntity> getOwnerName = service.findByOwnerName(onwerName);
-			// return new ResponseEntity<List<DeliveryEntity>>(HttpStatus.OK);
-			return new ResponseEntity<List<DeliveryEntity>>(getOwnerName, HttpStatus.OK);
-		} catch (RecordNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
-
+		List<DeliveryEntity> getOwnerName = service.findByOwnerName(onwerName);
+		return new ResponseEntity<List<DeliveryEntity>>(getOwnerName, HttpStatus.OK);
 	}
 
 	/**
@@ -119,13 +100,8 @@ public class DeliveryController {
 	@GetMapping("/getByPk/{deliveryId}")
 	public ResponseEntity<DeliveryEntity> getByPk(@PathVariable("deliveryId") long deliveryId)
 			throws RecordNotFoundException {
-		try {
-			DeliveryEntity getByDeliveryId = service.findByPk(deliveryId);
-			return new ResponseEntity<DeliveryEntity>(getByDeliveryId, HttpStatus.OK);
-		} catch (RecordNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
-
+		DeliveryEntity getByDeliveryId = service.findByPk(deliveryId);
+		return new ResponseEntity<DeliveryEntity>(getByDeliveryId, HttpStatus.OK);
 	}
 
 	/**
@@ -135,13 +111,8 @@ public class DeliveryController {
 	@ApiOperation(value = "Get all deliveries", response = DeliveryEntity.class, tags = "get-All-Deliveries", httpMethod = "GET")
 	@GetMapping("/getAll")
 	public ResponseEntity<List<DeliveryEntity>> searchDeliveries() throws DatabaseException {
-		try {
-			List<DeliveryEntity> getAllDeliveries = service.search();
-			return new ResponseEntity<List<DeliveryEntity>>(getAllDeliveries, HttpStatus.OK);
-		} catch (DatabaseException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
-
+		List<DeliveryEntity> getAllDeliveries = service.search();
+		return new ResponseEntity<List<DeliveryEntity>>(getAllDeliveries, HttpStatus.OK);
 	}
 	// http://localhost:5050/swagger-ui.html
 }

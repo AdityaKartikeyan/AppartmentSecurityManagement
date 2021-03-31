@@ -98,13 +98,14 @@ class DeliveryEntityTest {
 	 */
 	@Test // Testing update delivery entity false case
 	void testUpdateDeliveryWrong() throws RecordNotFoundException {
-		String onwerName = "OnwerNew";
+		// String onwerName = "OnwerNew";
 		DeliveryEntity obj = new DeliveryEntity(1, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
+		DeliveryEntity obj1 = new DeliveryEntity(2, "Onwer", "12:30", Date.valueOf(LocalDate.now()), "Delivery Added");
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
 
 		try {
-			assertEquals(onwerName, service.update(obj));
+			assertEquals(service.update(obj1), service.update(obj));
 		} catch (RecordNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -120,7 +121,7 @@ class DeliveryEntityTest {
 				Date.valueOf(LocalDate.now()), "Delivery Added"));
 
 		Mockito.when(dao.findByDeliveryId(obj1.get().getDeliveryId())).thenReturn(obj1);
-		Mockito.when(dao.deleteByDeliveryId(obj1.get().getDeliveryId())).thenReturn(obj1.get());
+		Mockito.when(dao.deleteById(obj1.get().getDeliveryId())).thenReturn(obj1.get());
 		try {
 			DeliveryEntity src = service.delete(obj.getDeliveryId());
 			assertEquals(1, src.getDeliveryId());
