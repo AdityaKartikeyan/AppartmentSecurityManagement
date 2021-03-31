@@ -12,7 +12,7 @@ import com.cg.aps.exception.DuplicateRecordException;
 import com.cg.aps.exception.RecordNotFoundException;
 
 /**
- * @author Administrator
+ * @author Aditya
  *
  */
 public interface SecurityService {

@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * @author Administrator
+ * @author Aditya
  *
  */
 @Entity

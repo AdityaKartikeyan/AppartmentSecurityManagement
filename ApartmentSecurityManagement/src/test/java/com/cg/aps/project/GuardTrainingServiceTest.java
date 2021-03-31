@@ -27,7 +27,10 @@ import com.cg.aps.repository.GuardTrainingDao;
 import com.cg.aps.service.GuardTrainingService;
 
 //testing
-
+/**
+ * @author Aditya
+ *
+ */
 @SpringBootTest
 class GuardTrainingServiceTest {
 

@@ -1,6 +1,9 @@
 package com.cg.aps.exception;
 
-
+/**
+ * @author Aditya
+ *
+ */
 
 public class DatabaseException  extends Exception
 {

@@ -8,7 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import javax.persistence.Table;
-
+/**
+ * @author Aditya
+ *
+ */
 @Entity
 @Table(name="GuardTraining")
 public class GuardTrainingEntity extends BaseEntity{

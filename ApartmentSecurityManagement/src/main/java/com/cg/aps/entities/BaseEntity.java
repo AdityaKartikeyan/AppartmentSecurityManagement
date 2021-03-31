@@ -17,7 +17,10 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
+/**
+ * @author Aditya
+ *
+ */
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)

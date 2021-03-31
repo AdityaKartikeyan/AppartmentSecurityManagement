@@ -14,7 +14,10 @@ import com.cg.aps.exception.DatabaseException;
 import com.cg.aps.exception.DuplicateRecordException;
 import com.cg.aps.exception.RecordNotFoundException;
 import com.cg.aps.repository.GuardTrainingDao;
-
+/**
+ * @author Aditya
+ *
+ */
 @Service("GuardTrainingService")
 @Transactional
 public class GuardTrainingServiceImpl implements GuardTrainingService {
