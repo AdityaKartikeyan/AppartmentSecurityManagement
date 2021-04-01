@@ -1,16 +1,16 @@
 package com.cg.aps.entities;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+
+
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import javax.persistence.Table;
 @Entity
 @Table (name="DomesticHelp")
 public class DomesticHelpEntity extends BaseEntity {
-	private String domestichelpId;
+	private String domesticHelpId;
 	private String flatNo;
 	private String ownerName;
 	private String name;
@@ -21,12 +21,12 @@ public class DomesticHelpEntity extends BaseEntity {
 	
 	
 public String getDomestichelpId() {
-		return domestichelpId;
+		return domesticHelpId;
 	}
 
 
 	public void setDomestichelpId(String domestichelpId) {
-		this.domestichelpId = domestichelpId;
+		this.domesticHelpId = domestichelpId;
 	}
 
 
@@ -103,7 +103,7 @@ public String getDomestichelpId() {
 public DomesticHelpEntity(String domestichelpId, String flatNo, String ownerName, String name, String helpType,
 			String arrivalTime, String departureTime, String date) {
 		super();
-		this.domestichelpId = domestichelpId;
+		this.domesticHelpId = domestichelpId;
 		this.flatNo = flatNo;
 		this.ownerName = ownerName;
 		this.name = name;
@@ -118,7 +118,7 @@ public DomesticHelpEntity(long id, String createdBy, String modifiedBy, LocalDat
 		LocalDateTime modifiedDateTime, String domestichelpId, String flatNo, String ownerName, String name,
 		String helpType, String arrivalTime, String departureTime, String date) {
 	super(id, createdBy, modifiedBy, createdDateTime, modifiedDateTime);
-	this.domestichelpId = domestichelpId;
+	this.domesticHelpId = domestichelpId;
 	this.flatNo = flatNo;
 	this.ownerName = ownerName;
 	this.name = name;

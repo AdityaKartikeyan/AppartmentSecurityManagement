@@ -29,17 +29,17 @@ class DomesticHelpTest {
 	DomesticHelpService service;
 
 	@Test
-	public void testAddDomesticHelp() throws DuplicateRecordException {
+	 void testAddDomesticHelp() throws DuplicateRecordException {
 
 		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
 
 		Mockito.when(dao.save(obj)).thenReturn(obj);
-		assertEquals(obj, service.add(obj));
+		assertEquals(obj, service.add(obj));                 // test add
 
 	} 
 	
 	@Test
-	public void testAddDomesticHelpWrong() throws DuplicateRecordException {
+	 void testAddDomesticHelpWrong() throws DuplicateRecordException {
 		String helpNo = "7476";
 		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", helpNo, helpNo, helpNo);
 
@@ -47,11 +47,11 @@ class DomesticHelpTest {
 		try {
 			assertEquals(helpNo, service.add(obj).getDomestichelpId());
 		} catch (DuplicateRecordException e) {
-			e.printStackTrace();
+			e.printStackTrace();                                                //wrong test add
 		}
 	}
 	@Test
-	public void testAddExistingDomesticHelp() throws DuplicateRecordException {
+	 void testAddExistingDomesticHelp() throws DuplicateRecordException {
 		String DomesticHelpNo = "103";
 		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", DomesticHelpNo, DomesticHelpNo, DomesticHelpNo);
 		DomesticHelpEntity obj1 = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", DomesticHelpNo, DomesticHelpNo, DomesticHelpNo);
@@ -60,11 +60,11 @@ class DomesticHelpTest {
 		try {
 			assertEquals(DomesticHelpNo, service.add(obj).getDomestichelpId());
 		} catch (DuplicateRecordException e) {
-			e.printStackTrace();
+			e.printStackTrace();                                                   //test existing add
 		}
 	}
 	@Test
-	public void testUpdateDomesticHelp() throws RecordNotFoundException {
+	 void testUpdateDomesticHelp() throws RecordNotFoundException {
 
 		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
 
@@ -73,11 +73,11 @@ class DomesticHelpTest {
 		try {
 			assertEquals(obj, service.update(obj));
 		} catch (RecordNotFoundException e) {
-			e.printStackTrace();
+			e.printStackTrace();                                                 // update test
 		}
 	}
 	@Test
-	public void testUpdateDomesticHelpWrong() throws RecordNotFoundException {
+	 void testUpdateDomesticHelpWrong() throws RecordNotFoundException {
 String help="Laundry";
 		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", help, help, help);
 
@@ -87,10 +87,10 @@ String help="Laundry";
 			assertEquals(help, service.update(obj));
 		} catch (RecordNotFoundException e) {
 			e.printStackTrace();
-		}
+		}                                                                        // wrong update test
 	}
 	@Test
-	public void testDomesticHelp() throws RecordNotFoundException {
+	 void testDomesticHelp() throws RecordNotFoundException {
 		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
 		
 		Optional<DomesticHelpEntity> obj1 = Optional.of(new DomesticHelpEntity(1,"Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null));
@@ -100,12 +100,12 @@ String help="Laundry";
 			DomesticHelpEntity src = service.delete(obj1.get().getId());
 
 			assertEquals(1, src.getId());
-		} catch (RecordNotFoundException e) {
-			e.printStackTrace();
+		} catch (RecordNotFoundException e) {                                   // find by id test
+			e.printStackTrace();                                                         
 		}
 	}
 	@Test
-	public void testDomesticHelpWrong() throws RecordNotFoundException {
+	 void testDomesticHelpWrong() throws RecordNotFoundException {
 		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
 		
 		Optional<DomesticHelpEntity> obj1 = Optional.of(new DomesticHelpEntity(1,"Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null));
@@ -116,11 +116,11 @@ String help="Laundry";
 
 			assertEquals(0, src.getId());
 		} catch (RecordNotFoundException e) {
-			e.printStackTrace();
+			e.printStackTrace();                                               // find by id wrong test
 		}
 	}
 	@Test
-	public void testFindByName() throws RecordNotFoundException
+	 void testFindByName() throws RecordNotFoundException
 	{
 		
 		Optional<DomesticHelpEntity> obj = Optional.of(new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null));
@@ -130,8 +130,8 @@ String help="Laundry";
 		Optional<DomesticHelpEntity> obj1 = Optional.of(service.findByName(obj.get().getName()));
 		assertEquals(obj.get().getName(),obj1.get().getName());
 		
-	}
-	public void testFindByNameWrong() throws RecordNotFoundException
+	}                                                                            // find by name test
+	 void testFindByNameWrong() throws RecordNotFoundException
 	{
 		String name="leo";
 		Optional<DomesticHelpEntity> obj = Optional.of(new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", name, name, name));
@@ -142,13 +142,13 @@ String help="Laundry";
 	
 		assertEquals(obj.get().getName(),obj1.get().getName());
 	}
-	catch (RecordNotFoundException e) {
+	catch (RecordNotFoundException e) {                                            // find by name wrong test
 		e.printStackTrace();
 	}
 		
 	}
 	@Test
-	public void testFindByPk() throws RecordNotFoundException
+	 void testFindByPk() throws RecordNotFoundException
 	{
 		
 		Optional<DomesticHelpEntity> obj =Optional.of(new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null));
@@ -157,9 +157,9 @@ String help="Laundry";
 		Optional<DomesticHelpEntity> obj1 = Optional.of(service.findByPk(obj.get().getDomestichelpId()));
 		assertEquals(obj.get().getDomestichelpId(),obj1.get().getDomestichelpId());
 		
-	}
+	}                                                                             //find by pk test
 	@Test
-	public void testFindByPkWrong() throws RecordNotFoundException
+ void testFindByPkWrong() throws RecordNotFoundException
 	{
 		String help="leo";
 		
@@ -174,9 +174,9 @@ String help="Laundry";
 		e.printStackTrace();
 	}
 		
-	}
+	}                                                                              // find by pk wrong test
 	@Test
-	public void testSearch() throws DatabaseException
+	 void testSearch() throws DatabaseException
 	{
 		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
 		DomesticHelpEntity obj1 = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
@@ -186,10 +186,10 @@ String help="Laundry";
 		
 		
 		Mockito.when(dao.findAll()).thenReturn(list1);
-		assertEquals(2,service.search().size());
+		assertEquals(2,service.search().size());                                          // test search
 	}
 	@Test
-	public void testSearchWrong() throws DatabaseException
+	 void testSearchWrong() throws DatabaseException
 	{
 		DomesticHelpEntity obj = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
 		DomesticHelpEntity obj1 = new DomesticHelpEntity(0, "Anant", "Toshniwal", null, null, "11", "AT","Aditya","Laundry", "11:30", null, null, null);
@@ -200,5 +200,5 @@ String help="Laundry";
 		
 		Mockito.when(dao.findAll()).thenReturn(list1);
 		assertEquals(3,service.search().size());
-	}
+	}                                                                                     // test wrong
 }

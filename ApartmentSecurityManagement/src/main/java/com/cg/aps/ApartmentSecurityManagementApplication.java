@@ -13,9 +13,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
-@SpringBootApplication
-@EnableJpaAuditing
-@EnableSwagger2
+@SpringBootApplication //main class
+@EnableJpaAuditing //for swagger implementation
+@EnableSwagger2   //for auditing purpose
 public class ApartmentSecurityManagementApplication {
 //http://localhost:7070/swagger-ui.html#
 	public static void main(String[] args) {

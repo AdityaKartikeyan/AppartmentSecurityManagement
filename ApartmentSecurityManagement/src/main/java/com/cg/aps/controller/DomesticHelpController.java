@@ -37,7 +37,7 @@ public class DomesticHelpController {
 			throws DuplicateRecordException {
 
 		DomesticHelpEntity adddomestichelp = service.add(domestichelp);
-		return new ResponseEntity<DomesticHelpEntity>(adddomestichelp, HttpStatus.OK);
+		return new ResponseEntity<DomesticHelpEntity>(adddomestichelp, HttpStatus.OK);  //add domestic help
 
 	}
 
@@ -48,7 +48,7 @@ public class DomesticHelpController {
 			@RequestBody DomesticHelpEntity DomesticHelp) throws RecordNotFoundException {
 
 		DomesticHelpEntity updateDomesticHelp = service.update(DomesticHelp);
-		return new ResponseEntity<DomesticHelpEntity>(updateDomesticHelp, HttpStatus.OK);
+		return new ResponseEntity<DomesticHelpEntity>(updateDomesticHelp, HttpStatus.OK);      //update-domestichelp
 
 	}
 
@@ -58,7 +58,7 @@ public class DomesticHelpController {
 			throws RecordNotFoundException {
 
 		service.delete(id);
-		return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
+		return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);      //delete-domestichelp
 
 	}
 
@@ -68,7 +68,7 @@ public class DomesticHelpController {
 			throws RecordNotFoundException {
 
 		DomesticHelpEntity getDomesticHelpName = service.findByName(name);
-		return new ResponseEntity<DomesticHelpEntity>(getDomesticHelpName, HttpStatus.OK);
+		return new ResponseEntity<DomesticHelpEntity>(getDomesticHelpName, HttpStatus.OK);                //get-domestichelp-name
 
 	}
 
@@ -78,7 +78,7 @@ public class DomesticHelpController {
 			throws RecordNotFoundException {
 
 		DomesticHelpEntity getByid = service.findByPk(id);
-		return new ResponseEntity<DomesticHelpEntity>(getByid, HttpStatus.OK);
+		return new ResponseEntity<DomesticHelpEntity>(getByid, HttpStatus.OK);        //get-domestichelp by id
 
 	}
 
@@ -91,8 +91,8 @@ public class DomesticHelpController {
 	{
 		
 		List<DomesticHelpEntity> getAllDomesticHelps =  service.search();
-		  return new ResponseEntity<List<DomesticHelpEntity>>(getAllDomesticHelps, HttpStatus.OK);
+		  return new ResponseEntity<List<DomesticHelpEntity>>(getAllDomesticHelps, HttpStatus.OK);                    //get all
 		
-		
+		                                  
 	}
 }

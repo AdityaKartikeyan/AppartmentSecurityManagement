@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+
 import org.springframework.stereotype.Service;
 
 import com.cg.aps.entities.DomesticHelpEntity;
@@ -23,7 +23,7 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 	@Override
 	public DomesticHelpEntity add(DomesticHelpEntity bean) throws DuplicateRecordException {
 		// TODO Auto-generated method stub
-		try {
+		
 
 			
 			  Optional<DomesticHelpEntity> getId = dao.findByDomesticHelpId(bean.getDomestichelpId());
@@ -34,19 +34,14 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 			  
 			else {
 				return dao.save(bean);
-			}
-
-		} catch (DataAccessException e) {
-			throw new DuplicateRecordException(e.getMessage());
-		} catch (Exception e) {
-			throw new DuplicateRecordException(e.getMessage());
-		}
+			}                                                            //add domestic help
 	}
+	
 
 	@Override
 	public DomesticHelpEntity update(DomesticHelpEntity bean) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {			
+				
 			  if(bean.getName().isEmpty())
 		        {
 		           
@@ -54,39 +49,30 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 		        }
 			  else {
 				  
-				  return dao.save(bean);
+				  return dao.save(bean);                                 //update domestic help
 			  }
-			
-		}catch(DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}catch(Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
+		
 	
 	}
 
 	@Override
 	public DomesticHelpEntity delete(long id) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {
+		
 			Optional<DomesticHelpEntity> guard = dao.findById(id);
 			if (!guard.isPresent()) {
 				throw new RecordNotFoundException("Id Not Found");
 			} else {
-				return dao.deleteById(id);
+				return dao.deleteById(id);                                // delete domestic help
 			}
 
-		} catch (DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
-		} catch (Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
+		
 	}
 
 	@Override
 	public DomesticHelpEntity findByName(String name) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {
+		
 			  Optional <DomesticHelpEntity> domestichelp =dao.findByName(name);
 			   if(!domestichelp.isPresent())
 			   {
@@ -94,32 +80,24 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 			   }
 			   else
 			   {
-				   return domestichelp.get();
+				   return domestichelp.get();                                 // find by name
 			   }
 			
-			}catch(DataAccessException e) {
-				throw new RecordNotFoundException(e.getMessage());
-			}catch(Exception e) {
-				throw new RecordNotFoundException(e.getMessage());
-			}
+			
 	}
 
 	@Override
 	public  DomesticHelpEntity findByPk(String id) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {			
+					
 			Optional<DomesticHelpEntity> optional = dao.findByDomesticHelpId(id);
 			if(optional.isPresent()) {
 				return optional.get();
 			}else {
-				throw new RecordNotFoundException("Invalid id");
+				throw new RecordNotFoundException("Invalid id");                  // find by pk
 			}
 		
-		}catch(DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}catch(Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
+		
 	}
 
 	@Override
@@ -131,19 +109,15 @@ public class DomesticHelpServiceImpl implements DomesticHelpService{
 	@Override
 	public List<DomesticHelpEntity> search() throws DatabaseException {
 		// TODO Auto-generated method stub
-		try {
+		
 
 			if (dao.findAll().isEmpty()) {
 				throw new DatabaseException("No Records available in Database");
 			} else {
-				return dao.findAll();
+				return dao.findAll();                                   //search
 			}
 
-		} catch (DataAccessException e) {
-			throw new DatabaseException(e.getMessage());
-		} catch (Exception e) {
-			throw new DatabaseException(e.getMessage());
-		}
+	
 	}
 }
 
