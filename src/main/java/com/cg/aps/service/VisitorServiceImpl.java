@@ -27,7 +27,6 @@ public class VisitorServiceImpl implements VisitorService {
 	//Adding a Visitor
 	@Override
 	public VisitorEntity add(VisitorEntity bean) throws DuplicateRecordException {
-		try {
 			Optional<VisitorEntity> getId = dao.findByVisitorId(bean.getVisitorId());
 			if (getId.isPresent()) {
 				throw new DuplicateRecordException("The Id is already added");
@@ -35,82 +34,58 @@ public class VisitorServiceImpl implements VisitorService {
 			else {
 				return dao.save(bean);
 			}
-		} catch (Exception e) {
-			throw new DuplicateRecordException(e.getMessage());
-		}
 	}
 
 	//Updating a Visitor
 	@Override
 	public VisitorEntity update(VisitorEntity bean) throws RecordNotFoundException {
-		try {
 			if (bean.getName().isEmpty()) {
 				throw new RecordNotFoundException("Name not found");
 			} else {
 				return dao.save(bean);
 			}
-		} catch (Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
 	}
 
 	//Deleting a Visitor
 	@Override
 	public VisitorEntity delete(long id) throws RecordNotFoundException {
-		try {
 		Optional<VisitorEntity> visitor =dao.findById(id);
 		if (!visitor.isPresent()) {
 			throw new RecordNotFoundException("Id Not Found");
 		} else {
 		     return dao.deleteById(id);
 		}
-
-		} catch (Exception e) {
-		throw new RecordNotFoundException(e.getMessage());
-		}
 	}
 
 	//Searching a Visitor by Name
 	@Override
 	public VisitorEntity findByName(String name) throws RecordNotFoundException {
-		try {
 			Optional<VisitorEntity> visitor = dao.findByName(name);
 			if (!visitor.isPresent()) {
 				throw new RecordNotFoundException("Name not found");
 			} else {
 				return visitor.get();
 			}
-		} catch (Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
 	}
 
 	//Searching a Visitor by Visitor ID
 	@Override
 	public VisitorEntity findByPk(String visitorId) throws RecordNotFoundException {
-		try {
 			Optional<VisitorEntity> optional = dao.findByVisitorId(visitorId);
 			if (optional.isPresent()) {
 				return optional.get();
 			} else {
 				throw new RecordNotFoundException("Invalid id");
 			}
-		}  catch (Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
 	}
 
 	//Searching all the Visitors
 	@Override
 	public List<VisitorEntity> search() throws DatabaseException {
-		try {
 			if (dao.findAll().isEmpty()) {
 				throw new DatabaseException("No Records available in Database");
 			} else {
 				return dao.findAll();
 			}
-		} catch (Exception e) {
-			throw new DatabaseException(e.getMessage());
-		}
 	}
 }
