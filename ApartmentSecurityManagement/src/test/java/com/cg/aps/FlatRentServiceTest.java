@@ -25,14 +25,14 @@ import com.cg.aps.service.FlatRentServiceInt;
  *
  */
 @SpringBootTest
-public class FlatRentServiceTest {
+ class FlatRentServiceTest {
 	@MockBean
 	FlatRentDaoInt dao;
 	@Autowired
 	FlatRentServiceInt service;
 
 	@Test
-	public void testAddFlatRent() throws DuplicateRecordException {
+	 void testAddFlatRent() throws DuplicateRecordException {
 
 		FlatRentEntity obj = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
 
@@ -41,7 +41,7 @@ public class FlatRentServiceTest {
 	}
 	
 	@Test
-	public void testAddFlatRentWrong() throws DuplicateRecordException {
+	 void testAddFlatRentWrong() throws DuplicateRecordException {
 		String flatNo = "7476";
 		FlatRentEntity obj = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
 
@@ -54,7 +54,7 @@ public class FlatRentServiceTest {
 		}
 	}
 	@Test
-	public void testAddFlatRentDuplicate() throws DuplicateRecordException {
+	 void testAddFlatRentDuplicate() throws DuplicateRecordException {
 		String flatNo = "1041b";
 		FlatRentEntity obj = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
 		FlatRentEntity obj1 = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
@@ -71,7 +71,7 @@ public class FlatRentServiceTest {
 	
 	
 	@Test 
-	public void testUpdateFlatRent() throws  RecordNotFoundException
+	 void testUpdateFlatRent() throws  RecordNotFoundException
 	{
 		
 		FlatRentEntity obj = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
@@ -89,7 +89,7 @@ public class FlatRentServiceTest {
 			}
 	}
 	@Test
-	public void testUpdateFlatRentwrong() throws RecordNotFoundException {
+	 void testUpdateFlatRentwrong() throws RecordNotFoundException {
 		String flatNo = "1041b";
 		FlatRentEntity obj = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
 				
@@ -105,7 +105,7 @@ public class FlatRentServiceTest {
 	  
 	
 	@Test
-	public void testDeleteFlatRent() throws RecordNotFoundException {
+	 void testDeleteFlatRent() throws RecordNotFoundException {
 		FlatRentEntity obj = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
 				
 		Optional<FlatRentEntity> obj1 = Optional.of(new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b"));
@@ -122,7 +122,7 @@ public class FlatRentServiceTest {
 	}
 	
 	@Test
-	public void testDeleteFlatRentWrong() throws RecordNotFoundException {
+	 void testDeleteFlatRentWrong() throws RecordNotFoundException {
 		FlatRentEntity obj = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
 				
 		Optional<FlatRentEntity> obj1 = Optional.of(new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b"));
@@ -139,7 +139,7 @@ public class FlatRentServiceTest {
 	}
 	
 	@Test
-	public void testFindByName() throws RecordNotFoundException
+	 void testFindByName() throws RecordNotFoundException
 	{
 		
 	
@@ -151,7 +151,7 @@ public class FlatRentServiceTest {
 	}
 	
 	@Test
-	public void testFindByNameWrong() throws RecordNotFoundException
+	 void testFindByNameWrong() throws RecordNotFoundException
 	{
 		
 	String ownerName= "aditya";
@@ -167,7 +167,7 @@ public class FlatRentServiceTest {
 	}
 	
 	@Test
-	public void testFindByPk() throws RecordNotFoundException
+	 void testFindByPk() throws RecordNotFoundException
 	{
 		
 		Optional<FlatRentEntity> obj =Optional.of(new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b"));
@@ -178,7 +178,7 @@ public class FlatRentServiceTest {
 		
 	}
 	@Test
-	public void testFindByPkWrong() throws RecordNotFoundException
+	 void testFindByPkWrong() throws RecordNotFoundException
 	{
 		String FlatNo= "1245";
 		Optional<FlatRentEntity> obj =Optional.of(new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b"));
@@ -193,7 +193,7 @@ public class FlatRentServiceTest {
 	}
 	
 	@Test
-	public void testSearch() throws DatabaseException
+	 void testSearch() throws DatabaseException
 	{
 		FlatRentEntity obj = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
 		FlatRentEntity obj1 = new FlatRentEntity("Anshul", "paaji", "Owner", "1042");	
@@ -207,7 +207,7 @@ public class FlatRentServiceTest {
 	}
 	
 	@Test
-	public void testSearchWrong() throws DatabaseException
+	 void testSearchWrong() throws DatabaseException
 	{
 		FlatRentEntity obj = new FlatRentEntity("Sahitya", "shrivastava", "Owner", "1041b");
 		FlatRentEntity obj1 = new FlatRentEntity("Anshul", "paaji", "Owner", "1042");	

@@ -28,7 +28,7 @@ public class FlatServiceImpl implements FlatServiceInt {
 	@Override
 	public FlatEntity add(FlatEntity bean) throws DuplicateRecordException {
 		// TODO Auto-generated method stub
-		try {
+		
 
 			
 			  Optional<FlatEntity> getid = dao.findByFlatNo(bean.getFlatNo());
@@ -41,17 +41,13 @@ public class FlatServiceImpl implements FlatServiceInt {
 				return dao.save(bean);
 			}
 
-		} catch (DataAccessException e) {
-			throw new DuplicateRecordException(e.getMessage());
-		} catch (Exception e) {
-			throw new DuplicateRecordException(e.getMessage());
-		}
+		
 	}
 
 	@Override
 	public FlatEntity update(FlatEntity bean) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {			
+				
 			  if(bean.getOwnerName().isEmpty())
 		        {
 		           
@@ -62,17 +58,13 @@ public class FlatServiceImpl implements FlatServiceInt {
 				  return dao.save(bean);
 			  }
 			
-		}catch(DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}catch(Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
+		
 	}
 
 	@Override
 	public FlatEntity delete(long id) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {
+		
 			Optional<FlatEntity> guard =dao.findById(id);
 			if (!guard.isPresent()) {
 				throw new RecordNotFoundException("Id Not Found");
@@ -80,18 +72,14 @@ public class FlatServiceImpl implements FlatServiceInt {
 			     return dao.deleteById(id);
 			}
 
-		} catch (DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
-		} catch (Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
+		
 		}
 
 
 	@Override
 	public FlatEntity findByName(String name) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {
+		
 			   Optional<FlatEntity> flat =dao.findByOwnerName(name);
 			   if(!flat.isPresent())
 			   {
@@ -102,17 +90,13 @@ public class FlatServiceImpl implements FlatServiceInt {
 				   return flat.get();
 			   }
 			
-			}catch(DataAccessException e) {
-				throw new RecordNotFoundException(e.getMessage());
-			}catch(Exception e) {
-				throw new RecordNotFoundException(e.getMessage());
-			}
+			
 	}
 
 	@Override
 	public FlatEntity findByPk(String id) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {			
+				
 			Optional<FlatEntity> getid = dao.findByFlatNo(id);
 			if(getid.isPresent()) {
 				return getid.get();
@@ -120,12 +104,9 @@ public class FlatServiceImpl implements FlatServiceInt {
 				throw new RecordNotFoundException("Invalid id");
 			}
 		
-		}catch(DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}catch(Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
-	}
+			}
+	
+	
 
 	@Override
 	public List<FlatEntity> search(FlatEntity bean, long pageNo, int pageSize) {
@@ -135,7 +116,7 @@ public class FlatServiceImpl implements FlatServiceInt {
 
 	@Override
 	public List<FlatEntity> search() throws DatabaseException {
-try {			
+		
 			
 			if(dao.findAll().isEmpty())
 			{
@@ -145,11 +126,6 @@ try {
 				return dao.findAll();
 			}
 		
-		}catch(DataAccessException e) {
-			throw new DatabaseException(e.getMessage());
-		}catch(Exception e) {
-			throw new DatabaseException(e.getMessage());
-		}
 	}
 }
 

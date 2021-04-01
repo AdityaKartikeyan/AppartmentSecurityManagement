@@ -22,14 +22,14 @@ import com.cg.aps.service.FlatServiceInt;
 
 @SpringBootTest
 
-public class FlatServiceTest {
+ class FlatServiceTest {
 	@MockBean
 	FlatDaoInt dao;
 	@Autowired
 	FlatServiceInt service;
 
 	@Test
-	public void testAddFlat() throws DuplicateRecordException {
+	 void testAddFlat() throws DuplicateRecordException {
 
 		FlatEntity obj = new FlatEntity("Sahitya", "1041", "owner", "1041b");
 
@@ -38,7 +38,7 @@ public class FlatServiceTest {
 	}
 
 	@Test
-	public void testAddFlatWrong() throws DuplicateRecordException {
+	 void testAddFlatWrong() throws DuplicateRecordException {
 		String flatNo = "7476";
 		FlatEntity obj = new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b");
 
@@ -51,7 +51,7 @@ public class FlatServiceTest {
 		}
 	}
 	@Test
-	public void testAddFlatDuplicate() throws DuplicateRecordException {
+	 void testAddFlatDuplicate() throws DuplicateRecordException {
 		String flatNo = "1041b";
 		FlatEntity obj = new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b");
 		FlatEntity obj1 = new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b");
@@ -67,7 +67,7 @@ public class FlatServiceTest {
 	}
 	
 	@Test 
-	public void testUpdateFlat() throws  RecordNotFoundException
+	 void testUpdateFlat() throws  RecordNotFoundException
 	{
 		
 		FlatEntity obj = new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b");
@@ -85,7 +85,7 @@ public class FlatServiceTest {
 			}
 	}
 	@Test
-	public void testUpdateFlatWrong() throws RecordNotFoundException {
+	 void testUpdateFlatWrong() throws RecordNotFoundException {
 		String flatNo = "1041b";
 		FlatEntity obj = new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b");
 				
@@ -101,7 +101,7 @@ public class FlatServiceTest {
 	  
 
 	@Test
-	public void testDeleteFlat() throws RecordNotFoundException {
+	 void testDeleteFlat() throws RecordNotFoundException {
 		FlatEntity obj = new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b");
 				
 		Optional<FlatEntity> obj1 = Optional.of(new FlatEntity(1, "Sahitya", "shrivastava", null, null, "Owner", "1041b", null, null));
@@ -118,7 +118,7 @@ public class FlatServiceTest {
 	}
 	
 	@Test
-	public void testDeleteFlatWrong() throws RecordNotFoundException {
+	 void testDeleteFlatWrong() throws RecordNotFoundException {
 		FlatEntity obj = new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b");
 				
 		Optional<FlatEntity> obj1 = Optional.of(new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b"));
@@ -135,7 +135,7 @@ public class FlatServiceTest {
 	}
 
 	@Test
-	public void testFindByName() throws RecordNotFoundException
+	 void testFindByName() throws RecordNotFoundException
 	{
 		
 	
@@ -147,7 +147,7 @@ public class FlatServiceTest {
 	}
 	
 	@Test
-	public void testFindByNameWrong() throws RecordNotFoundException
+	 void testFindByNameWrong() throws RecordNotFoundException
 	{
 		
 	String ownerName= "aditya";
@@ -162,7 +162,7 @@ public class FlatServiceTest {
 	 }
 	}
 	@Test
-	public void testFindByPk() throws RecordNotFoundException
+	 void testFindByPk() throws RecordNotFoundException
 	{
 		
 		Optional<FlatEntity> obj =Optional.of(new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b"));
@@ -173,7 +173,7 @@ public class FlatServiceTest {
 		
 	}
 	@Test
-	public void testFindByPkWrong() throws RecordNotFoundException
+	 void testFindByPkWrong() throws RecordNotFoundException
 	{
 		String FlatNo= "1245";
 		Optional<FlatEntity> obj =Optional.of(new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b"));
@@ -188,7 +188,7 @@ public class FlatServiceTest {
 	}
 
 	@Test
-	public void testSearch() throws DatabaseException
+	 void testSearch() throws DatabaseException
 	{
 		FlatEntity obj = new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b");
 		FlatEntity obj1 = new FlatEntity("Anshul", "paaji", "Owner", "1042");	
@@ -202,7 +202,7 @@ public class FlatServiceTest {
 	}
 	
 	@Test
-	public void testSearchWrong() throws DatabaseException
+	 void testSearchWrong() throws DatabaseException
 	{
 		FlatEntity obj = new FlatEntity("Sahitya", "shrivastava", "Owner", "1041b");
 		FlatEntity obj1 = new FlatEntity("Anshul", "paaji", "Owner", "1042");	

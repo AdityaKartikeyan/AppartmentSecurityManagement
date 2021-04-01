@@ -27,7 +27,7 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 	@Override
 	public FlatRentEntity add(FlatRentEntity bean) throws DuplicateRecordException {
 		// TODO Auto-generated method stub
-		try {
+		
 
 			
 			  Optional<FlatRentEntity> getid = dao.findByFlatNo(bean.getFlatNo());
@@ -40,17 +40,12 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 				return dao.save(bean);
 			}
 
-		} catch (DataAccessException e) {
-			throw new DuplicateRecordException(e.getMessage());
-		} catch (Exception e) {
-			throw new DuplicateRecordException(e.getMessage());
-		}
 	}
 
 	@Override
 	public FlatRentEntity update(FlatRentEntity bean) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {			
+				
 			  if(bean.getOwnerName().isEmpty())
 		        {
 		           
@@ -61,17 +56,13 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 				  return dao.save(bean);
 			  }
 			
-		}catch(DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}catch(Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
+		
 	}
 
 	@Override
 	public FlatRentEntity delete(long id) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {
+		
 		Optional<FlatRentEntity> guard =dao.findById(id);
 		if (!guard.isPresent()) {
 			throw new RecordNotFoundException("Id Not Found");
@@ -79,17 +70,13 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 		     return dao.deleteById(id);
 		}
 
-	} catch (DataAccessException e) {
-		throw new RecordNotFoundException(e.getMessage());
-	} catch (Exception e) {
-		throw new RecordNotFoundException(e.getMessage());
-	}
+
 	}
 
 	@Override
 	public FlatRentEntity findByName(String name) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {
+		
 			   Optional<FlatRentEntity> flatRent =dao.findByOwnerName(name);
 			   if(!flatRent.isPresent())
 			   {
@@ -100,17 +87,13 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 				   return flatRent.get();
 			   }
 			
-			}catch(DataAccessException e) {
-				throw new RecordNotFoundException(e.getMessage());
-			}catch(Exception e) {
-				throw new RecordNotFoundException(e.getMessage());
-			}
+		
 	}
 
 	@Override
 	public FlatRentEntity findByPk(String id) throws RecordNotFoundException {
 		// TODO Auto-generated method stub
-		try {			
+				
 			Optional<FlatRentEntity> getid = dao.findByFlatNo(id);
 			if(getid.isPresent()) {
 				return getid.get();
@@ -118,11 +101,7 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 				throw new RecordNotFoundException("Invalid id");
 			}
 		
-		}catch(DataAccessException e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}catch(Exception e) {
-			throw new RecordNotFoundException(e.getMessage());
-		}
+		
 	}
 
 	@Override
@@ -134,7 +113,7 @@ public class FlatRentServiceImpl implements FlatRentServiceInt{
 	@Override
 	public List<FlatRentEntity> search() throws DatabaseException {
 		// TODO Auto-generated method stub
-try {			
+		
 			
 			if(dao.findAll().isEmpty())
 			{
@@ -143,13 +122,10 @@ try {
 			else {
 				return dao.findAll();
 			}
-		
-		}catch(DataAccessException e) {
-			throw new DatabaseException(e.getMessage());
-		}catch(Exception e) {
-			throw new DatabaseException(e.getMessage());
-		}
 	}
-	
 }
+		
+		
+	
+
 
