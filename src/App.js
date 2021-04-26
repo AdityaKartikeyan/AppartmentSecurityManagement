@@ -6,6 +6,7 @@ import ListGuardTrainingComponent from "./components/ListGuardTrainingComponent"
 import CreateGuardTrainingComponent from "./components/CreateGuardTrainingComponent";
 import UpdateGuardTrainingComponent from "./components/UpdateGuardTrainingComponent";
 import ViewGuardComponent from "./components/ViewGuardComponent";
+import BaseEntity from "./components/BaseEntity";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               path="/getById/:userId"
               component={ViewGuardComponent}
             ></Route>
+            <Route path="/getByPk/:userId" component={BaseEntity}></Route>
           </Switch>
         </div>
         <FooterComponent />

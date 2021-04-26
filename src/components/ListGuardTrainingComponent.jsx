@@ -17,6 +17,11 @@ class ListGuardTrainingComponent extends Component {
   editGuardTraining(userId) {
     this.props.history.push(`/update-guardTraining/${userId}`);
   }
+
+  baseEntity(userId) {
+    this.props.history.push(`/getByPk/${userId}`);
+  }
+
   componentDidMount() {
     GuardTrainingService.getGuardTraining().then((res) => {
       this.setState({ guardTraining: res.data });
@@ -44,7 +49,10 @@ class ListGuardTrainingComponent extends Component {
       <div>
         <h2 className="text-center">GuardTraining List</h2>
         <div className="row">
-          <button className="btn btn-primary" onClick={this.addGuardTraining}>
+          <button
+            className="btn btn-outline-primary"
+            onClick={this.addGuardTraining}
+          >
             Add Guard Training
           </button>
         </div>
@@ -92,6 +100,13 @@ class ListGuardTrainingComponent extends Component {
                       className="btn btn-info"
                     >
                       View
+                    </button>
+                    <button
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => this.baseEntity(guardtraining.userId)}
+                      className="btn btn-info"
+                    >
+                      Audit
                     </button>
                   </td>
                 </tr>
