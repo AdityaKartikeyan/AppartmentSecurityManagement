@@ -15,11 +15,11 @@ class GuardSalaryService{
         return axios.get(GUARDSALARY_API_BASE_URL + "getById/"+ userId);
     }
     updateGuardSalary(guardSalary, userId) {
-        return axios.put(GUARDSALARY_API_BASE_URL + "updateGuard/" + userId, guardSalary);
+        return axios.put(GUARDSALARY_API_BASE_URL + "updateGuardSalary/" + userId, guardSalary);
       }
     deleteGuardSalary(id) {
      return axios.delete(GUARDSALARY_API_BASE_URL + "deleteGuard/" + id);
       }
 }
-export default new GuardSalaryService()
+export default new GuardSalaryService();
 

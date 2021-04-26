@@ -8,6 +8,7 @@ import UpdateGuardSalaryComponent from './components/UpdateGuardSalaryComponent'
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
 import ViewGuardSalaryComponent from './components/ViewGuardSalaryComponent';
+import BaseEntity from './components/BaseEntity';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path = "/add-GuardSalary" component= {CreateGuardSalaryComponent}></Route>
                 <Route path = "/update-GuardSalary/:userId" component= {UpdateGuardSalaryComponent}></Route>
                 <Route path = "/getById/:userId" component={ViewGuardSalaryComponent}></Route>
+                <Route path="/getByPk/:userId" component={BaseEntity}></Route>
               </Switch>
             </div>  
            <FooterComponent />

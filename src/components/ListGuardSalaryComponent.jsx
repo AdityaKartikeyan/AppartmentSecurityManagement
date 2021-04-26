@@ -13,7 +13,10 @@ class ListGuardSalaryComponent extends Component {
         this.deleteGuardSalary = this.deleteGuardSalary.bind(this);
 
     }
-
+    baseEntity(userId) {
+      this.props.history.push(`/getByPk/${userId}`);
+    }
+    
     editGuardSalary(userId){
       this.props.history.push(`/update-GuardSalary/${userId}`);  
     }
@@ -24,21 +27,21 @@ class ListGuardSalaryComponent extends Component {
         });
     }
 
-    addGuardSalary(){
-      this.props.history.push('/add-GuardSalary')
-    }
-    viewGuardSalary(userId) {
-      this.props.history.push(`/getById/${userId}`);
-    }
-    deleteGuardSalary(id) {
-      GuardSalaryService.deleteGuardSalary(id).then((res) => {
-        this.setState({
-          guardSalary: this.state.guardSalary.filter(
-            (guardSalary) => guardSalary.id !== id
-          ),
+      addGuardSalary(){
+        this.props.history.push('/add-GuardSalary')
+      }
+      viewGuardSalary(userId) {
+        this.props.history.push(`/getById/${userId}`);
+      }
+      deleteGuardSalary(id) {
+        GuardSalaryService.deleteGuardSalary(id).then((res) => {
+          this.setState({
+            guardSalary: this.state.guardSalary.filter(
+              (guardSalary) => guardSalary.id !== id
+            ),
+          });
         });
-      });
-    }
+      }
 
     render() {
         return (
@@ -68,7 +71,8 @@ class ListGuardSalaryComponent extends Component {
                         <td>{guardSalary.timing}</td>
                         <td>{guardSalary.date}</td>
                         <td>
-                          <button onClick = { () => this.editGuardSalary(guardSalary.userId)} className = "btn btn-info">Update
+                          <button onClick = { () => this.editGuardSalary(guardSalary.userId)} className = "btn btn-info">
+                            Update
                           </button>
                           <button
                       style={{ marginLeft: "10px" }}
@@ -86,8 +90,18 @@ class ListGuardSalaryComponent extends Component {
                     >
                       View
                     </button>
+                    <button
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => this.baseEntity(guardSalary.userId)}
+                      className="btn btn-info"
+                    >
+                      Audit
+                    </button>
                         </td>
                       </tr>
+                      
+
+
                     ))}
                   </tbody>
                 </table>
