@@ -6,19 +6,23 @@ class ListDeliveryComponent extends Component {
     super(props);
 
     this.state = {
-      delivery: []
+      delivery: [],
     };
     this.addDelivery = this.addDelivery.bind(this);
     this.editDelivery = this.editDelivery.bind(this);
     this.deleteDelivery = this.deleteDelivery.bind(this);
+    this.baseEntity = this.baseEntity.bind(this);
   }
   componentDidMount() {
     DeliveryService.getDelivery().then((res) => {
       this.setState({ delivery: res.data });
     });
   }
+  baseEntity(deliveryId) {
+    this.props.history.push(`/getById/${deliveryId}`);
+  }
   addDelivery() {
-    this.props.history.push('/addDelivery');
+    this.props.history.push("/addDelivery");
   }
   editDelivery(deliveryId) {
     this.props.history.push(`/updateDelivery/${deliveryId}`);
@@ -27,8 +31,10 @@ class ListDeliveryComponent extends Component {
     this.props.history.push(`/getByPk/${deliveryId}`);
   }
   deleteDelivery(id) {
-    DeliveryService.deleteDelivery(id).then(res => {
-      this.setState({ delivery: this.state.delivery.filter(delivery => delivery.id !== id) });
+    DeliveryService.deleteDelivery(id).then((res) => {
+      this.setState({
+        delivery: this.state.delivery.filter((delivery) => delivery.id !== id),
+      });
     });
   }
   render() {
@@ -61,9 +67,35 @@ class ListDeliveryComponent extends Component {
                   <td>{delivery.time}</td>
                   <td>{delivery.status}</td>
                   <td>{delivery.date}</td>
-                  <td><button onClick={() => this.editDelivery(delivery.deliveryId)} className="btn btn-info">Update</button>
-                    <button style={{ marginLeft: "10px" }} onClick={() => this.deleteDelivery(delivery.id)} className="btn btn-danger">Delete</button>
-                    <button style={{ marginLeft: "10px" }} onClick={() => this.viewDelivery(delivery.deliveryId)} className="btn btn-info">View</button></td>
+                  <td>
+                    <button
+                      onClick={() => this.editDelivery(delivery.deliveryId)}
+                      className="btn btn-info"
+                    >
+                      Update
+                    </button>
+                    <button
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => this.deleteDelivery(delivery.id)}
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>
+                    <button
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => this.viewDelivery(delivery.deliveryId)}
+                      className="btn btn-info"
+                    >
+                      View
+                    </button>
+                    <button
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => this.baseEntity(delivery.deliveryId)}
+                      className="btn btn-info"
+                    >
+                      Audit
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

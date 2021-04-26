@@ -41,9 +41,44 @@
   position: relative;
   margin-top: 30%;
   bottom: 0;
-  width:100%;
+  width: 100%;
   height: 50px;
   background-color: black;
   text-align: center;
   color: white;
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Nunito", sans-serif;
+}
+.menu-bar {
+  background-image: linear-gradient(-90deg, #04ffdd, #1ecbff);
+}
+.navlink {
+  font-size: 16px;
+  margin: 3px;
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.navbar-nav {
+  text-align: right;
+  margin-right: 20px;
+}
+
+.menu-bar .navbar-toggler {
+  padding-right: 20px;
+  outline: none !important;
+  border: none !important;
+}
+
+.navbar .fa {
+  color: #fff !important;
+  font-size: 26px;
+}
+
+.nav-link:hover {
+  font-weight: 600;
+  border-bottom: 1px solid #fff;
 }

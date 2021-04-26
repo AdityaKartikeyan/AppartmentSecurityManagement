@@ -7,6 +7,7 @@ import ListDeliveryComponent from "./components/ListDeliveryComponent";
 import CreateDeliveryComponent from "./components/CreateDeliveryComponent";
 import UpdateDeliveryComponent from "./components/UpdateDeliveryComponent";
 import ViewDeliveryComponent from "./components/ViewDeliveryComponent";
+import BaseEntity from "./components/BaseEntity";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/addDelivery" component={CreateDeliveryComponent}></Route>
             <Route path="/updateDelivery/:deliveryId" component={UpdateDeliveryComponent}></Route>
             <Route path="/getByPk/:deliveryId" component={ViewDeliveryComponent}></Route>
+            <Route path="/getById/:deliveryId" component={BaseEntity}></Route>
           </Switch>
         </div>
         <FooterComponent />
