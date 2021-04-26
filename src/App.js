@@ -1,12 +1,13 @@
-import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import HeaderComponent from "./components/HeaderComponent";
-import FooterComponent from "./components/FooterComponent";
-import ListGuardTrainingComponent from "./components/ListGuardTrainingComponent";
-import CreateGuardTrainingComponent from "./components/CreateGuardTrainingComponent";
-import UpdateGuardTrainingComponent from "./components/UpdateGuardTrainingComponent";
-import ViewGuardComponent from "./components/ViewGuardComponent";
-import BaseEntity from "./components/BaseEntity";
+
+import './App.css';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import FooterComponent from './Components/FooterComponent';
+import HeaderComponent from './Components/HeaderComponent';
+import ListFlatComponent from './Components/ListFlatComponent';
+import CreateFlatComponent from './Components/CreateFlatComponent';
+import UpdateFlatComponent from './Components/UpdateFlatComponent';
+import ViewFlatComponent from './Components/ViewFlatComponent';
+import BaseEntity from './Components/BaseEntity';
 
 function App() {
   return (
@@ -18,25 +19,26 @@ function App() {
             <Route
               path="/"
               exact
-              component={ListGuardTrainingComponent}
+              component={ListFlatComponent}
             ></Route>
             <Route
-              path="/guardTraining"
-              component={ListGuardTrainingComponent}
+              path="/flat"
+              component={ListFlatComponent}
             ></Route>
             <Route
-              path="/add-guardTraining"
-              component={CreateGuardTrainingComponent}
+              path="/addFlat"
+              component={CreateFlatComponent}
             ></Route>
             <Route
-              path="/update-guardTraining/:userId"
-              component={UpdateGuardTrainingComponent}
+              path="/updateFlat/:flatNo"
+              component={UpdateFlatComponent}
             ></Route>
             <Route
-              path="/getById/:userId"
-              component={ViewGuardComponent}
+              path="/getById/:flatNo"
+              component={ViewFlatComponent}
             ></Route>
-            <Route path="/getByPk/:userId" component={BaseEntity}></Route>
+            
+            <Route path="/getByPk/:flatNo" component={BaseEntity}></Route>
           </Switch>
         </div>
         <FooterComponent />
